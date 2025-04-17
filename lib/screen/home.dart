@@ -1,4 +1,5 @@
 import 'package:application_backend/widget/home/card_chips.dart';
+import 'package:application_backend/widget/home/card_menu.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -60,6 +61,17 @@ class Home extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.bold
             ),),
+
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  cardMenu(Color(0xffF5D4C1),Image.asset('lib/asset/image/taco.png')),
+                  cardMenu(Color(0xffFDEBC9),Image.asset('lib/asset/image/bbguer.png')),
+                  cardMenu(Color(0xffD0F1EB),Image.asset('lib/asset/image/burger.png')),
+                ],
+              ),
+            ),
           ],
         ),
       ),
