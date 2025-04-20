@@ -9,6 +9,6 @@ Widget cardChips(Color BgColor,Image BGImage){
       color: BgColor,
       borderRadius: BorderRadius.circular(10),
     ),
-    child: BGImage
+    child: BGImage,
   );
 }
