@@ -1,4 +1,5 @@
 import 'package:application_backend/screen/home.dart';
+import 'package:application_backend/screen/location.dart';
 import 'package:application_backend/screen/order.dart';
 import 'package:application_backend/screen/profile.dart';
 import 'package:flutter/material.dart';
@@ -13,33 +14,46 @@ class NavigationControll extends StatefulWidget {
 
 class _NavigationControllState extends State<NavigationControll> {
  
-  int onpageindex = 1; //? Where to index start 
-  final pagedata =[const Home(),const Order(),const Profile()];
+  int onpageindex = 0; //? Where to index start 
+  final pagedata =[
+    const Home(),
+    const LocationScreen(),
+    const Order(),
+    const Profile()
+    ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Color(0xff191D21),
       body: pagedata[onpageindex],
-
-       bottomNavigationBar: 
-       BottomNavigationBar(
+      
+      bottomNavigationBar: BottomNavigationBar(  
         currentIndex: onpageindex,
         onTap: (gotopage){
           setState(() {
             onpageindex = gotopage;
           });
          }, 
-        backgroundColor: Color(0xff191D21),
+        type: BottomNavigationBarType.fixed,
+        backgroundColor:const Color(0xff191D21),
         elevation:0,
         showSelectedLabels: true,
         selectedItemColor: Color(0xffFFAC4B),
         unselectedItemColor: Colors.white,
+        selectedFontSize:10,
+        unselectedFontSize:8,
+        iconSize: 18,
+
 
         items: [
         BottomNavigationBarItem(
             icon: Icon(Icons.home), 
             label: 'Home',
+            ),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.location_on), 
+            label: 'Location',
             ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bakery_dining_rounded),

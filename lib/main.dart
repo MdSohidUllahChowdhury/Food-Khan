@@ -6,7 +6,8 @@ void main() {
   MaterialApp(
     home: NavigationControll(),
     theme: ThemeData(
+      useMaterial3: true,
       fontFamily: 'Roboto'
-    ),
+      ),
   ));
 }
