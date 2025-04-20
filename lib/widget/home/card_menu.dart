@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-Widget cardMenu(Color BgColor,Image BGImage){
+Widget cardMenu(Color BgColor, Image BGImage) {
   return Container(
-    margin: EdgeInsets.only(top: 10,right: 15),
+    margin: EdgeInsets.only(top: 10, left: 13),
     height: 236,
     width: 200,
     decoration: BoxDecoration(
@@ -11,17 +11,55 @@ Widget cardMenu(Color BgColor,Image BGImage){
     ),
     child: Column(
       children: [
-        BGImage,
-        SizedBox(height: 20),
-        Text(
-          "The Taco\nCompany",textAlign: TextAlign.left,
-          style: TextStyle(
-            fontSize:17,
-            color: Colors.black,
-            fontWeight: FontWeight.w400,
+        Center(child: BGImage),
+
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            "   The Taco\n   Company",
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+              fontWeight: FontWeight.w400,
+            ),
           ),
-        )
+        ),
+        SizedBox(height: 6),
+        Row(
+          children: [
+            SizedBox(width: 10),
+            Icon(Icons.star, color: Color(0xffFFAC4B), size: 15),
+            Text(
+              '  4.8',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w100),
+            ),
+            SizedBox(width: 10),
+            Icon(Icons.circle, color: Color(0xffffffff), size: 10),
+
+            Text(
+              "  \$\$\$",
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100),
+            ),
+          ],
+        ),
+        SizedBox(height: 6),
+        Row(
+          children: [
+            SizedBox(width: 10),
+            Text(
+              '  Restaurant',
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100),
+            ),
+            SizedBox(width: 10),
+            Icon(Icons.circle, color: Color(0xffffffff), size: 10),
+
+            Text(
+              "  Mexican",
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100),
+            ),
+          ],
+        ),
       ],
-    )
+    ),
   );
 }

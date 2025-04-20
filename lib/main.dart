@@ -1,10 +1,10 @@
-import 'package:application_backend/screen/home.dart';
+import 'package:application_backend/model/routes/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(
   MaterialApp(
-    home: Home(),
+    home: NavigationControll(),
     theme: ThemeData(
       fontFamily: 'Roboto'
     ),
