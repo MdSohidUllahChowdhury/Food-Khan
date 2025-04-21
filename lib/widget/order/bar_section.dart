@@ -20,7 +20,7 @@ Widget BarSection(){
                     children: [
                       SizedBox(height: 55),
                       Align(alignment: Alignment.topLeft,
-                        child: IconButton(onPressed:(){}, icon: Icon(Icons.arrow_back_ios,size: 14,))),
+                        child: IconButton(onPressed:(){}, icon: Icon(Icons.tag_faces_outlined,size: 14,))),
                       
                       Align(
                         alignment: Alignment.topLeft,

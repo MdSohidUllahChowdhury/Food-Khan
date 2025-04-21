@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget cardMenu(Color BgColor, Image BGImage) {
+Widget cardMenu(Color BgColor, Image BGImage, String productName, String star) {
   return Container(
     margin: EdgeInsets.only(top: 10, left: 13),
     height: 236,
@@ -16,7 +16,7 @@ Widget cardMenu(Color BgColor, Image BGImage) {
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            "   The Taco\n   Company",
+            productName,
             style: TextStyle(
               fontSize: 16,
               color: Colors.black,
@@ -30,7 +30,7 @@ Widget cardMenu(Color BgColor, Image BGImage) {
             SizedBox(width: 10),
             Icon(Icons.star, color: Color(0xffFFAC4B), size: 15),
             Text(
-              '  4.8',
+              star,
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w100),
             ),
             SizedBox(width: 10),
