@@ -1,4 +1,4 @@
-import 'package:application_backend/widget/home/featured.dart';
+import 'package:application_backend/widget/page/home/featured.dart';
 import 'package:flutter/material.dart';
 
 Widget FeaturedRestaurantModel(){

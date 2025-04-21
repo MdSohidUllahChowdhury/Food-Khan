@@ -1,5 +1,5 @@
 import 'package:application_backend/model/order/food_model_list.dart';
-import 'package:application_backend/widget/order/bar_section.dart';
+import 'package:application_backend/widget/page/order/bar_section.dart';
 import 'package:flutter/material.dart';
 
 class Order extends StatefulWidget {
@@ -34,7 +34,7 @@ class _OrderState extends State<Order> {
             delegate: SliverChildBuilderDelegate((context, index) {
               final item = _foodCall[index];
               return Container(
-                margin: EdgeInsets.only(top: 10,left: 4,right: 4),
+                margin: EdgeInsets.only(top: 10, left: 4, right: 4),
                 height: 213,
                 width: 168.5,
                 decoration: BoxDecoration(

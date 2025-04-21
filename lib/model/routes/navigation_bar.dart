@@ -1,7 +1,7 @@
-import 'package:application_backend/screen/home.dart';
-import 'package:application_backend/screen/location.dart';
-import 'package:application_backend/screen/order.dart';
-import 'package:application_backend/screen/profile.dart';
+import 'package:application_backend/screen/page/home.dart';
+import 'package:application_backend/screen/page/location.dart';
+import 'package:application_backend/screen/page/order.dart';
+import 'package:application_backend/screen/page/profile.dart';
 import 'package:flutter/material.dart';
 
 

@@ -1,10 +1,11 @@
-import 'package:application_backend/model/routes/navigation_bar.dart';
+import 'package:application_backend/screen/auth/splash.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(
-  MaterialApp(
-    home: NavigationControll(),
+  GetMaterialApp(
+    home: const SplashScreen(),
     theme: ThemeData(
       useMaterial3: true,
       fontFamily: 'Roboto'
