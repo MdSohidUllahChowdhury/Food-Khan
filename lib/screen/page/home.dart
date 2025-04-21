@@ -1,6 +1,6 @@
-import 'package:application_backend/model/home/categories.dart';
-import 'package:application_backend/model/home/fetured_restaurant.dart';
-import 'package:application_backend/model/home/special_menu.dart';
+import 'package:application_backend/model/page/home/categories.dart';
+import 'package:application_backend/model/page/home/fetured_restaurant.dart';
+import 'package:application_backend/model/page/home/special_menu.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
