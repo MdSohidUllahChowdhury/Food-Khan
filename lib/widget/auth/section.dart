@@ -5,23 +5,28 @@ class SectionName extends StatelessWidget {
   final bool? forpassword;
   final bool? isRequired;
 
-  const SectionName(
-      {super.key, required this.nameit, this.forpassword, this.isRequired});
+  const SectionName({
+    super.key,
+    required this.nameit,
+    this.forpassword,
+    this.isRequired,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
-        validator: isRequired == true
-            ? (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Fill the section!';
-                } else {
-                  return null;
+        validator:
+            isRequired == true
+                ? (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Fill the section!';
+                  } else {
+                    return null;
+                  }
                 }
-              }
-            : null,
+                : null,
         obscureText: forpassword ?? false,
         decoration: InputDecoration(
           filled: true,
@@ -30,8 +35,9 @@ class SectionName extends StatelessWidget {
           hintStyle: const TextStyle(fontSize: 10),
           contentPadding: const EdgeInsets.all(12),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide.none),
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide.none,
+          ),
         ),
       ),
     );

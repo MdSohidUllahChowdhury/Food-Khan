@@ -1,4 +1,4 @@
-import 'package:Food_Khan/screen/auth/splash.dart';
+import 'package:Food_Khan/view/auth/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

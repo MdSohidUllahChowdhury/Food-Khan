@@ -1,5 +1,5 @@
-import 'package:Food_Khan/screen/auth/log_in.dart';
-import 'package:Food_Khan/screen/auth/sing_up.dart';
+import 'package:Food_Khan/view/auth/log_in.dart';
+import 'package:Food_Khan/view/auth/sing_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -21,13 +21,9 @@ class WelcomeScreen extends StatelessWidget {
                   height: 250,
                   width: double.infinity,
                 ),
-                Divider(
-                  color: Color(0xff42D674),thickness: 18,
-                ),
-                const SizedBox(height: 10,),
-                Divider(
-                  color: Color(0xffFFAC4B),thickness: 18,
-                ),
+                Divider(color: Color(0xff42D674), thickness: 18),
+                const SizedBox(height: 10),
+                Divider(color: Color(0xffFFAC4B), thickness: 18),
                 const SizedBox(height: 30),
                 const Text(
                   'Discover Your\nDream Yaaami Food Here',

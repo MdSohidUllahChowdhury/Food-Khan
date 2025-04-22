@@ -1,6 +1,8 @@
 import 'package:Food_Khan/model/page/home/categories.dart';
 import 'package:Food_Khan/model/page/home/fetured_restaurant.dart';
 import 'package:Food_Khan/model/page/home/special_menu.dart';
+import 'package:Food_Khan/model/page/order/food_menu_model.dart';
+import 'package:Food_Khan/model/page/order/food_model_list.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -11,7 +13,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
+  //! Try to add search filter
+  TextEditingController searchController = TextEditingController();
+  List<FoodMenuModel> food = foodMenuList;
+  //! ---------
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,24 +35,45 @@ class _HomeState extends State<Home> {
                 SizedBox(width: 13),
                 CircleAvatar(
                   radius: 25,
-                  backgroundImage: NetworkImage('https://avatars.githubusercontent.com/u/157578225?v=4'),
+                  backgroundImage: NetworkImage(
+                    'https://avatars.githubusercontent.com/u/157578225?v=4',
+                  ),
                 ),
                 SizedBox(width: 10),
                 Expanded(
                   child: TextFormField(
+                    //onChanged: searchFood,
                     autofocus: true,
+                    controller: searchController,
                     decoration: InputDecoration(
                       hintText: 'Dishes, restaurants or cuisines',
                       fillColor: Color(0xff656F77),
                       filled: true,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                        borderRadius: BorderRadius.all(Radius.circular(26)),
                         borderSide: BorderSide.none,
                       ),
                     ),
                   ),
                 ),
                 SizedBox(width: 10),
+                // SizedBox.expand(
+                //   child: ListView.builder(
+                //     itemCount: food.length,
+                //     itemBuilder: (context, index) {
+                //       final call = food[index];
+                //       return ListTile(
+                //         leading: Image.asset(
+                //           call.image.toString(),
+                //           height: 50,
+                //           width: 50,
+                //           fit: BoxFit.cover,
+                //         ),
+                //         title: Text(call.name.toString()),
+                //       );
+                //     },
+                //   ),
+                // )
               ],
             ),
 
@@ -73,7 +100,7 @@ class _HomeState extends State<Home> {
             ),
 
             SpecialMenuModel(),
-            
+
             const SizedBox(height: 20),
             Text(
               "  Featured restaurants",
@@ -88,7 +115,18 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-
     );
   }
+
+  // void searchFood(String query) {
+  //   final suggestion =
+  //       foodMenuList.where((element) {
+  //         final foodTittle = element.name.toString();
+  //         final input = query.toLowerCase();
+  //         return foodTittle.contains(input);
+  //       }).toList();
+  //   setState(() {
+  //     food = suggestion;
+  //   });
+  // }
 }

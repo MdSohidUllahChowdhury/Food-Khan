@@ -1,5 +1,5 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
-import 'package:Food_Khan/screen/auth/sing_up.dart';
+import 'package:Food_Khan/view/auth/sing_up.dart';
 import 'package:Food_Khan/widget/auth/section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,10 +35,11 @@ class Login extends StatelessWidget {
               "Welcome back you've\nbeen missed!",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100,
-                  letterSpacing: 1.4),
+                fontSize: 10,
+                color: Colors.white,
+                fontWeight: FontWeight.w100,
+                letterSpacing: 1.4,
+              ),
             ),
             const SizedBox(height: 55),
             Form(
@@ -47,10 +48,7 @@ class Login extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SectionName(
-                    nameit: 'Email',
-                    isRequired: true,
-                  ),
+                  const SectionName(nameit: 'Email', isRequired: true),
                   const SizedBox(height: 25),
                   const SectionName(
                     nameit: 'Password',
@@ -61,10 +59,11 @@ class Login extends StatelessWidget {
                   const Text(
                     'Forgot your password?',
                     style: TextStyle(
-                        fontSize: 10,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w100,
-                        letterSpacing: 1.4),
+                      fontSize: 10,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w100,
+                      letterSpacing: 1.4,
+                    ),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -75,8 +74,9 @@ class Login extends StatelessWidget {
                     },
                     style: ButtonStyle(
                       elevation: const WidgetStatePropertyAll(0),
-                      minimumSize:
-                          WidgetStateProperty.all<Size>(const Size(300, 55)),
+                      minimumSize: WidgetStateProperty.all<Size>(
+                        const Size(300, 55),
+                      ),
                       backgroundColor: WidgetStateProperty.all<Color>(
                         const Color(0xff42D674),
                       ),
@@ -84,10 +84,11 @@ class Login extends StatelessWidget {
                     child: const Text(
                       'Log In',
                       style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                          letterSpacing: 1.2,
-                          fontWeight: FontWeight.w600),
+                        fontSize: 15,
+                        color: Colors.white,
+                        letterSpacing: 1.2,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
@@ -99,10 +100,11 @@ class Login extends StatelessWidget {
               child: const Text(
                 'Create New Account',
                 style: TextStyle(
-                    fontSize: 10,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w100,
-                    letterSpacing: 1.4),
+                  fontSize: 10,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w100,
+                  letterSpacing: 1.4,
+                ),
               ),
             ),
           ],
