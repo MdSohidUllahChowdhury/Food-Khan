@@ -1,4 +1,4 @@
-import 'package:application_backend/screen/auth/welcome.dart';
+import 'package:Food_Khan/screen/auth/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

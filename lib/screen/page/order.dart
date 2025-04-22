@@ -1,5 +1,5 @@
-import 'package:application_backend/model/page/order/food_model_list.dart';
-import 'package:application_backend/widget/page/order/bar_section.dart';
+import 'package:Food_Khan/model/page/order/food_model_list.dart';
+import 'package:Food_Khan/widget/page/order/bar_section.dart';
 import 'package:flutter/material.dart';
 
 class Order extends StatefulWidget {

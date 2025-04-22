@@ -1,4 +1,4 @@
-import 'package:application_backend/widget/page/home/card_chips.dart';
+import 'package:Food_Khan/widget/page/home/card_chips.dart';
 import 'package:flutter/material.dart';
 
 Widget CategoriModel (){

@@ -1,5 +1,5 @@
-import 'package:application_backend/screen/auth/log_in.dart';
-import 'package:application_backend/screen/auth/sing_up.dart';
+import 'package:Food_Khan/screen/auth/log_in.dart';
+import 'package:Food_Khan/screen/auth/sing_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';

@@ -1,6 +1,6 @@
-import 'package:application_backend/model/page/home/categories.dart';
-import 'package:application_backend/model/page/home/fetured_restaurant.dart';
-import 'package:application_backend/model/page/home/special_menu.dart';
+import 'package:Food_Khan/model/page/home/categories.dart';
+import 'package:Food_Khan/model/page/home/fetured_restaurant.dart';
+import 'package:Food_Khan/model/page/home/special_menu.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -29,9 +29,7 @@ class _HomeState extends State<Home> {
                 SizedBox(width: 13),
                 CircleAvatar(
                   radius: 25,
-                  backgroundImage: NetworkImage(
-                    "https://scontent.fdac22-1.fna.fbcdn.net/v/t39.30808-6/462224242_3848408458768924_2899989875015698060_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGBlZGTJXQU3jzc3PgTVMEyvUlQmy-VouS9SVCbL5Wi5Nmzh0ObK35b-loRMY7cfVxwu6f-if5-u3NDWYUTvDWw&_nc_ohc=YbnoF6_6dx0Q7kNvwE_Qn-O&_nc_oc=AdkQpinV_bTcRwYsMRtn3Aek9sNCvEr-WUxu7n0ajypPMh_42vkAynJLtvCYRoLI7BQ&_nc_zt=23&_nc_ht=scontent.fdac22-1.fna&_nc_gid=47vBCBOVpvHlCmk98FQHOw&oh=00_AfEs0d8X55ZPf27kZrxuPgCpqD_5ti4-4WiaTrjMWVTGxA&oe=6806BAE3",
-                  ),
+                  backgroundImage: NetworkImage('https://avatars.githubusercontent.com/u/157578225?v=4'),
                 ),
                 SizedBox(width: 10),
                 Expanded(

@@ -1,4 +1,4 @@
-import 'package:application_backend/model/page/order/food_menu_model.dart';
+import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:flutter/animation.dart';
 
 List<FoodMenuModel> foodMenuList = [

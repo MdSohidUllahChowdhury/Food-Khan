@@ -1,4 +1,4 @@
-import 'package:application_backend/widget/page/location/location_bar.dart';
+import 'package:Food_Khan/widget/page/location/location_bar.dart';
 import 'package:flutter/material.dart';
 
 class LocationScreen extends StatefulWidget {

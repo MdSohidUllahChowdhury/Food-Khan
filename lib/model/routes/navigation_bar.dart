@@ -1,7 +1,7 @@
-import 'package:application_backend/screen/page/home.dart';
-import 'package:application_backend/screen/page/location.dart';
-import 'package:application_backend/screen/page/order.dart';
-import 'package:application_backend/screen/page/profile.dart';
+import 'package:Food_Khan/screen/page/home.dart';
+import 'package:Food_Khan/screen/page/location.dart';
+import 'package:Food_Khan/screen/page/order.dart';
+import 'package:Food_Khan/screen/page/profile.dart';
 import 'package:flutter/material.dart';
 
 

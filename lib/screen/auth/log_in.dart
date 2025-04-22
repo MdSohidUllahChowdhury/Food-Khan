@@ -1,6 +1,6 @@
-import 'package:application_backend/model/routes/navigation_bar.dart';
-import 'package:application_backend/screen/auth/sing_up.dart';
-import 'package:application_backend/widget/auth/section.dart';
+import 'package:Food_Khan/model/routes/navigation_bar.dart';
+import 'package:Food_Khan/screen/auth/sing_up.dart';
+import 'package:Food_Khan/widget/auth/section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
