@@ -24,7 +24,7 @@ List<FoodMenuModel> foodMenuList = [
     color: Color(0xffD0F1EB),
     ),
   FoodMenuModel(
-    id: '10',
+    id: '4',
     name: 'Chicken',
     price: '18\$',
     image: 'lib/asset/image/pic_04.png',

@@ -3,7 +3,9 @@ import 'package:Food_Khan/model/page/home/fetured_restaurant.dart';
 import 'package:Food_Khan/model/page/home/special_menu.dart';
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:Food_Khan/model/page/order/food_model_list.dart';
+import 'package:Food_Khan/view/page/profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -51,10 +53,12 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(width: 13),
-                CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(
-                    'https://avatars.githubusercontent.com/u/157578225?v=4',
+                InkWell(onTap: () => Get.to(()=> const Profile()),
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                      'https://avatars.githubusercontent.com/u/157578225?v=4',
+                    ),
                   ),
                 ),
                 SizedBox(width: 10),
