@@ -15,8 +15,8 @@ class _NavigationControllState extends State<NavigationControll> {
   int onpageindex = 0; //? Where to index start
   final pagedata = [
     const Home(),
-    const LocationScreen(),
     const Order(),
+    const LocationScreen(),
     const Profile(),
   ];
 
@@ -46,12 +46,12 @@ class _NavigationControllState extends State<NavigationControll> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.location_on),
-            label: 'Location',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.bakery_dining_rounded),
             label: 'Orders',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.location_on),
+            label: 'Location',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_pin),
