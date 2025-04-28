@@ -4,14 +4,12 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 class FoodDetaills extends StatefulWidget {
-
+  final String productImage, brandName, offerPrice;
   const FoodDetaills({
-    
     super.key,
-    String? foodName,
-    String? foodPrice,
-    String? foodImage,
-    Color? foodColor,
+    required this.productImage,
+    required this.brandName,
+    required this.offerPrice,
   });
 
   @override
@@ -30,9 +28,11 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () {
-            Get.to(()=> const NavigationControll(),
-                transition: Transition.rightToLeft,
-                duration: const Duration(milliseconds: 500));
+            Get.to(
+              () => const NavigationControll(),
+              transition: Transition.rightToLeft,
+              duration: const Duration(milliseconds: 500),
+            );
           },
         ),
         title: const Text(
@@ -45,41 +45,38 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         ),
       ),
       body: Container(
-        margin: const EdgeInsets.only(top: 50, left: 20, right: 20),
+        margin: const EdgeInsets.only(top: 22, left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
             const SizedBox(height: 10),
-            Container(
-              height: 220,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: const Color.fromARGB(
-                      255,
-                      240,
-                      206,
-                      206,
-                    ).withOpacity(0.5),
-                    blurRadius: 10,
-                    offset: const Offset(-6, 8),
-                  ),
-                ],
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                image: const DecorationImage(
-                  image: AssetImage(
-                    "lib/asset/image/pic_03.png",
-                  ), // Replace with your food image
-                  fit: BoxFit.cover,
+            Animate(
+              child: Container(
+                height: 220,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(
+                        255,
+                        240,
+                        206,
+                        206,
+                      ).withOpacity(0.5),
+                      blurRadius: 10,
+                      offset: const Offset(-6, 8),
+                    ),
+                  ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
                 ),
+                child: Image.asset(widget.productImage, fit: BoxFit.cover),
               ),
-            ),
+            ).animate().flipH(duration: Duration(seconds: 2)),
             const SizedBox(height: 35),
-           
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   "ADD TO FAVORITE",
@@ -90,15 +87,17 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                   ),
                 ),
                 CircleAvatar(
-                  radius: 35,
+                  radius: 30,
                   backgroundColor: const Color(0xffF24E1E),
                   child: Center(
-                    child: IconButton(onPressed: (){}, icon:Icon(Icons.favorite, color: Colors.black, size: 44,)),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.favorite, color: Colors.black, size: 44),
+                    ),
                   ),
                 ),
               ],
             ),
-
 
             const SizedBox(height: 20),
             Container(
@@ -124,8 +123,8 @@ class _FoodDetaillsState extends State<FoodDetaills> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "The Taco Truck",
+                  Text(
+                    widget.brandName,
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -156,25 +155,30 @@ class _FoodDetaillsState extends State<FoodDetaills> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Animate(
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundColor: const Color(0xffffffff),
-                    child: CircleAvatar(
-                      radius: 35,
-                      backgroundColor: const Color(0xff42D674),
-                      child: Center(
-                        child: const Text(
-                          "  Price\n\$12.99",
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w300,
+                      child: CircleAvatar(
+                        radius: 40,
+                        backgroundColor: const Color(0xffffffff),
+                        child: CircleAvatar(
+                          radius: 35,
+                          backgroundColor: const Color(0xff8ACCD5),
+                          child: Center(
+                            child: Text(
+                              "PRICE\n ${widget.offerPrice}\$",
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ).animate().flip().scaleXY(duration: 500.ms).then().fadeIn(duration: 4000.ms),
+                    )
+                    .animate()
+                    .flipV()
+                    .scaleXY(duration: 500.ms)
+                    .then()
+                    .fadeIn(duration: 4000.ms),
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(

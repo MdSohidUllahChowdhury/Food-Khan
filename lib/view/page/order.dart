@@ -38,10 +38,10 @@ class _OrderState extends State<Order> {
               return InkWell(
                 onTap: () {
                   Get.to( () => FoodDetaills(
-                    //foodName: item.name.toString(),
-                    // foodPrice: item.price.toString(),
-                    // foodImage: item.image.toString(),
-                    // foodColor: item.color,
+                    productImage: item.image.toString(),
+                    brandName: item.name.toString(),
+                    offerPrice: item.price.toString(),
+                    
                   ),
                   );
                 },
