@@ -1,4 +1,5 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
+import 'package:Food_Khan/view/page/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -91,8 +92,14 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                   backgroundColor: const Color(0xffF24E1E),
                   child: Center(
                     child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.favorite, color: Colors.black, size: 44),
+                      onPressed: () {
+                        Get.to(
+                          () => const CartPage(),
+                          transition: Transition.rightToLeft,
+                          duration: const Duration(milliseconds: 700),
+                        );
+                      },
+                      icon: Icon(Icons.favorite, color: Color(0xff191D21), size: 44),
                     ),
                   ),
                 ),
@@ -117,7 +124,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     ).withOpacity(0.5),
                     blurRadius: 10,
                     offset: const Offset(-6, 8),
-                  ),
+                ),
                 ],
               ),
               child: Column(
@@ -163,7 +170,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                           backgroundColor: const Color(0xff8ACCD5),
                           child: Center(
                             child: Text(
-                              "PRICE\n ${widget.offerPrice}\$",
+                              "PRICE\n ${widget.offerPrice}",
                               style: TextStyle(
                                 fontSize: 11,
                                 color: Colors.black,

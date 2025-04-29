@@ -1,5 +1,6 @@
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:flutter/animation.dart';
+import 'package:flutter_launcher_icons/constants.dart';
 
 List<FoodMenuModel> foodMenuList = [
   FoodMenuModel(
@@ -29,6 +30,20 @@ List<FoodMenuModel> foodMenuList = [
     price: '18\$',
     image: 'lib/asset/image/pic_04.png',
     color: Color(0xffDED2F9),
+    ),
+  FoodMenuModel(
+    id: '5',
+    name: 'Cola Barger',
+    price: '20\$',
+    image: 'lib/asset/image/bbguer.png',
+    color: Color(0xffDED2F9),
+    ),
+  FoodMenuModel(
+    id: '6',
+    name: 'Chicken Roll',
+    price: '14\$',
+    image: 'lib/asset/image/taco.png',
+    color: Color(0xff8ACCD5),
     ),
 
 ];

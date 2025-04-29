@@ -52,12 +52,12 @@ class _ProfileState extends State<Profile> {
             },
           ),
         ],
-        backgroundColor: Color(0xffF24E1E),
+        backgroundColor: Colors.orangeAccent,
         centerTitle: true,
       ),
 
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 15),
+        margin: EdgeInsets.symmetric(vertical: 15,horizontal: 13),
         child: Column(
           children: [
             Animate(
@@ -77,18 +77,106 @@ class _ProfileState extends State<Profile> {
 
             const SizedBox(height: 10),
             Text(
-              'User Name',
+              'User Information',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 14,
                 fontWeight: FontWeight.w100,
-                letterSpacing: 1.4,
-                color: Color(0xff191D21),
+                letterSpacing: 1.2,
+                //color: Color(0xff191D21),
+                color: Colors.white,
               ),
             ),
-            const SizedBox(height: 5),
+            const SizedBox(height: 25),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Email',
+                hintStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w100,
+                  fontSize: 12,
+                ),
+                prefixIcon: Icon(
+                  Icons.email,
+                  size: 18,
+                  color: Colors.orange,
+                ),
+                contentPadding: EdgeInsets.only(left: 10),
+                fillColor: Color(0xff656F77),
+                filled: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(26)),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Phone Number',
+                hintStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w100,
+                  fontSize: 12,
+                ),
+                prefixIcon: Icon(
+                  Icons.phone,
+                  size: 18,
+                  color: Colors.orange,
+                ),
+                contentPadding: EdgeInsets.only(left: 10),
+                fillColor: Color(0xff656F77),
+                filled: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(26)),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Address',
+                hintStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w100,
+                  fontSize: 12,
+                ),
+                prefixIcon: Icon(
+                  Icons.location_on,
+                  size: 18,
+                  color: Colors.orange,
+                ),
+                contentPadding: EdgeInsets.only(left: 10),
+                fillColor: Color(0xff656F77),
+                filled: true,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(26)),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
           ],
         ),
       ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.snackbar(
+            'Development Mood',
+            "Working on this unit"
+                " please be patient",
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Color(0xffD0F1EB),
+            colorText: Color(0xff191D21),
+            duration: Duration(seconds: 4),
+          );
+        },
+        backgroundColor: Colors.orangeAccent,
+        child: Icon(Icons.save),
+      ),
+      
+
     );
   }
 }

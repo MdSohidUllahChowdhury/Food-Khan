@@ -18,7 +18,7 @@ class _OrderState extends State<Order> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff191D21),
-      body: CustomScrollView(
+      body: CustomScrollView( 
         slivers: [
           SliverToBoxAdapter(
             child: Column(
@@ -61,6 +61,7 @@ class _OrderState extends State<Order> {
                         child: Text(
                           item.name.toString(),
                           style: TextStyle(
+
                             fontSize: 23,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,

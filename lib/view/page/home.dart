@@ -3,6 +3,7 @@ import 'package:Food_Khan/model/page/home/fetured_restaurant.dart';
 import 'package:Food_Khan/model/page/home/special_menu.dart';
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:Food_Khan/model/page/order/food_model_list.dart';
+import 'package:Food_Khan/view/page/order.dart';
 import 'package:Food_Khan/view/page/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -112,6 +113,7 @@ class _HomeState extends State<Home> {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: filteredFood.length,
+                  itemExtent:30,
                   itemBuilder: (context, index) {
                     final item = filteredFood[index];
                     return ListTile(
@@ -158,7 +160,11 @@ class _HomeState extends State<Home> {
               ),
             ),
 
-            SpecialMenuModel(),
+            InkWell(
+              onTap: () {
+                Get.to(() => const Order());
+              },
+              child: SpecialMenuModel()),
 
             const SizedBox(height: 20),
             Text(
