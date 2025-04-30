@@ -1,5 +1,5 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
-import 'package:Food_Khan/view/page/cart.dart';
+import 'package:Food_Khan/view/page/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -58,12 +58,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      color: const Color.fromARGB(
-                        255,
-                        240,
-                        206,
-                        206,
-                      ).withOpacity(0.5),
+                      color: Colors.grey.shade600.withOpacity(0.5),
                       blurRadius: 10,
                       offset: const Offset(-6, 8),
                     ),
@@ -93,13 +88,13 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                   child: Center(
                     child: IconButton(
                       onPressed: () {
-                        Get.to(
-                          () => const CartPage(),
-                          transition: Transition.rightToLeft,
-                          duration: const Duration(milliseconds: 700),
-                        );
+                        
                       },
-                      icon: Icon(Icons.favorite, color: Color(0xff191D21), size: 44),
+                      icon: Icon(
+                        Icons.favorite,
+                        color: Color(0xff191D21),
+                        size: 44,
+                      ),
                     ),
                   ),
                 ),
@@ -124,7 +119,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     ).withOpacity(0.5),
                     blurRadius: 10,
                     offset: const Offset(-6, 8),
-                ),
+                  ),
                 ],
               ),
               child: Column(
@@ -187,7 +182,9 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     .then()
                     .fadeIn(duration: 4000.ms),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => const Wallet());
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(

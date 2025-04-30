@@ -1,18 +1,16 @@
-import 'package:Food_Khan/view/page/wallet.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+class CartScreen extends StatefulWidget {
+  const CartScreen({super.key});
 
   @override
-  State<CartPage> createState() => _CartPageState();
+  State<CartScreen> createState() => _CartScreenState();
 }
 
-class _CartPageState extends State<CartPage> {
-  @override 
+class _CartScreenState extends State<CartScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
       backgroundColor: const Color(0xff191D21),
       appBar: AppBar(
         backgroundColor: const Color(0xff191D21),
@@ -25,7 +23,7 @@ class _CartPageState extends State<CartPage> {
           },
         ),
         title: const Text(
-          "Cart", 
+          "Cart",
           style: TextStyle(
             fontSize: 20,
             color: Colors.white,
@@ -35,23 +33,10 @@ class _CartPageState extends State<CartPage> {
       ),
       body: Center(
         child: Text(
-          'Your cart is empty',
-          style: TextStyle(color: Colors.white, fontSize: 18),
+          'Cart is empty',
+          style: TextStyle(color: Colors.white, fontSize: 24),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.to(
-            const Wallet(),
-            transition: Transition.rightToLeft,
-            duration: const Duration(milliseconds: 500),
-          );
-          // Add your action here
-        },
-        backgroundColor: Colors.red,
-        child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

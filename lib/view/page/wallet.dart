@@ -13,7 +13,7 @@ class Wallet extends StatelessWidget {
           Flexible(
             child: ClipRRect(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(36),
+                bottomLeft: Radius.circular(36), 
                 bottomRight: Radius.circular(36),
               ),
               child: Container(
@@ -63,14 +63,48 @@ class Wallet extends StatelessWidget {
             ),
           ),
 
-
-          SizedBox(height: 12,),
+          SizedBox(height: 12),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              '    Featured',
+              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,letterSpacing: 1.4),
+            ),
+          ),
+          SizedBox(height: 28),
           CustomListTile(Icons.bar_chart, "View analytics"),
-          SizedBox(height: 12,),
+          SizedBox(height: 12),
           CustomListTile(Icons.account_balance_wallet, "Pass Book"),
-          SizedBox(height: 12,),
+          SizedBox(height: 12),
           CustomListTile(Icons.account_balance, "Bank Account"),
+          SizedBox(height: 40),
           
+          InkWell(
+            onTap: () {
+              
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              height: 50,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.teal.shade700,
+                borderRadius: BorderRadius.all(Radius.circular(8)),
+              ),
+            child: Center(
+              child: Text(
+                "Add Money",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w200,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ),
+            ),
+          ),
         ],
       ),
     );
