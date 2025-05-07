@@ -5,6 +5,7 @@ import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:Food_Khan/model/page/order/food_model_list.dart';
 import 'package:Food_Khan/view/page/order.dart';
 import 'package:Food_Khan/view/page/profile.dart';
+import 'package:Food_Khan/widget/styel/styel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -20,24 +21,24 @@ class _HomeState extends State<Home> {
   List<FoodMenuModel> food = foodMenuList;
   List<FoodMenuModel> filteredFood = [];
 
-  @override
-  void initState() {
-    super.initState();
-    filteredFood = food; // Initialize with the full list
-  }
+  //@override
+  // void initState() {
+  //   super.initState();
+  //   filteredFood = food; // Initialize with the full list
+  // }
 
-  void searchFood(String query) {
-    final suggestion =
-        food.where((element) {
-          final foodTitle = element.name.toString();
-          final input = query.toString();
-          return foodTitle.contains(input);
-        }).toList();
+  // void searchFood(String query) {
+  //   final suggestion =
+  //       food.where((element) {
+  //         final foodTitle = element.name.toString();
+  //         final input = query.toString();
+  //         return foodTitle.contains(input);
+  //       }).toList();
 
-    setState(() {
-      filteredFood = suggestion;
-    });
-  }
+  //   setState(() {
+  //     filteredFood = suggestion;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +49,13 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 65),
-
+            SizedBox(height: 55),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(width: 13),
-                InkWell(onTap: () => Get.to(()=> const Profile()),
+                InkWell(
+                  onTap: () => Get.to(() => const Profile()),
                   child: CircleAvatar(
                     radius: 20,
                     backgroundImage: NetworkImage(
@@ -69,7 +70,7 @@ class _HomeState extends State<Home> {
                     margin: EdgeInsets.only(right: 10),
                     padding: EdgeInsets.only(left: 30),
                     child: TextFormField(
-                      onChanged: searchFood, // Call the search function
+                      //onChanged: searchFood, // Call the search function
                       controller: searchController,
                       decoration: InputDecoration(
                         hintText: 'Dishes, restaurants or cuisines',
@@ -98,54 +99,50 @@ class _HomeState extends State<Home> {
               ],
             ),
 
-            const SizedBox(height: 20),
-            Text(
-              "  Search Results",
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.white,
-                fontWeight: FontWeight.w100,
-              ),
-            ),
+            const SizedBox(height:5),
+            // Text(
+            //   "  Search Results",
+            //   style: TextStyle(
+            //     fontSize: 12,
+            //     color: Colors.white,
+            //     fontWeight: FontWeight.w100,
+            //   ),
+            // ),
 
-            filteredFood.isNotEmpty
-                ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: filteredFood.length,
-                  itemExtent:30,
-                  itemBuilder: (context, index) {
-                    final item = filteredFood[index];
-                    return ListTile(
-                      leading: Image.asset(
-                        item.image.toString(),
-                        height: 35,
-                        width: 40,
-                        fit: BoxFit.cover,
-                      ),
-                      title: Text(
-                        item.name.toString(),
-                        style: TextStyle(color: Colors.white, fontSize: 9),
-                      ),
-                    );
-                  },
-                )
-                : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "No items found",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ),
+            // filteredFood.isEmpty
+            //     ? Padding(
+            //       padding: const EdgeInsets.all(8.0),
+            //       child: Text(
+            //         "No items found",
+            //         style: TextStyle(color: Colors.white, fontSize: 18),
+            //       ),
+            //     )
+            //     : ListView.builder(
+            //       shrinkWrap: true,
+            //       physics: NeverScrollableScrollPhysics(),
+            //       itemCount: filteredFood.length,
+            //       itemExtent: 20,
+            //       itemBuilder: (context, index) {
+            //         final item = filteredFood[index];
+            //         return ListTile(
+            //           leading: Image.asset(
+            //             item.image.toString(),
+            //             height: 35,
+            //             width: 40,
+            //             fit: BoxFit.cover,
+            //           ),
+            //           title: Text(
+            //             item.name.toString(),
+            //             style: TextStyle(color: Colors.white, fontSize: 9),
+            //           ),
+            //         );
+            //       },
+            //     ),
 
             const SizedBox(height: 20),
             Text(
               "  Popular categories",
-              style: TextStyle(
-                fontSize: 22,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              style: CustomTextStyle.title,
             ),
 
             CategoriModel(),
@@ -153,27 +150,20 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 20),
             Text(
               "  Today’s special menu",
-              style: TextStyle(
-                fontSize: 22,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              style: CustomTextStyle.title,
             ),
 
             InkWell(
               onTap: () {
                 Get.to(() => const Order());
               },
-              child: SpecialMenuModel()),
+              child: SpecialMenuModel(),
+            ),
 
             const SizedBox(height: 20),
             Text(
               "  Featured restaurants",
-              style: TextStyle(
-                fontSize: 22,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              style: CustomTextStyle.title,
             ),
 
             FeaturedRestaurantModel(),
