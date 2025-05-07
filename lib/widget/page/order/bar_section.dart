@@ -23,15 +23,15 @@ Widget BarSection() {
             alignment: Alignment.topLeft,
             child: IconButton(
               onPressed: () {},
-              icon: Icon(Icons.tag_faces_outlined, size: 14),
+              icon: Icon(Icons.arrow_back_ios, size: 14),
             ),
           ),
 
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              '    Restaurant  ^  Takeaway',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
+              '    Restaurant  Takeaway',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100,color: Colors.black54),
             ),
           ),
           Align(

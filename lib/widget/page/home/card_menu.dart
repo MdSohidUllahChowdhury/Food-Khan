@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
-Widget cardMenu(Color BgColor, Image BGImage, String productName, String star) {
+Widget cardMenu(
+  Color BgColor, 
+  Image BGImage, 
+  String productName,star,offPrice,restaurant
+  ) {
   return Container(
     margin: EdgeInsets.only(top: 10, left: 13),
     height: 236,
@@ -37,8 +41,8 @@ Widget cardMenu(Color BgColor, Image BGImage, String productName, String star) {
             Icon(Icons.circle, color: Color(0xffffffff), size: 10),
 
             Text(
-              "  \$\$\$",
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100),
+              offPrice,
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100,color: Color.fromARGB(255, 241, 13, 13)),
             ),
           ],
         ),
@@ -54,7 +58,7 @@ Widget cardMenu(Color BgColor, Image BGImage, String productName, String star) {
             Icon(Icons.circle, color: Color(0xffffffff), size: 10),
 
             Text(
-              "  Mexican",
+              restaurant,
               style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100),
             ),
           ],

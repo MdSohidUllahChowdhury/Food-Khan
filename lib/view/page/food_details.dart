@@ -18,6 +18,15 @@ class FoodDetaills extends StatefulWidget {
 }
 
 class _FoodDetaillsState extends State<FoodDetaills> {
+  int quantity = 1;
+  int price = 0;
+
+  @override
+  void initState() {
+    price = int.parse(widget.offerPrice.replaceAll('\$', ''));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,9 +96,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                   backgroundColor: const Color(0xffF24E1E),
                   child: Center(
                     child: IconButton(
-                      onPressed: () {
-                        
-                      },
+                      onPressed: () {},
                       icon: Icon(
                         Icons.favorite,
                         color: Color(0xff191D21),
@@ -101,8 +108,9 @@ class _FoodDetaillsState extends State<FoodDetaills> {
               ],
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 12),
             Container(
+              margin: const EdgeInsets.only(bottom: 25),
               height: 200,
               width: double.infinity,
               padding: const EdgeInsets.all(16),
@@ -135,7 +143,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                    "Mexican food truck serving tacos, burritos, and quesadillas.The Taco Truck is a popular food truck that serves delicious Mexican cuisine.",
+                    "Mexican food truck serving tacos, burritos, and quesadillas. The Taco Truck is a popular food truck that serves delicious Mexican cuisine.",
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.white,
@@ -150,37 +158,83 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+
+            SizedBox(
+              height: 50,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Color(0xffF7C242),
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          quantity = quantity + 1;
+                          price = quantity * int.parse(widget.offerPrice.replaceAll('\$', ''));
+                        });
+                      },
+                      icon: Icon(Icons.add, color: Color(0xff191D21), size: 25),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Text(
+                    '$quantity',
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Color(0xffF7C242),
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Color(0xffF7C242),
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          if (quantity > 1) {
+                            quantity = quantity - 1;
+                            price = quantity * int.parse(widget.offerPrice.replaceAll('\$', ''));
+                          }
+                        });
+                      },
+                      icon: Icon(Icons.remove, color: Color(0xff191D21), size: 25),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Animate(
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundColor: const Color(0xffffffff),
-                        child: CircleAvatar(
-                          radius: 35,
-                          backgroundColor: const Color(0xff8ACCD5),
-                          child: Center(
-                            child: Text(
-                              "PRICE\n ${widget.offerPrice}",
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
+                  child: CircleAvatar(
+                    radius: 40,
+                    backgroundColor: const Color(0xffffffff),
+                    child: CircleAvatar(
+                      radius: 35,
+                      backgroundColor: const Color(0xff8ACCD5),
+                      child: Center(
+                        child: Text(
+                          '\$$price',
+                          style: TextStyle(
+                            fontSize: 29,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                       ),
-                    )
+                    ),
+                  ),
+                )
                     .animate()
                     .flipV()
                     .scaleXY(duration: 500.ms)
                     .then()
-                    .fadeIn(duration: 4000.ms),
+                    .fadeIn(duration: 2000.ms),
                 ElevatedButton(
                   onPressed: () {
                     Get.to(() => const Wallet());

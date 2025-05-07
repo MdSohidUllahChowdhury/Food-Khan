@@ -61,8 +61,8 @@ class _OrderState extends State<Order> {
                         child: Text(
                           item.name.toString(),
                           style: TextStyle(
-
-                            fontSize: 23,
+                            fontFamily: 'Poppins',
+                            fontSize: 19,
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                           ),

@@ -12,18 +12,32 @@ Widget SpecialMenuModel() {
           Image.asset('lib/asset/image/taco.png'),
           '   The Taco\n   Company',
           '4.8',
+          ' 20% off',
+          ' Maxican'
         ),
         cardMenu(
           Color(0xffDED2F9),
-          Image.asset('lib/asset/image/con.png', cacheHeight: 140),
+          Image.asset('lib/asset/image/con.png', cacheHeight: 137),
           '   The Burger \n   Club',
           '5.0',
+          ' 25% off',
+          ' American'
         ),
         cardMenu(
           Color(0xffD0F1EB),
           Image.asset('lib/asset/image/pic_01.png'),
           '   Fast Restaurant',
           '4.7',
+          ' 15% off',
+          ' Italian'
+        ),
+        cardMenu(
+          Color(0xffD0F1EB),
+          Image.asset('lib/asset/image/pic_03.png',cacheHeight: 160,),
+          '   Chicken House',
+          '4.9',
+          ' 17% off',
+          ' Turkish'
         ),
       ],
     ),

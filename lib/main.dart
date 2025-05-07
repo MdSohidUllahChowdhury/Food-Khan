@@ -12,7 +12,7 @@ void main() {
       home: const SplashScreen(),
       theme: ThemeData(
         useMaterial3: true,
-        fontFamily: 'Roboto'
+        fontFamily: 'Roboto',
         ),
     ),
   ));

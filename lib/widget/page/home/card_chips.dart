@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Widget cardChips(Color BgColor, Image BGImage) {
   return Container(
-    margin: EdgeInsets.only(top: 10),
+    margin: EdgeInsets.only(top: 10,left: 10),
     height: 64,
     width: 103.64,
     decoration: BoxDecoration(
