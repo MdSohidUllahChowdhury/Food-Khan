@@ -1,5 +1,6 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
 import 'package:Food_Khan/view/page/wallet.dart';
+import 'package:Food_Khan/widget/page/food_detaills/food_dp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -60,24 +61,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            Animate(
-              child: Container(
-                height: 220,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade600.withOpacity(0.5),
-                      blurRadius: 10,
-                      offset: const Offset(-6, 8),
-                    ),
-                  ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Image.asset(widget.productImage, fit: BoxFit.cover),
-              ),
-            ).animate().flipH(duration: Duration(seconds: 2)),
+            Food_DP(widget.productImage),
             const SizedBox(height: 35),
 
             Row(
@@ -221,7 +205,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                         child: Text(
                           '\$$price',
                           style: TextStyle(
-                            fontSize: 29,
+                            fontSize: 26,
                             color: Colors.black87,
                             fontWeight: FontWeight.w900,
                           ),

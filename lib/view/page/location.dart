@@ -1,8 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:Food_Khan/widget/page/location/location_bar.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LocationScreen extends StatefulWidget {
@@ -23,42 +23,54 @@ class _LocationScreenState extends State<LocationScreen> {
       body: Column(
         children: [
           LocationBarSection(),
+          //const SizedBox(height: 20),
+          // Animate(
+          //   child: Container(
+          //     height: 35,
+          //     width: 250,
+          //     alignment: Alignment.center,
+          //     decoration: BoxDecoration(
+          //       color: Color(0xffC9EAFD),
+          //       borderRadius: BorderRadius.circular(35),
+          //     ),
+          //     //margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 110),
+          //     child: Text(
+          //       'Food Khan Location on Google Maps',
+          //       style: TextStyle(
+          //         fontSize: 14,
+          //         fontWeight: FontWeight.w100,
+          //         color: Colors.black,
+          //       ),
+          //     ),
+          //   ),
+          // ).animate(delay: 900.ms, effects: [FadeEffect(duration: 500.ms)]).flipV(),
+          const SizedBox(height: 40),
+          Divider(color: Color(0xff42D674), thickness: 18),
           const SizedBox(height: 20),
-          Animate(
-            child: Container(
-              height: 35,
-              width: 250,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Color(0xffC9EAFD),
-                borderRadius: BorderRadius.circular(35),
-              ),
-              //margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 110),
-              child: Text(
-                'Food Khan Location on Google Maps',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w100,
-                  color: Colors.black,
+          Divider(color: Color(0xffFFAC4B), thickness: 18),
+          //const SizedBox(height: 30),
+          const SizedBox(height: 40),
+          
+          AvatarGlow(
+              startDelay: const Duration(milliseconds: 1000),
+              glowColor: Colors.white,
+              glowShape: BoxShape.circle,
+              //animate: _animate,
+              curve: Curves.slowMiddle,
+              child: const Material(
+                elevation: 3.0,
+                shape: CircleBorder(),
+                color: Colors.transparent,
+                child: CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  backgroundImage: NetworkImage(
+                    'https://www.creativefabrica.com/wp-content/uploads/2020/10/16/SVG-Business-GPS-Flat-Icon-Vector-Graphics-6104460-2-580x435.png',
+                  ),
+                  radius: 70.0,
                 ),
               ),
             ),
-          ).animate(delay: 900.ms, effects: [FadeEffect(duration: 500.ms)]).flipV(),
-          const SizedBox(height: 10),
-          Divider(color: Color(0xff42D674), thickness: 18),
-          const SizedBox(height: 10),
-          Divider(color: Color(0xffFFAC4B), thickness: 18),
-
-          //const SizedBox(height: 30),
-          const SizedBox(height: 20),
-          Animate(
-            child: Image.network(
-              'https://www.creativefabrica.com/wp-content/uploads/2020/10/16/SVG-Business-GPS-Flat-Icon-Vector-Graphics-6104460-2-580x435.png',
-              height: 170,
-              width: 200,
-              fit: BoxFit.cover,
-            ),
-          ).animate(delay: 900.ms, effects: [FadeEffect(duration: 500.ms)]).flipV(),
+          
           ElevatedButton(
             onPressed: () async {
               if (await canLaunch(googleMapsUrl)) {

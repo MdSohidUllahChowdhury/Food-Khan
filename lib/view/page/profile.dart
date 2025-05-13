@@ -1,7 +1,8 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:glass_kit/glass_kit.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -52,29 +53,33 @@ class _ProfileState extends State<Profile> {
             },
           ),
         ],
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Color(0xff8ACCD5),
         centerTitle: true,
       ),
 
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 15,horizontal: 13),
+        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 13),
         child: Column(
           children: [
-            Animate(
-              child: Center(
+            
+            AvatarGlow(
+              startDelay: const Duration(milliseconds: 1000),
+              glowColor: Colors.white,
+              glowShape: BoxShape.circle,
+              //animate: _animate,
+              curve: Curves.easeInOut,
+              child: const Material(
+                elevation: 8.0,
+                shape: CircleBorder(),
+                color: Colors.transparent,
                 child: CircleAvatar(
-                  radius: 60,
-                  backgroundColor: Colors.white,
-                  child: CircleAvatar(
-                    radius: 55,
-                    backgroundImage: NetworkImage(
-                      'https://avatars.githubusercontent.com/u/157578225?v=4',
-                    ),
+                  backgroundImage: NetworkImage(
+                    'https://avatars.githubusercontent.com/u/157578225?v=4',
                   ),
+                  radius: 50.0,
                 ),
               ),
-            ).animate().flipH(duration: 500.ms).then().fadeIn(duration: 4000.ms),
-
+            ),
             const SizedBox(height: 10),
             Text(
               'User Information',
@@ -88,6 +93,7 @@ class _ProfileState extends State<Profile> {
             ),
             const SizedBox(height: 25),
             TextField(
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 hintText: 'Email',
                 hintStyle: TextStyle(
@@ -98,7 +104,7 @@ class _ProfileState extends State<Profile> {
                 prefixIcon: Icon(
                   Icons.email,
                   size: 18,
-                  color: Colors.orange,
+                  color: Color(0xff8ACCD5),
                 ),
                 contentPadding: EdgeInsets.only(left: 10),
                 fillColor: Color(0xff656F77),
@@ -110,7 +116,6 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             const SizedBox(height: 10),
-
             TextField(
               decoration: InputDecoration(
                 hintText: 'Phone Number',
@@ -122,7 +127,7 @@ class _ProfileState extends State<Profile> {
                 prefixIcon: Icon(
                   Icons.phone,
                   size: 18,
-                  color: Colors.orange,
+                  color: Color(0xff8ACCD5),
                 ),
                 contentPadding: EdgeInsets.only(left: 10),
                 fillColor: Color(0xff656F77),
@@ -145,7 +150,7 @@ class _ProfileState extends State<Profile> {
                 prefixIcon: Icon(
                   Icons.location_on,
                   size: 18,
-                  color: Colors.orange,
+                  color: Color(0xff8ACCD5),
                 ),
                 contentPadding: EdgeInsets.only(left: 10),
                 fillColor: Color(0xff656F77),
@@ -156,6 +161,10 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
+            const SizedBox(height: 10),
+
+            
+
           ],
         ),
       ),
@@ -172,11 +181,9 @@ class _ProfileState extends State<Profile> {
             duration: Duration(seconds: 4),
           );
         },
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Color(0xff8ACCD5),
         child: Icon(Icons.save),
       ),
-      
-
     );
   }
 }

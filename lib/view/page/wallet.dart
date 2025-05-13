@@ -80,8 +80,7 @@ class Wallet extends StatelessWidget {
           SizedBox(height: 40),
           
           InkWell(
-            onTap: () {
-              
+            onTap: () {  
             },
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
