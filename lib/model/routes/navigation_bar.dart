@@ -32,7 +32,7 @@ class _NavigationControllState extends State<NavigationControll> {
         Icon(Icons.home, size: 30,),
         Icon(Icons.fastfood, size: 30),
         Icon(Icons.location_on, size: 30),
-        Icon(Icons.shopping_cart, size: 30),
+        Icon(Icons.favorite, size: 30),
         Icon(Icons.person_pin, size: 30),
       ],
         onTap: (gotopage) {

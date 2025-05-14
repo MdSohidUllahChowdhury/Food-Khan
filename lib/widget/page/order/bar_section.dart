@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget BarSection() {
   return Stack(
@@ -22,7 +23,9 @@ Widget BarSection() {
           Align(
             alignment: Alignment.topLeft,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+              },
               icon: Icon(Icons.arrow_back_ios, size: 14),
             ),
           ),

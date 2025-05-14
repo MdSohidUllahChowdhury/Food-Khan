@@ -30,7 +30,7 @@ Widget LocationBarSection() {
           Align(
             alignment: Alignment.topLeft,
             child: Text(
-              '    Restaurant  ^  Takeaway',
+              '    Restaurant  Takeaway',
               style: TextStyle(
                 fontSize: 16,
                 letterSpacing: 1.1,

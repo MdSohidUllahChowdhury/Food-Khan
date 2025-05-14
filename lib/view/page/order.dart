@@ -18,7 +18,7 @@ class _OrderState extends State<Order> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff191D21),
-      body: CustomScrollView( 
+      body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Column(
@@ -34,16 +34,11 @@ class _OrderState extends State<Order> {
               mainAxisSpacing: 2,
             ),
             delegate: SliverChildBuilderDelegate((context, index) {
+              
               final item = _foodCall[index];
               return InkWell(
                 onTap: () {
-                  Get.to( () => FoodDetaills(
-                    productImage: item.image.toString(),
-                    brandName: item.name.toString(),
-                    offerPrice: item.price.toString(),
-                    
-                  ),
-                  );
+                  Get.to(() => FoodDetaills(product: _foodCall[index]));
                 },
                 child: Container(
                   margin: EdgeInsets.only(top: 10, left: 4, right: 4),
@@ -54,17 +49,18 @@ class _OrderState extends State<Order> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Align(
                         alignment: Alignment.topCenter,
                         child: Text(
                           item.name.toString(),
                           style: TextStyle(
+                            letterSpacing: 1.2,
                             fontFamily: 'Poppins',
-                            fontSize: 19,
+                            fontSize: 20,
                             color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
@@ -73,18 +69,20 @@ class _OrderState extends State<Order> {
                         child: Chip(
                           label: Text(
                             item.price.toString(),
-                            style: TextStyle(fontSize: 10),
+                            style: TextStyle(fontSize: 13),
                           ),
                           backgroundColor: Colors.white,
                           labelStyle: TextStyle(color: Colors.black),
                         ),
                       ),
-                      Image.asset(item.image.toString(), height: 100),
+                      Image.asset(item.image.toString(), height: 120),
                     ],
                   ),
                 ),
               );
-            }, childCount: _foodCall.length),
+            }, 
+            childCount: _foodCall.length
+            ),
           ),
         ],
       ),

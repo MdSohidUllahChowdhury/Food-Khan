@@ -1,6 +1,5 @@
-import 'package:Food_Khan/model/page/order/food_model_list.dart';
+import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:Food_Khan/model/provider/add_cart.dart';
-import 'package:Food_Khan/model/routes/navigation_bar.dart';
 import 'package:Food_Khan/view/page/wallet.dart';
 import 'package:Food_Khan/widget/page/food_detaills/food_dp.dart';
 import 'package:avatar_glow/avatar_glow.dart';
@@ -10,15 +9,10 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class FoodDetaills extends StatefulWidget {
-  final String productImage, brandName, offerPrice;
-   const FoodDetaills({
-    super.key,
-    required this.productImage,
-    required this.brandName,
-    required this.offerPrice,
-  });
+  
+  final FoodMenuModel product;
+  const FoodDetaills({super.key, required this.product});
 
- 
   @override
   State<FoodDetaills> createState() => _FoodDetaillsState();
 }
@@ -26,19 +20,19 @@ class FoodDetaills extends StatefulWidget {
 class _FoodDetaillsState extends State<FoodDetaills> {
   int quantity = 1;
   int price = 0;
+  bool fill = false;
 
   @override
   void initState() {
-    price = int.parse(widget.offerPrice.replaceAll('\$', ''));
     super.initState();
+    price = int.parse(widget.product.price.toString().replaceAll('\$', ''));
   }
 
   @override
   Widget build(BuildContext context) {
     
-    final providerCall = Provider.of<CartController>(context,listen: false);
-    final productIteam = foodMenuList;
-    
+    final providerCall = Provider.of<CartController>(context, listen: false);
+
     return Scaffold(
       backgroundColor: const Color(0xff191D21),
       appBar: AppBar(
@@ -48,11 +42,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () {
-            Get.to(
-              () => const NavigationControll(),
-              transition: Transition.rightToLeft,
-              duration: const Duration(milliseconds: 500),
-            );
+           Get.back();
           },
         ),
         title: const Text(
@@ -69,9 +59,10 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            Food_DP(widget.productImage),
+            Food_DP(widget.product.image.toString()),
             const SizedBox(height: 15),
-
+            
+            //* Favorite Button and Cart Funcation Done this Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -81,37 +72,52 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     fontSize: 18,
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
-                    letterSpacing: 1.2
+                    letterSpacing: 1.2,
                   ),
                 ),
                 AvatarGlow(
                   child: Material(
                     color: Colors.white,
-                    shape: CircleBorder(),                  
+                    shape: const CircleBorder(),
                     child: CircleAvatar(
                       radius: 30,
-                      backgroundColor: const Color(0xffF24E1E),
+                      backgroundColor: Colors.white,
                       child: Center(
-                        child: 
-                          InkWell(
-                            onTap: () {
-                              Get.snackbar('Added To Cart', 'Favorit item added');
-                               providerCall.adtoCart(productIteam.first);
-                            },
-                            child: Icon(
-                              Icons.favorite,
-                              color: Color(0xff191D21),
-                              size: 44,
-                            ),
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              fill = !fill;
+                              if (fill) {
+                                Get.snackbar(
+                                  'Added to Favorite',
+                                  'Successfully Added',
+                                  backgroundColor: Colors.white,
+                                  snackPosition: SnackPosition.BOTTOM,
+                                );
+                                providerCall.adtoCart(widget.product);
+                              } else {
+                                Get.snackbar(
+                                  'Removed from Favorite',
+                                  'Successfully Removed',
+                                  backgroundColor: Colors.white,
+                                  snackPosition: SnackPosition.BOTTOM,
+                                );
+                                providerCall.removeFromCart(widget.product);
+                              }
+                            });
+                          },
+                          child: Icon(
+                            fill ? Icons.favorite : Icons.favorite_border,
+                            color: fill ? Colors.red : Colors.black,
+                            size: 40,
                           ),
-                        
+                        ),
                       ),
                     ),
                   ),
                 ),
               ],
             ),
-
             const SizedBox(height: 12),
             Container(
               margin: const EdgeInsets.only(bottom: 25),
@@ -123,12 +129,8 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color.fromARGB(
-                      255,
-                      240,
-                      206,
-                      206,
-                    ).withOpacity(0.5),
+                    color: const Color.fromARGB(255, 240, 206, 206)
+                        .withOpacity(0.5),
                     blurRadius: 10,
                     offset: const Offset(-6, 8),
                   ),
@@ -138,9 +140,9 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.brandName,
-                    style: TextStyle(
-                      fontSize: 20,
+                    widget.product.name.toString().toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 22,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -156,13 +158,12 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Divider(color: Color(0xff42D674), thickness: 18),
+                  const Divider(color: Color(0xff42D674), thickness: 18),
                   const SizedBox(height: 10),
-                  Divider(color: Color(0xffffffff), thickness: 18),
+                  const Divider(color: Color(0xffffffff), thickness: 18),
                 ],
               ),
             ),
-
             SizedBox(
               height: 50,
               child: Row(
@@ -170,46 +171,51 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundColor: Color(0xffF7C242),
+                    backgroundColor: const Color(0xffF7C242),
                     child: IconButton(
                       onPressed: () {
                         setState(() {
-                          quantity = quantity + 1;
-                          price = quantity * int.parse(widget.offerPrice.replaceAll('\$', ''));
+                          quantity++;
+                          price = quantity *
+                              int.parse(widget.product.price.toString()
+                                  .replaceAll('\$', ''));
                         });
                       },
-                      icon: Icon(Icons.add, color: Color(0xff191D21), size: 25),
+                      icon: const Icon(Icons.add,
+                          color: Color(0xff191D21), size: 25),
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Text(
                     '$quantity',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 25,
                       color: Color(0xffF7C242),
                       fontWeight: FontWeight.w900,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   CircleAvatar(
                     radius: 20,
-                    backgroundColor: Color(0xffF7C242),
+                    backgroundColor: const Color(0xffF7C242),
                     child: IconButton(
                       onPressed: () {
                         setState(() {
                           if (quantity > 1) {
-                            quantity = quantity - 1;
-                            price = quantity * int.parse(widget.offerPrice.replaceAll('\$', ''));
+                            quantity--;
+                            price = quantity *
+                                int.parse(widget.product.price.toString()
+                                    .replaceAll('\$', ''));
                           }
                         });
                       },
-                      icon: Icon(Icons.remove, color: Color(0xff191D21), size: 25),
+                      icon: const Icon(Icons.remove,
+                          color: Color(0xff191D21), size: 25),
                     ),
                   ),
                 ],
               ),
             ),
-
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -224,7 +230,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                       child: Center(
                         child: Text(
                           '\$$price',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 26,
                             color: Colors.black87,
                             fontWeight: FontWeight.w900,
@@ -233,12 +239,8 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                       ),
                     ),
                   ),
-                )
-                    .animate()
-                    .flipV()
-                    .scaleXY(duration: 500.ms)
-                    .then()
-                    .fadeIn(duration: 2000.ms),
+                ).animate().flipV().scaleXY(duration: 500.ms).then().fadeIn(
+                    duration: 2000.ms),
                 ElevatedButton(
                   onPressed: () {
                     Get.to(() => const Wallet());
@@ -253,7 +255,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                       borderRadius: BorderRadius.circular(26),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'ORDER NOW',
                     style: TextStyle(
                       fontSize: 14,

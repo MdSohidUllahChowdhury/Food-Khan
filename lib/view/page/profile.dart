@@ -163,22 +163,6 @@ class _ProfileState extends State<Profile> {
           ],
         ),
       ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.snackbar(
-            'Development Mood',
-            "Working on this unit"
-                " please be patient",
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Color(0xffD0F1EB),
-            colorText: Color(0xff191D21),
-            duration: Duration(seconds: 4),
-          );
-        },
-        backgroundColor: Color(0xff8ACCD5),
-        child: Icon(Icons.save),
-      ),
     );
   }
 }

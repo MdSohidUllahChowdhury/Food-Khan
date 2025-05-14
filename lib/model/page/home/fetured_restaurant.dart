@@ -7,6 +7,7 @@ Widget FeaturedRestaurantModel() {
     child: Column(
       children: [
         Fetured(Color(0xffFDEBC9), Image.asset('lib/asset/image/grill.png')),
+        Fetured(Color(0xffFDEBC9), Image.asset('lib/asset/image/taco.png')),
       ],
     ),
   );
