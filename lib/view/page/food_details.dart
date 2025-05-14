@@ -1,19 +1,24 @@
+import 'package:Food_Khan/model/page/order/food_model_list.dart';
+import 'package:Food_Khan/model/provider/add_cart.dart';
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
 import 'package:Food_Khan/view/page/wallet.dart';
 import 'package:Food_Khan/widget/page/food_detaills/food_dp.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class FoodDetaills extends StatefulWidget {
   final String productImage, brandName, offerPrice;
-  const FoodDetaills({
+   const FoodDetaills({
     super.key,
     required this.productImage,
     required this.brandName,
     required this.offerPrice,
   });
 
+ 
   @override
   State<FoodDetaills> createState() => _FoodDetaillsState();
 }
@@ -30,6 +35,10 @@ class _FoodDetaillsState extends State<FoodDetaills> {
 
   @override
   Widget build(BuildContext context) {
+    
+    final providerCall = Provider.of<CartController>(context,listen: false);
+    final productIteam = foodMenuList;
+    
     return Scaffold(
       backgroundColor: const Color(0xff191D21),
       appBar: AppBar(
@@ -58,11 +67,10 @@ class _FoodDetaillsState extends State<FoodDetaills> {
       body: Container(
         margin: const EdgeInsets.only(top: 22, left: 20, right: 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
             Food_DP(widget.productImage),
-            const SizedBox(height: 35),
+            const SizedBox(height: 15),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,21 +78,33 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 const Text(
                   "ADD TO FAVORITE",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     color: Colors.white,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.2
                   ),
                 ),
-                CircleAvatar(
-                  radius: 30,
-                  backgroundColor: const Color(0xffF24E1E),
-                  child: Center(
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite,
-                        color: Color(0xff191D21),
-                        size: 44,
+                AvatarGlow(
+                  child: Material(
+                    color: Colors.white,
+                    shape: CircleBorder(),                  
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundColor: const Color(0xffF24E1E),
+                      child: Center(
+                        child: 
+                          InkWell(
+                            onTap: () {
+                              Get.snackbar('Added To Cart', 'Favorit item added');
+                               providerCall.adtoCart(productIteam.first);
+                            },
+                            child: Icon(
+                              Icons.favorite,
+                              color: Color(0xff191D21),
+                              size: 44,
+                            ),
+                          ),
+                        
                       ),
                     ),
                   ),

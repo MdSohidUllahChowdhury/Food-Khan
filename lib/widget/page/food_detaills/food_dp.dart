@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:glass_kit/glass_kit.dart';
 
-Widget Food_DP(String foodImage) {
+Widget Food_DP(String foodImage,) {
   return GlassContainer(
     height: 220,
     width: 400,

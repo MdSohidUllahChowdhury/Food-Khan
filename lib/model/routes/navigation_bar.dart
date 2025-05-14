@@ -1,3 +1,4 @@
+import 'package:Food_Khan/view/page/cart.dart';
 import 'package:Food_Khan/view/page/home.dart';
 import 'package:Food_Khan/view/page/location.dart';
 import 'package:Food_Khan/view/page/order.dart';
@@ -18,6 +19,7 @@ class _NavigationControllState extends State<NavigationControll> {
     const Home(),
     const Order(),
     const LocationScreen(),
+    const CartScreen(),
     const Profile(),
   ];
 
@@ -28,8 +30,9 @@ class _NavigationControllState extends State<NavigationControll> {
       body: pagedata[onpageindex],
       bottomNavigationBar: CurvedNavigationBar(items: [
         Icon(Icons.home, size: 30,),
-        Icon(Icons.bakery_dining_rounded, size: 30),
+        Icon(Icons.fastfood, size: 30),
         Icon(Icons.location_on, size: 30),
+        Icon(Icons.shopping_cart, size: 30),
         Icon(Icons.person_pin, size: 30),
       ],
         onTap: (gotopage) {

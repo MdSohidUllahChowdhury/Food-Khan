@@ -2,7 +2,6 @@ import 'package:Food_Khan/model/routes/navigation_bar.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:glass_kit/glass_kit.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -61,7 +60,6 @@ class _ProfileState extends State<Profile> {
         margin: EdgeInsets.symmetric(vertical: 15, horizontal: 13),
         child: Column(
           children: [
-            
             AvatarGlow(
               startDelay: const Duration(milliseconds: 1000),
               glowColor: Colors.white,
@@ -162,9 +160,6 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             const SizedBox(height: 10),
-
-            
-
           ],
         ),
       ),

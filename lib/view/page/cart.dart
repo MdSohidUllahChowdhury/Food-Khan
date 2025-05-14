@@ -1,4 +1,7 @@
+import 'package:Food_Khan/model/provider/add_cart.dart';
+import 'package:Food_Khan/widget/page/cart/cart_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -16,14 +19,8 @@ class _CartScreenState extends State<CartScreen> {
         backgroundColor: const Color(0xff191D21),
         toolbarHeight: 30,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         title: const Text(
-          "Cart",
+          "Your Favorite Food Cart",
           style: TextStyle(
             fontSize: 20,
             color: Colors.white,
@@ -31,12 +28,21 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Text(
-          'Cart is empty',
-          style: TextStyle(color: Colors.white, fontSize: 24),
-        ),
-      ),
+      // body: 
+      body: Consumer<CartController>(
+          builder: (context, provider, child) => Column(
+                children: [
+                  //Utils.appbarCustom('Cart Iteams'),
+                  const SizedBox(height: 15),
+                  Expanded(
+                    child: ListView.builder(
+                        itemCount: provider.cart.length,
+                        itemBuilder: (context, index) {
+                          return CartDemo(item: provider.cart[index]);
+                        }),
+                  )
+                ],
+              )),
     );
   }
 }

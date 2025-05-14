@@ -58,7 +58,7 @@ class _LocationScreenState extends State<LocationScreen> {
               //animate: _animate,
               curve: Curves.slowMiddle,
               child: const Material(
-                elevation: 3.0,
+                //elevation: 3.0,
                 shape: CircleBorder(),
                 color: Colors.transparent,
                 child: CircleAvatar(
