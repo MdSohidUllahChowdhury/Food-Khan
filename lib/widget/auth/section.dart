@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SectionName extends StatelessWidget {
+    final TextEditingController? authControler;
+
   final String nameit;
   final bool? forpassword;
   final bool? isRequired;
@@ -8,6 +10,7 @@ class SectionName extends StatelessWidget {
   const SectionName({
     super.key,
     required this.nameit,
+      this.authControler,
     this.forpassword,
     this.isRequired,
   });
@@ -17,6 +20,7 @@ class SectionName extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
+        controller:authControler,
         validator:
             isRequired == true
                 ? (String? value) {

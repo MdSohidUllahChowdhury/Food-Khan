@@ -1,5 +1,7 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
+import 'package:Food_Khan/view/auth/log_in.dart';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +11,7 @@ class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
 }
+  final auth = FirebaseAuth.instance;
 
 class _ProfileState extends State<Profile> {
   @override
@@ -159,7 +162,25 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 60),
+            
+            
+            InkWell(
+              onTap: () async{
+                 await auth.signOut()
+                 .then((value) => Get.offAll(()=>Login()));
+                },
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 90),
+                width: double.infinity,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Color(0xff8ACCD5),
+                  borderRadius: BorderRadius.circular(40),
+                ),
+                child: Center(child: Text('Log Out',style: TextStyle(fontSize:15),)),
+              ),
+            )
           ],
         ),
       ),

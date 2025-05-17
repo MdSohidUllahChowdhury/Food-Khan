@@ -1,6 +1,8 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
 import 'package:Food_Khan/view/auth/sing_up.dart';
 import 'package:Food_Khan/widget/auth/section.dart';
+import 'package:Food_Khan/widget/auth/tost_info.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +11,9 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formkey = GlobalKey<FormState>();
+    final auth = FirebaseAuth.instance;
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
 
     return Scaffold(
       body: Container(
@@ -48,9 +53,14 @@ class Login extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SectionName(nameit: 'Email', isRequired: true),
+                  SectionName(
+                    authControler: email,
+                    nameit: 'Email',
+                    isRequired: true,
+                  ),
                   const SizedBox(height: 25),
-                  const SectionName(
+                  SectionName(
+                    authControler: password,
                     nameit: 'Password',
                     forpassword: true,
                     isRequired: true,
@@ -67,9 +77,23 @@ class Login extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (formkey.currentState!.validate()) {
-                        Get.offAll(() => const NavigationControll());
+                        try {
+                          await auth
+                              .signInWithEmailAndPassword(
+                                email: email.text.trim(),
+                                password: password.text.trim(),
+                              )
+                              .then((onValue) {
+                                TostMessage().errorMessage(
+                                  onValue.user!.email.toString(),
+                                );
+                              });
+                          Get.offAll(() => const NavigationControll());
+                        } catch (error) {
+                          TostMessage().errorMessage(error.toString());
+                        }
                       }
                     },
                     style: ButtonStyle(

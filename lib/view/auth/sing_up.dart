@@ -1,5 +1,7 @@
 import 'package:Food_Khan/view/auth/log_in.dart';
 import 'package:Food_Khan/widget/auth/section.dart';
+import 'package:Food_Khan/widget/auth/tost_info.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +11,9 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formkey = GlobalKey<FormState>();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    FirebaseAuth auth = FirebaseAuth.instance;
 
     return Scaffold(
       body: Container(
@@ -48,9 +53,14 @@ class Register extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SectionName(nameit: 'Email', isRequired: true),
+                  SectionName(
+                    authControler: emailController,
+                    nameit: 'Email',
+                    isRequired: true,
+                  ),
                   const SizedBox(height: 25),
-                  const SectionName(
+                  SectionName(
+                    authControler: passwordController,
                     nameit: 'Password',
                     forpassword: true,
                     isRequired: true,
@@ -63,9 +73,17 @@ class Register extends StatelessWidget {
                   ),
                   const SizedBox(height: 35),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (formkey.currentState!.validate()) {
-                        Get.offAll(() => const Login());
+                        try {
+                          await auth.createUserWithEmailAndPassword(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          );
+                          Get.offAll(() => const Login());
+                        } catch (error) {
+                          TostMessage().errorMessage(error.toString());
+                        }
                       }
                     },
                     style: ButtonStyle(

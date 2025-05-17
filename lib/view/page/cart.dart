@@ -1,4 +1,4 @@
-import 'package:Food_Khan/model/provider/add_cart.dart';
+import 'package:Food_Khan/controller/provider/add_cart.dart';
 import 'package:Food_Khan/widget/page/cart/cart_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

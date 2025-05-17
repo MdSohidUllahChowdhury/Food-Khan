@@ -1,5 +1,5 @@
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
-import 'package:Food_Khan/model/provider/add_cart.dart';
+import 'package:Food_Khan/controller/provider/add_cart.dart';
 import 'package:Food_Khan/view/page/food_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

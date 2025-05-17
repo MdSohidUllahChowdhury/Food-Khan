@@ -1,5 +1,6 @@
 import 'package:Food_Khan/view/auth/welcome.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,19 +24,28 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade300,
-      body: const Center(
-        child: Text(
-          'MONEY OR LOVE\nBRAIN OR HEART',
-          style: TextStyle(
-            color: Color(0xff42D674),
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.4,
-          ),
+    return Animate(
+      child: Scaffold(
+        backgroundColor: Color(0xfff7f3ef),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('lib/asset/image/logo.png'),
+            Text(
+              'THE ALTIMATE\n    FOOD APP',
+              style: TextStyle(
+                color: Color(0xff42D674),
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.4,
+              ),
+            ),
+          ],
         ),
       ),
+    ).animate().fade().flipH().shimmer(
+      color: Colors.green[400],
+      duration: const Duration(seconds: 2),
     );
   }
 }

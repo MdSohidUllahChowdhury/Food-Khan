@@ -1,5 +1,5 @@
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
-import 'package:Food_Khan/model/provider/add_cart.dart';
+import 'package:Food_Khan/controller/provider/add_cart.dart';
 import 'package:Food_Khan/view/page/wallet.dart';
 import 'package:Food_Khan/widget/page/food_detaills/food_dp.dart';
 import 'package:avatar_glow/avatar_glow.dart';
@@ -40,7 +40,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         toolbarHeight: 30,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: const Icon(Icons.arrow_left, color: Colors.white,size: 33,),
           onPressed: () {
            Get.back();
           },
