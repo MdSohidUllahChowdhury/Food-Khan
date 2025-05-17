@@ -1,13 +1,14 @@
-import 'package:Food_Khan/model/page/home/categories.dart';
-import 'package:Food_Khan/model/page/home/fetured_restaurant.dart';
-import 'package:Food_Khan/model/page/home/special_menu.dart';
+import 'package:Food_Khan/view/page/food_details.dart';
+import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:Food_Khan/model/page/order/food_model_list.dart';
 import 'package:Food_Khan/view/page/order.dart';
 import 'package:Food_Khan/view/page/profile.dart';
 import 'package:Food_Khan/widget/styel/styel.dart';
-import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:Food_Khan/model/page/home/categories.dart';
+import 'package:Food_Khan/model/page/home/fetured_restaurant.dart';
+import 'package:Food_Khan/model/page/home/special_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,155 +18,161 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  TextEditingController searchController = TextEditingController();
-  List<FoodMenuModel> food = foodMenuList;
-  List<FoodMenuModel> filteredFood = [];
+  final TextEditingController searchController = TextEditingController();
+  List<FoodMenuModel> filteredProducts = [];
 
-  //@override
-  // void initState() {
-  //   super.initState();
-  //   filteredFood = food; // Initialize with the full list
-  // }
+  void filterProducts() {
+    final query = searchController.text.toLowerCase().trim();
+    if (query.isEmpty) {
+      setState(() {
+        filteredProducts = [];
+      });
+    } else {
+      setState(() {
+        filteredProducts =
+            foodMenuList.where((product) {
+              return product.name!.toLowerCase().contains(query);
+            }).toList();
+      });
+    }
+  }
 
-  // void searchFood(String query) {
-  //   final suggestion =
-  //       food.where((element) {
-  //         final foodTitle = element.name.toString();
-  //         final input = query.toString();
-  //         return foodTitle.contains(input);
-  //       }).toList();
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      filterProducts();
+    });
+  }
 
-  //   setState(() {
-  //     filteredFood = suggestion;
-  //   });
-  // }
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff191D21),
+      backgroundColor: const Color(0xff191D21),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+        padding: const EdgeInsets.only(top: 55),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 55),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(width: 13),
-                InkWell(
-                  onTap: () => Get.to(() => const Profile()),
-                  child: CircleAvatar(
-                    radius: 20,
-                    backgroundImage: NetworkImage(
-                      'https://avatars.githubusercontent.com/u/157578225?v=4',
+            
+            //*** Header Row with profile and search box
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 17),
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: () => Get.to(() => const Profile()),
+                    child: const CircleAvatar(
+                      radius: 24,
+                      backgroundImage: NetworkImage(
+                        'https://avatars.githubusercontent.com/u/157578225?v=4',
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(width: 10),
-                Expanded(
-                  child: Container(
-                    height: 38,
-                    margin: EdgeInsets.only(right: 10),
-                    padding: EdgeInsets.only(left: 30),
-                    child: TextFormField(
-                      //onChanged: searchFood, // Call the search function
+                  const SizedBox(width: 30),
+                  Expanded(
+                    child: TextField(
                       controller: searchController,
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        hintText: 'Dishes, restaurants or cuisines',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
+                        contentPadding: EdgeInsets.symmetric(vertical: 10),
+                        hintText: 'Search Food Items...',
+                        hintStyle: const TextStyle(
+                          color: Colors.white54,
+                          fontSize: 14,
                           fontWeight: FontWeight.w100,
-                          fontSize: 12,
                         ),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.search,
-                          size: 18,
+                          size: 26,
                           color: Colors.orange,
                         ),
-                        contentPadding: EdgeInsets.only(left: 10),
-                        fillColor: Color(0xff656F77),
                         filled: true,
+                        fillColor: const Color(0xff656F77),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(26)),
+                          gapPadding: 12,
+                          borderRadius: BorderRadius.circular(26),
                           borderSide: BorderSide.none,
                         ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(width: 10),
-              ],
+                ],
+              ),
             ),
 
-            const SizedBox(height:5),
-            // Text(
-            //   "  Search Results",
-            //   style: TextStyle(
-            //     fontSize: 12,
-            //     color: Colors.white,
-            //     fontWeight: FontWeight.w100,
-            //   ),
-            // ),
+            const SizedBox(height: 10),
 
-            // filteredFood.isEmpty
-            //     ? Padding(
-            //       padding: const EdgeInsets.all(8.0),
-            //       child: Text(
-            //         "No items found",
-            //         style: TextStyle(color: Colors.white, fontSize: 18),
-            //       ),
-            //     )
-            //     : ListView.builder(
-            //       shrinkWrap: true,
-            //       physics: NeverScrollableScrollPhysics(),
-            //       itemCount: filteredFood.length,
-            //       itemExtent: 20,
-            //       itemBuilder: (context, index) {
-            //         final item = filteredFood[index];
-            //         return ListTile(
-            //           leading: Image.asset(
-            //             item.image.toString(),
-            //             height: 35,
-            //             width: 40,
-            //             fit: BoxFit.cover,
-            //           ),
-            //           title: Text(
-            //             item.name.toString(),
-            //             style: TextStyle(color: Colors.white, fontSize: 9),
-            //           ),
-            //         );
-            //       },
-            //     ),
+            //*** Search result section
+            if (searchController.text.trim().isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  children: [
+                    Text("Search Results", style: CustomTextStyle.title),
+                    filteredProducts.isEmpty
+                        ? const Text(
+                          "No products found",
+                          style: TextStyle(color: Colors.white),
+                        )
+                        : ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: filteredProducts.length,
+                          itemBuilder: (context, index) {
+                            final product = filteredProducts[index];
+                            return ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                radius: 50,
+                                child: Image(
+                                  image: AssetImage(product.image ?? ''),
+                                ),
+                              ),
+                              subtitle: Align(
+                                alignment: Alignment.topCenter,
+                                child: Text(
+                                  product.name ?? "",
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              onTap: () {
+                                Get.to(
+                                 ()=> FoodDetaills(
+                                    product: filteredProducts[index],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
+                  ],
+                ),
+              ),
 
             const SizedBox(height: 20),
-            Text(
-              "  Popular categories",
-              style: CustomTextStyle.title,
-            ),
-
+            Text("  Popular categories", style: CustomTextStyle.title),
             CategoriModel(),
 
             const SizedBox(height: 20),
-            Text(
-              "  Today’s special menu",
-              style: CustomTextStyle.title,
-            ),
-
+            Text("  Today’s special menu", style: CustomTextStyle.title),
             InkWell(
-              onTap: () {
-                Get.to(() => const Order());
-              },
+              onTap: () => Get.to(() => const Order()),
               child: SpecialMenuModel(),
             ),
 
             const SizedBox(height: 20),
-            Text(
-              "  Featured restaurants",
-              style: CustomTextStyle.title,
-            ),
-
+            Text("  Featured restaurants", style: CustomTextStyle.title),
             FeaturedRestaurantModel(),
           ],
         ),

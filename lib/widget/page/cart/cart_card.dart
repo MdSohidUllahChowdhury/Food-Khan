@@ -60,10 +60,14 @@ class CartDemo extends StatelessWidget {
                   ),
                 ],
               ),
-              IconButton(onPressed: (){
-                Get.snackbar("Deleted", "Your Item has been deleted",backgroundColor: Colors.white, );
-                providerCall.removeFromCart(item);
-              }, icon: Icon(Icons.delete_outline,color: Colors.red,))
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: const Color(0xff191D21),
+                child: IconButton(onPressed: (){
+                  Get.snackbar("Deleted", "Your Item has been deleted",backgroundColor: Colors.white, );
+                  providerCall.removeFromCart(item);
+                }, icon: Icon(Icons.delete_outline,color: Colors.red,)),
+              )
             ],
           ),
         ).animate().flip().shimmer(

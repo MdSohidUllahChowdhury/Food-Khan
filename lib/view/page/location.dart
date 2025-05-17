@@ -25,7 +25,7 @@ class _LocationScreenState extends State<LocationScreen> {
           LocationBarSection(),
           const SizedBox(height: 40),
           Divider(color: Color(0xff42D674), thickness: 18),
-          const SizedBox(height: 20),
+          const SizedBox(height: 8),
           Divider(color: Color(0xffFFAC4B), thickness: 18),
           const SizedBox(height: 60),
           
@@ -46,7 +46,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
               ),
             ),
-          SizedBox(height: 70,),
+          SizedBox(height: 70),
           ElevatedButton(
             onPressed: () async {
               if (await canLaunch(googleMapsUrl)) {

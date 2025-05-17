@@ -37,10 +37,13 @@ class _CartScreenState extends State<CartScreen> {
             (context, provider, child) => Column(
               children: [
                 const SizedBox(height: 15),
-                IconButton(onPressed: (){
-                  Get.snackbar('All Favorite Item Clear', 'Add item to cart the it will appare here',backgroundColor: Colors.red,snackPosition: SnackPosition.BOTTOM);
-                  cart.clearCart();
-                }, icon: Icon(Icons.cleaning_services_rounded,size: 35,color: Colors.white,)),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(onPressed: (){
+                    Get.snackbar('All Favorite Item Clear', 'Add item to cart the it will appare here',backgroundColor: Colors.red,snackPosition: SnackPosition.BOTTOM);
+                    cart.clearCart();
+                  }, icon: Icon(Icons.cleaning_services_rounded,size: 35,color: Colors.white,)),
+                ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: provider.cart.length,

@@ -6,8 +6,8 @@ Widget FeaturedRestaurantModel() {
     scrollDirection: Axis.vertical,
     child: Column(
       children: [
-        Fetured(Color(0xffFDEBC9), Image.asset('lib/asset/image/grill.png')),
-        Fetured(Color(0xffFDEBC9), Image.asset('lib/asset/image/taco.png')),
+        Fetured(Color(0xffD0F1EB), Image.asset('lib/asset/image/taco.png')),
+        Fetured(Color(0xffD0F1EB), Image.asset('lib/asset/image/grill.png')),
       ],
     ),
   );
