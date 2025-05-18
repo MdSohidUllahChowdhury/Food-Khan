@@ -16,12 +16,12 @@ Widget CardWallet() {
           width: 400,
           height: 400,
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(imagepath[index])),
+            image: DecorationImage(image: AssetImage(cardImagePath[index])),
             borderRadius: BorderRadius.circular(20),
           ),
         );
       },
-      itemCount: imagepath.length,
+      itemCount: cardImagePath.length,
       layout: SwiperLayout.STACK,
     ),
   );

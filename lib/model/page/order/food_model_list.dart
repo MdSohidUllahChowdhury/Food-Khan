@@ -44,5 +44,4 @@ List<FoodMenuModel> foodMenuList = [
     image: 'lib/asset/image/taco.png',
     color: Color(0xff8ACCD5),
     ),
-
 ];

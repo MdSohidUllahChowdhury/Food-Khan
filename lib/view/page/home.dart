@@ -18,6 +18,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  
   final TextEditingController searchController = TextEditingController();
   List<FoodMenuModel> filteredProducts = [];
 
@@ -150,12 +151,12 @@ class _HomeState extends State<Home> {
                                 Get.to(
                                  ()=> FoodDetaills(
                                     product: filteredProducts[index],
-                                  ),
-                                );
-                              },
+                              ),
                             );
                           },
-                        ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),

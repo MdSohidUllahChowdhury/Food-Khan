@@ -1,4 +1,4 @@
-List imagepath = [
+List cardImagePath = [
   'lib/asset/image/card01.png',
   'lib/asset/image/card02.png',
   'lib/asset/image/card03.png',
