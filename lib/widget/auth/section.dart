@@ -6,13 +6,15 @@ class SectionName extends StatelessWidget {
   final String nameit;
   final bool? forpassword;
   final bool? isRequired;
+  final Icon? icon;
 
   const SectionName({
     super.key,
     required this.nameit,
-      this.authControler,
+    this.authControler,
     this.forpassword,
     this.isRequired,
+    this.icon,
   });
 
   @override
@@ -38,6 +40,7 @@ class SectionName extends StatelessWidget {
           hintText: nameit,
           hintStyle: const TextStyle(fontSize: 10),
           contentPadding: const EdgeInsets.all(12),
+          prefixIcon: icon,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide.none,

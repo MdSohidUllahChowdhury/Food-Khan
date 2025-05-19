@@ -6,43 +6,45 @@ import 'package:get/get.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
+  
+  final String _headerOne = "DON'T FELL LIKE\n COOKING.LET'S\n ORDER FOOD DELIVERY";
+  final String _headerTwo = 'Explore all the existing Food based on your\ninterest and your perfection';
+  final String _imagePath = 'lib/asset/image/bg.png';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff191D21),
-      body: Animate(
-            child: Column(
+      body: 
+      Animate(
+        child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(
-                  'lib/asset/image/food_girl.png',
-                  height: 250,
+                Image.asset(_imagePath,
+                  height: 300,
                   width: double.infinity,
                 ),
                 Divider(color: Color(0xff42D674), thickness: 18),
                 const SizedBox(height: 10),
                 Divider(color: Color(0xffFFAC4B), thickness: 18),
                 const SizedBox(height: 30),
-                const Text(
-                  'Discover Your\nDream Yaaami Food Here',
+                Text(_headerOne,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 27,
+                    fontSize: 26,
                     color: Color(0xff42D674),
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 1.4,
+                    letterSpacing: 1.3,
                   ),
                 ),
                 const SizedBox(height: 15),
-                const Center(
+                Center(
                   child: Center(
-                    child: Text(
-                      'Explore all the existing Food based on your\ninterest and your perfection',
+                    child: Text(_headerTwo,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 9,
+                        fontSize: 10,
                         color: Colors.white,
                         fontWeight: FontWeight.w100,
                         letterSpacing: 1.4,

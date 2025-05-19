@@ -16,113 +16,151 @@ class Register extends StatelessWidget {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 80),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade600,
-          borderRadius: BorderRadius.circular(35),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Create Account',
-              style: TextStyle(
-                letterSpacing: 1.4,
-                fontSize: 27,
-                color: Color(0xff42D674),
-                fontWeight: FontWeight.bold,
+      backgroundColor: Color(0xff191D21),
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.5,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50),
               ),
+              color: Color(0xff42D674),
             ),
-            const SizedBox(height: 15),
-            const Text(
-              "Create an account so you can explore all the\nexisting Yaaami food",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 9,
-                color: Colors.white,
-                fontWeight: FontWeight.w100,
-                letterSpacing: 1.4,
+            child: Column(
+              children: [
+                const SizedBox(height: 110),
+                const Text(
+                  'Food Khan',
+                  style: TextStyle(
+                    fontSize: 30,
+                    letterSpacing: 1.4,
+                    color: Color(0xffffffff),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 15),
+                const Text(
+                  "Create an account so you can explore all the\nexisting Yaaami food",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w100,
+                    letterSpacing: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 120, left: 17, right: 17),
+              height: MediaQuery.of(context).size.height * 0.52,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade600,
+                borderRadius: BorderRadius.circular(35),
               ),
-            ),
-            const SizedBox(height: 55),
-            Form(
-              key: formkey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SectionName(
-                    authControler: emailController,
-                    nameit: 'Email',
-                    isRequired: true,
-                  ),
-                  const SizedBox(height: 25),
-                  SectionName(
-                    authControler: passwordController,
-                    nameit: 'Password',
-                    forpassword: true,
-                    isRequired: true,
-                  ),
-                  const SizedBox(height: 25),
-                  const SectionName(
-                    nameit: 'Confirm Password',
-                    forpassword: true,
-                    isRequired: true,
-                  ),
-                  const SizedBox(height: 35),
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (formkey.currentState!.validate()) {
-                        try {
-                          await auth.createUserWithEmailAndPassword(
-                            email: emailController.text.trim(),
-                            password: passwordController.text.trim(),
-                          );
-                          Get.offAll(() => const Login());
-                        } catch (error) {
-                          TostMessage().errorMessage(error.toString());
-                        }
-                      }
-                    },
-                    style: ButtonStyle(
-                      elevation: const WidgetStatePropertyAll(0),
-                      minimumSize: WidgetStateProperty.all<Size>(
-                        const Size(300, 55),
-                      ),
-                      backgroundColor: WidgetStateProperty.all<Color>(
-                        const Color(0xff42D674),
-                      ),
+                  const Text(
+                    'Create Account',
+                    style: TextStyle(
+                      letterSpacing: 1.4,
+                      fontSize: 22,
+                      color: Color(0xffffffff),
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
+
+                  const SizedBox(height: 20),
+                  Form(
+                    key: formkey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SectionName(
+                          authControler: emailController,
+                          nameit: 'Email',
+                          isRequired: true,
+                          icon: const Icon(Icons.email),
+                        ),
+                        const SizedBox(height: 18),
+                        SectionName(
+                          authControler: passwordController,
+                          nameit: 'Password',
+                          forpassword: true,
+                          isRequired: true,
+                          icon: const Icon(Icons.lock),
+                        ),
+                        const SizedBox(height: 18),
+                        SectionName(
+                          nameit: 'Confirm Password',
+                          forpassword: true,
+                          isRequired: true,
+                          icon: Icon(Icons.lock),
+                        ),
+                        const SizedBox(height: 18),
+                        ElevatedButton(
+                          onPressed: () async {
+                            if (formkey.currentState!.validate()) {
+                              try {
+                                await auth.createUserWithEmailAndPassword(
+                                  email: emailController.text.trim(),
+                                  password: passwordController.text.trim(),
+                                );
+                                Get.offAll(() => const Login());
+                              } catch (error) {
+                                TostMessage().errorMessage(error.toString());
+                              }
+                            }
+                          },
+                          style: ButtonStyle(
+                            elevation: const WidgetStatePropertyAll(0),
+                            minimumSize: WidgetStateProperty.all<Size>(
+                              const Size(300, 55),
+                            ),
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color(0xff42D674),
+                            ),
+                          ),
+                          child: const Text(
+                            'Create Account',
+                            style: TextStyle(
+                              fontSize: 14,
+                              letterSpacing: 1.2,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextButton(
+                    onPressed: () => Get.to(() => const Login()),
                     child: const Text(
-                      'Sing Up',
+                      'Already Have an Account?',
                       style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 1.2,
+                        fontSize: 10,
                         color: Colors.white,
-                        fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.w100,
+                        letterSpacing: 1.4,
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 16),
-            TextButton(
-              onPressed: () => Get.to(() => const Login()),
-              child: const Text(
-                'Already Have an Account?',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100,
-                  letterSpacing: 1.4,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

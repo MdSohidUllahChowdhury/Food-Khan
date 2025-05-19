@@ -16,123 +16,179 @@ class Login extends StatelessWidget {
     TextEditingController password = TextEditingController();
 
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 110),
-        decoration: BoxDecoration(
-          color: Colors.grey.shade600,
-          borderRadius: BorderRadius.circular(35),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Login Here',
-              style: TextStyle(
-                fontSize: 27,
-                letterSpacing: 1.4,
-                color: Color(0xff42D674),
-                fontWeight: FontWeight.bold,
+      backgroundColor: Color(0xff191D21),
+      body: Stack(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height*0.5,
+            width: double.infinity,
+            decoration:  const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50),
               ),
+              color: Color(0xff42D674),
             ),
-            const SizedBox(height: 15),
-            const Text(
-              "Welcome back you've\nbeen missed!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 10,
-                color: Colors.white,
-                fontWeight: FontWeight.w100,
-                letterSpacing: 1.4,
-              ),
-            ),
-            const SizedBox(height: 55),
-            Form(
-              key: formkey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SectionName(
-                    authControler: email,
-                    nameit: 'Email',
-                    isRequired: true,
-                  ),
-                  const SizedBox(height: 25),
-                  SectionName(
-                    authControler: password,
-                    nameit: 'Password',
-                    forpassword: true,
-                    isRequired: true,
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Forgot your password?',
+            child: Column(
+
+              children: [
+                const SizedBox(height: 110),
+                const Text(
+                    'Food Khan',
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: 30,
+                      letterSpacing: 1.4,
+                      color: Color(0xffffffff),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  const Text(
+                    "Welcome back you've\nbeen missed!",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 14,
                       color: Colors.white,
                       fontWeight: FontWeight.w100,
                       letterSpacing: 1.4,
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (formkey.currentState!.validate()) {
-                        try {
-                          await auth
-                              .signInWithEmailAndPassword(
-                                email: email.text.trim(),
-                                password: password.text.trim(),
-                              )
-                              .then((onValue) {
-                                TostMessage().errorMessage(
-                                  onValue.user!.email.toString(),
-                                );
-                              });
-                          Get.offAll(() => const NavigationControll());
-                        } catch (error) {
-                          TostMessage().errorMessage(error.toString());
-                        }
-                      }
-                    },
-                    style: ButtonStyle(
-                      elevation: const WidgetStatePropertyAll(0),
-                      minimumSize: WidgetStateProperty.all<Size>(
-                        const Size(300, 55),
-                      ),
-                      backgroundColor: WidgetStateProperty.all<Color>(
-                        const Color(0xff42D674),
-                      ),
+              ],
+            ),
+          ),
+          
+          Center(
+            child: Container(
+              margin: const EdgeInsets.only(top: 120,left: 17, right: 17),
+              height: MediaQuery.of(context).size.height*0.5,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade600,
+                borderRadius: BorderRadius.circular(35),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 15,),
+                  const Text(
+                    'Login Here',
+                    style: TextStyle(
+                      fontSize: 22,
+                      letterSpacing: 1.4,
+                      color: Color(0xffffffff),
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  const SizedBox(height: 20),
+                  Form(
+                    key: formkey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SectionName(
+                          authControler: email,
+                          nameit: 'Email',
+                          isRequired: true,
+                          icon: const Icon(
+                            Icons.email,
+                          ),
+                        ),
+                        const SizedBox(height: 18),
+                        SectionName(
+                          authControler: password,
+                          nameit: 'Password',
+                          forpassword: true,
+                          isRequired: true,
+                          icon: const Icon(
+                            Icons.lock,
+                            //color: Color(0xff42D674),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: const Text(
+                            'Forgot your password?       ',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w100,
+                              letterSpacing: 1.4,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () async {
+                            if (formkey.currentState!.validate()) {
+                              try {
+                                await auth
+                                    .signInWithEmailAndPassword(
+                                      email: email.text.trim(),
+                                      password: password.text.trim(),
+                                    )
+                                    .then((onValue) {
+                                      TostMessage().errorMessage(
+                                        onValue.user!.email.toString(),
+                                      );
+                                    });
+                                Get.offAll(() => const NavigationControll());
+                              } catch (error) {
+                                TostMessage().errorMessage(error.toString());
+                              }
+                            }
+                          },
+                          style: ButtonStyle(
+                            elevation: const WidgetStatePropertyAll(0),
+                            minimumSize: WidgetStateProperty.all<Size>(
+                              const Size(300, 55),
+                            ),
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color(0xff42D674),
+                            ),
+                          ),
+                          child: const Text(
+                            'Log In',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 28),
+                  Text(
+                    "Don't have an account?",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w100,
+                      letterSpacing: 1.4,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  TextButton(
+                    onPressed: () => Get.offAll(() => const Register()),
                     child: const Text(
-                      'Log In',
+                      'Create New Account',
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 10,
                         color: Colors.white,
-                        letterSpacing: 1.2,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w100,
+                        letterSpacing: 1.4,
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 16),
-            TextButton(
-              onPressed: () => Get.offAll(() => const Register()),
-              child: const Text(
-                'Create New Account',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100,
-                  letterSpacing: 1.4,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+       ],
       ),
     );
   }

@@ -88,7 +88,6 @@ class _ProfileState extends State<Profile> {
                 fontSize: 14,
                 fontWeight: FontWeight.w100,
                 letterSpacing: 1.2,
-                //color: Color(0xff191D21),
                 color: Colors.white,
               ),
             ),

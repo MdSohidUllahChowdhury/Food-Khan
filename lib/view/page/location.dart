@@ -13,8 +13,10 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  final String googleMapsUrl =
-      "https://www.google.com/maps/search/?api=1&query=23.781914961742824,90.42591531895101";
+  
+  final String googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=23.781914961742824,90.42591531895101";
+
+  final String locationIcon = 'https://www.creativefabrica.com/wp-content/uploads/2020/10/16/SVG-Business-GPS-Flat-Icon-Vector-Graphics-6104460-2-580x435.png';    
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +36,12 @@ class _LocationScreenState extends State<LocationScreen> {
               glowColor: Colors.white,
               glowShape: BoxShape.circle,
               curve: Curves.slowMiddle,
-              child: const Material(
+              child:  Material(
                 shape: CircleBorder(),
                 color: Colors.transparent,
                 child: CircleAvatar(
                   backgroundColor: Colors.transparent,
-                  backgroundImage: NetworkImage(
-                    'https://www.creativefabrica.com/wp-content/uploads/2020/10/16/SVG-Business-GPS-Flat-Icon-Vector-Graphics-6104460-2-580x435.png',
-                  ),
+                  backgroundImage: NetworkImage(locationIcon),
                   radius: 70.0,
                 ),
               ),
