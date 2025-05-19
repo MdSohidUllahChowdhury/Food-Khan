@@ -16,8 +16,6 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     final cart = Provider.of<CartController>(context,listen: false);
     return Scaffold(
-
-      backgroundColor: const Color(0xff191D21),
       appBar: AppBar(
         backgroundColor: const Color(0xff191D21),
         toolbarHeight: 30,

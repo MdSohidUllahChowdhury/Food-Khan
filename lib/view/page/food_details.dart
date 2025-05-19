@@ -34,7 +34,6 @@ class _FoodDetaillsState extends State<FoodDetaills> {
     final providerCall = Provider.of<CartController>(context, listen: false);
 
     return Scaffold(
-      backgroundColor: const Color(0xff191D21),
       appBar: AppBar(
         backgroundColor: const Color(0xff191D21),
         toolbarHeight: 30,

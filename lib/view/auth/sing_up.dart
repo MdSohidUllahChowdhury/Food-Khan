@@ -16,7 +16,6 @@ class Register extends StatelessWidget {
     FirebaseAuth auth = FirebaseAuth.instance;
 
     return Scaffold(
-      backgroundColor: Color(0xff191D21),
       body: Stack(
         children: [
           Container(

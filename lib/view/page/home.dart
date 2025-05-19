@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:Food_Khan/model/page/order/food_model_list.dart';
 import 'package:Food_Khan/view/page/order.dart';
-import 'package:Food_Khan/view/page/profile.dart';
+import 'package:Food_Khan/view/page/bio_info.dart';
 import 'package:Food_Khan/widget/styel/styel.dart';
 import 'package:Food_Khan/model/page/home/categories.dart';
 import 'package:Food_Khan/model/page/home/fetured_restaurant.dart';
@@ -55,7 +55,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff191D21),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 55),
         child: Column(
@@ -68,7 +67,7 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () => Get.to(() => const Profile()),
+                    onTap: () => Get.to(() =>  BioFormScreen()),
                     child: const CircleAvatar(
                       radius: 24,
                       backgroundImage: NetworkImage(

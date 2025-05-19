@@ -14,7 +14,10 @@ void main() async {
       create: (context) => CartController(),
       child: GetMaterialApp(
         home: const SplashScreen(),
-        theme: ThemeData(useMaterial3: true, fontFamily: 'Roboto'),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Color(0xff191D21),
+          useMaterial3: true, 
+          fontFamily: 'Roboto'),
       ),
     ),
   );

@@ -1,5 +1,6 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
 import 'package:Food_Khan/view/auth/sing_up.dart';
+import 'package:Food_Khan/view/page/bio_info.dart';
 import 'package:Food_Khan/widget/auth/section.dart';
 import 'package:Food_Khan/widget/auth/tost_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +17,6 @@ class Login extends StatelessWidget {
     TextEditingController password = TextEditingController();
 
     return Scaffold(
-      backgroundColor: Color(0xff191D21),
       body: Stack(
         children: [
           Container(

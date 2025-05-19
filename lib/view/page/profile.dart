@@ -1,188 +1,84 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
-import 'package:Food_Khan/view/auth/log_in.dart';
-import 'package:avatar_glow/avatar_glow.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({super.key});
+class ProfileScreen extends StatelessWidget {
+  final String fullName;
+  final String country;
+  final String phone;
 
-  @override
-  State<Profile> createState() => _ProfileState();
-}
-  final auth = FirebaseAuth.instance;
+  const ProfileScreen({
+    super.key,
+    required this.fullName,
+    required this.country,
+    required this.phone,
+  });
 
-class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff191D21),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text(
-          'Profile',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w100,
-            letterSpacing: 1.4,
-            color: Color(0xff191D21),
-          ),
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Get.to(
-              () => NavigationControll(),
-              transition: Transition.rightToLeft,
-              duration: Duration(milliseconds: 500),
-            );
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {
-              Get.snackbar(
-                'Development Mood',
-                "Working on this unit"
-                    " please be patient",
-                snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: Color(0xffD0F1EB),
-                colorText: Color(0xff191D21),
-                duration: Duration(seconds: 4),
-              );
-              // Add your settings action here
-            },
-          ),
-        ],
-        backgroundColor: Color(0xff8ACCD5),
-        centerTitle: true,
+        title: Text('Profile Information'),
+        backgroundColor: Colors.pinkAccent,
       ),
-
-      body: Container(
-        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 13),
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AvatarGlow(
-              startDelay: const Duration(milliseconds: 1000),
-              glowColor: Colors.white,
-              glowShape: BoxShape.circle,
-              //animate: _animate,
-              curve: Curves.easeInOut,
-              child: const Material(
-                elevation: 8.0,
-                shape: CircleBorder(),
-                color: Colors.transparent,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    'https://avatars.githubusercontent.com/u/157578225?v=4',
-                  ),
-                  radius: 50.0,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'User Information',
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w100,
-                letterSpacing: 1.2,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 25),
-            TextField(
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                hintText: 'Email',
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100,
-                  fontSize: 12,
-                ),
-                prefixIcon: Icon(
-                  Icons.email,
-                  size: 18,
-                  color: Color(0xff8ACCD5),
-                ),
-                contentPadding: EdgeInsets.only(left: 10),
-                fillColor: Color(0xff656F77),
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(26)),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Phone Number',
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100,
-                  fontSize: 12,
-                ),
-                prefixIcon: Icon(
-                  Icons.phone,
-                  size: 18,
-                  color: Color(0xff8ACCD5),
-                ),
-                contentPadding: EdgeInsets.only(left: 10),
-                fillColor: Color(0xff656F77),
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(26)),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Address',
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w100,
-                  fontSize: 12,
-                ),
-                prefixIcon: Icon(
-                  Icons.location_on,
-                  size: 18,
-                  color: Color(0xff8ACCD5),
-                ),
-                contentPadding: EdgeInsets.only(left: 10),
-                fillColor: Color(0xff656F77),
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(26)),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-            const SizedBox(height: 60),
-            
-            
-            InkWell(
-              onTap: () async{
-                 await auth.signOut()
-                 .then((value) => Get.offAll(()=>Login()));
-                },
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 90),
-                width: double.infinity,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Color(0xff8ACCD5),
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                child: Center(child: Text('Log Out',style: TextStyle(fontSize:15),)),
-              ),
-            )
+            ProfileItem(label: "Full Name", value: fullName),
+            SizedBox(height: 16),
+            ProfileItem(label: "Country", value: country),
+            SizedBox(height: 16),
+            ProfileItem(label: "Mobile Number", value: phone),
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.pinkAccent,
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Thank you for providing your information!',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            IconButton(onPressed: (){
+              Get.to(()=>NavigationControll());
+            }, icon: Icon(Icons.home, color: Colors.white)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ProfileItem extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const ProfileItem({super.key, required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "$label: ",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        Expanded(
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 16),
+          ),
+        ),
+      ],
     );
   }
 }

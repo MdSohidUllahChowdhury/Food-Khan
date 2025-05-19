@@ -21,7 +21,6 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff191D21),
       body: Column(
         children: [
           LocationBarSection(),
