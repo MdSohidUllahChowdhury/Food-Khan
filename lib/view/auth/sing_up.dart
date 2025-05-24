@@ -26,11 +26,18 @@ class Register extends StatelessWidget {
                 bottomLeft: Radius.circular(50),
                 bottomRight: Radius.circular(50),
               ),
-              color: Color(0xff42D674),
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xff191D21),
+                  Color(0xffFFAC4B),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
             child: Column(
               children: [
-                const SizedBox(height: 110),
+                const SizedBox(height: 100),
                 const Text(
                   'Food Khan',
                   style: TextStyle(
@@ -40,27 +47,31 @@ class Register extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 10),
                 const Text(
                   "Create an account so you can explore all the\nexisting Yaaami food",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Colors.white,
                     fontWeight: FontWeight.w100,
                     letterSpacing: 1.4,
                   ),
                 ),
+                const SizedBox(height: 8),
+                  Divider(color: Color(0xffffffff), thickness: 18),
+                  Divider(color: Color(0xffFFAC4B), thickness: 18),
+                  Divider(color: Color(0xff191D21), thickness: 18),
               ],
             ),
           ),
 
           Center(
             child: Container(
-              margin: const EdgeInsets.only(top: 120, left: 17, right: 17),
+              margin: const EdgeInsets.only(top: 110, left: 17, right: 17),
               height: MediaQuery.of(context).size.height * 0.52,
               decoration: BoxDecoration(
-                color: Colors.grey.shade600,
+                color: Colors.grey.shade700,
                 borderRadius: BorderRadius.circular(35),
               ),
               child: Column(
@@ -70,10 +81,11 @@ class Register extends StatelessWidget {
                   const Text(
                     'Create Account',
                     style: TextStyle(
-                      letterSpacing: 1.4,
+                      letterSpacing: 1,
                       fontSize: 22,
                       color: Color(0xffffffff),
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Roboto',
                     ),
                   ),
 
@@ -88,24 +100,24 @@ class Register extends StatelessWidget {
                           authControler: emailController,
                           nameit: 'Email',
                           isRequired: true,
-                          icon: const Icon(Icons.email),
+                          icon: const Icon(Icons.email,size: 18),
                         ),
-                        const SizedBox(height: 18),
+                        const SizedBox(height: 16),
                         SectionName(
                           authControler: passwordController,
                           nameit: 'Password',
                           forpassword: true,
                           isRequired: true,
-                          icon: const Icon(Icons.lock),
+                          icon: const Icon(Icons.password,size: 18,),
                         ),
-                        const SizedBox(height: 18),
+                        const SizedBox(height: 16),
                         SectionName(
                           nameit: 'Confirm Password',
                           forpassword: true,
                           isRequired: true,
-                          icon: Icon(Icons.lock),
+                          icon: Icon(Icons.password,size: 18,),
                         ),
-                        const SizedBox(height: 18),
+                        const SizedBox(height: 25),
                         ElevatedButton(
                           onPressed: () async {
                             if (formkey.currentState!.validate()) {
@@ -126,16 +138,16 @@ class Register extends StatelessWidget {
                               const Size(300, 55),
                             ),
                             backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color(0xff42D674),
+                              const Color(0xffFFAC4B),
                             ),
                           ),
                           child: const Text(
                             'Create Account',
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 17,
                               letterSpacing: 1.2,
                               color: Colors.white,
-                              fontWeight: FontWeight.w300,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),

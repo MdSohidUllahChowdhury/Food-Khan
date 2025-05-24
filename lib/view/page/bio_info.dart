@@ -1,4 +1,6 @@
+import 'package:Food_Khan/view/auth/log_in.dart';
 import 'package:Food_Khan/view/page/profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:get/get.dart';
@@ -11,6 +13,7 @@ class BioFormScreen extends StatefulWidget {
 }
 
 class _BioFormScreenState extends State<BioFormScreen> {
+  final auth = FirebaseAuth.instance;
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _mobileNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -18,7 +21,7 @@ class _BioFormScreenState extends State<BioFormScreen> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate() && _selectedCountry != null) {
-      // Save or send data
+      //* Save or send data
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -142,8 +145,9 @@ class _BioFormScreenState extends State<BioFormScreen> {
                             ? 'Enter your mobile number'
                             : null,
               ),
-              Spacer(),
 
+              //Spacer(),
+              SizedBox(height: 16),
               // Next Button
               SizedBox(
                 width: double.infinity,
@@ -152,7 +156,7 @@ class _BioFormScreenState extends State<BioFormScreen> {
                   onPressed: () {
                     _submitForm;
                     Get.to(
-                      ProfileScreen(
+                      () => ProfileScreen(
                         fullName: _fullNameController.text,
                         country: _selectedCountry?.name ?? '',
                         phone: _mobileNumberController.text,
@@ -171,7 +175,32 @@ class _BioFormScreenState extends State<BioFormScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 25),
+              SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () async {
+                  await auth.signOut().then(
+                    (value) => Get.offAll(() => const Login()),
+                  );
+                },
+                style: ButtonStyle(
+                  elevation: const WidgetStatePropertyAll(0),
+                  minimumSize: WidgetStateProperty.all<Size>(
+                    const Size(120, 55),
+                  ),
+                  backgroundColor: WidgetStateProperty.all<Color>(
+                    const Color(0xffFFAC4B),
+                  ),
+                ),
+                child: const Text(
+                  'Log Out',
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Colors.white,
+                    letterSpacing: 1.2,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

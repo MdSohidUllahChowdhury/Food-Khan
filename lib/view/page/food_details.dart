@@ -1,6 +1,5 @@
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:Food_Khan/controller/provider/add_cart.dart';
-import 'package:Food_Khan/view/page/wallet.dart';
 import 'package:Food_Khan/widget/page/food_detaills/food_dp.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +34,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff191D21),
+        backgroundColor:Colors.transparent,
         toolbarHeight: 30,
         elevation: 0,
         leading: IconButton(
@@ -118,6 +117,8 @@ class _FoodDetaillsState extends State<FoodDetaills> {
               ],
             ),
             const SizedBox(height: 12),
+
+            //* Product Name and Description
             Container(
               margin: const EdgeInsets.only(bottom: 25),
               height: 200,
@@ -216,12 +217,13 @@ class _FoodDetaillsState extends State<FoodDetaills> {
               ),
             ),
             const SizedBox(height: 20),
+            //** Order Now Button and Price 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Animate(
                   child: CircleAvatar(
-                    radius: 40,
+                    radius: 39,
                     backgroundColor: const Color(0xffffffff),
                     child: CircleAvatar(
                       radius: 35,
@@ -238,11 +240,61 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                       ),
                     ),
                   ),
-                ).animate().flipV().scaleXY(duration: 500.ms).then().fadeIn(
-                    duration: 2000.ms),
+                ).animate().flipV().scaleXY(duration: 500.ms).then().fadeIn(duration: 1000.ms),
                 ElevatedButton(
                   onPressed: () {
-                    Get.to(() => const Wallet());
+                   
+                   
+                   Get.dialog(
+                      AlertDialog(
+                        backgroundColor: const Color(0xff191D21),
+                        icon: Icon(Icons.padding, size: 50, color: Colors.yellow[700]),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        titlePadding: const EdgeInsets.only(
+                          top: 20,
+                          left: 20,
+                          right: 20,
+                        ),
+                        elevation: 20,
+                        title: Text(
+                          'Order Placed',
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.3
+                          ),
+                        ),
+                        content: Text(
+                          '\n Price:        $price\$\n Quantity:    $quantity',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                        actions: [
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton( 
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: const Text(
+                                'Paymant',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                      
+
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

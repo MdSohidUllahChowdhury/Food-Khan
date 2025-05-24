@@ -2,6 +2,7 @@ import 'package:Food_Khan/view/page/cart.dart';
 import 'package:Food_Khan/view/page/home.dart';
 import 'package:Food_Khan/view/page/location.dart';
 import 'package:Food_Khan/view/page/order.dart';
+import 'package:Food_Khan/view/page/wallet.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +18,10 @@ class _NavigationControllState extends State<NavigationControll> {
   final pagedata = [
     const Home(),
     const Order(),
-    const LocationScreen(),
     const CartScreen(),
-  ];
+    const LocationScreen(),
+    const Wallet(),
+  ];  
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +32,9 @@ class _NavigationControllState extends State<NavigationControll> {
         items: [
           Icon(Icons.home, size: 30),
           Icon(Icons.fastfood, size: 30),
-          Icon(Icons.location_on, size: 30),
           Icon(Icons.favorite, size: 30),
+          Icon(Icons.location_on, size: 30),
+          Icon(Icons.wallet, size: 30),
         ],
         onTap: (gotopage) {
           setState(() {

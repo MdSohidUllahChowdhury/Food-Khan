@@ -1,6 +1,5 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
 import 'package:Food_Khan/view/auth/sing_up.dart';
-import 'package:Food_Khan/view/page/bio_info.dart';
 import 'package:Food_Khan/widget/auth/section.dart';
 import 'package:Food_Khan/widget/auth/tost_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +9,8 @@ import 'package:get/get.dart';
 class Login extends StatelessWidget {
   const Login({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {    
+    
     final formkey = GlobalKey<FormState>();
     final auth = FirebaseAuth.instance;
     TextEditingController email = TextEditingController();
@@ -27,12 +27,19 @@ class Login extends StatelessWidget {
                 bottomLeft: Radius.circular(50),
                 bottomRight: Radius.circular(50),
               ),
-              color: Color(0xff42D674),
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xff191D21),
+                  Color(0xffFFAC4B),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
             child: Column(
 
               children: [
-                const SizedBox(height: 110),
+                const SizedBox(height: 100),
                 const Text(
                     'Food Khan',
                     style: TextStyle(
@@ -42,7 +49,7 @@ class Login extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 10),
                   const Text(
                     "Welcome back you've\nbeen missed!",
                     textAlign: TextAlign.center,
@@ -53,16 +60,20 @@ class Login extends StatelessWidget {
                       letterSpacing: 1.4,
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  Divider(color: Color(0xffffffff), thickness: 18),
+                  Divider(color: Color(0xffFFAC4B), thickness: 18),    
+                  Divider(color: Color(0xff191D21), thickness: 18),
               ],
             ),
           ),
           
           Center(
             child: Container(
-              margin: const EdgeInsets.only(top: 120,left: 17, right: 17),
+              margin: const EdgeInsets.only(top: 110,left: 17, right: 17),
               height: MediaQuery.of(context).size.height*0.5,
               decoration: BoxDecoration(
-                color: Colors.grey.shade600,
+                color: Colors.grey.shade700,
                 borderRadius: BorderRadius.circular(35),
               ),
               child: Column(
@@ -70,13 +81,13 @@ class Login extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 15,),
-                  const Text(
-                    'Login Here',
+                  const Text('Login Here',
                     style: TextStyle(
                       fontSize: 22,
-                      letterSpacing: 1.4,
+                      letterSpacing: 1,
                       color: Color(0xffffffff),
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Roboto',
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -90,20 +101,15 @@ class Login extends StatelessWidget {
                           authControler: email,
                           nameit: 'Email',
                           isRequired: true,
-                          icon: const Icon(
-                            Icons.email,
-                          ),
+                          icon: const Icon(Icons.email,size: 18),
                         ),
-                        const SizedBox(height: 18),
+                        const SizedBox(height: 16),
                         SectionName(
                           authControler: password,
                           nameit: 'Password',
                           forpassword: true,
                           isRequired: true,
-                          icon: const Icon(
-                            Icons.lock,
-                            //color: Color(0xff42D674),
-                          ),
+                          icon: const Icon(Icons.password,size: 18,),
                         ),
                         const SizedBox(height: 10),
                         Align(
@@ -118,13 +124,12 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 25),
                         ElevatedButton(
                           onPressed: () async {
                             if (formkey.currentState!.validate()) {
                               try {
-                                await auth
-                                    .signInWithEmailAndPassword(
+                                await auth.signInWithEmailAndPassword(
                                       email: email.text.trim(),
                                       password: password.text.trim(),
                                     )
@@ -141,17 +146,13 @@ class Login extends StatelessWidget {
                           },
                           style: ButtonStyle(
                             elevation: const WidgetStatePropertyAll(0),
-                            minimumSize: WidgetStateProperty.all<Size>(
-                              const Size(300, 55),
-                            ),
-                            backgroundColor: WidgetStateProperty.all<Color>(
-                              const Color(0xff42D674),
-                            ),
+                            minimumSize: WidgetStateProperty.all<Size>(const Size(300, 55)),
+                            backgroundColor: WidgetStateProperty.all<Color>(const Color(0xffFFAC4B)),
                           ),
                           child: const Text(
                             'Log In',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 17,
                               color: Colors.white,
                               letterSpacing: 1.2,
                               fontWeight: FontWeight.w600,
@@ -161,7 +162,7 @@ class Login extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 28),
+                  const SizedBox(height: 20),
                   Text(
                     "Don't have an account?",
                     style: TextStyle(

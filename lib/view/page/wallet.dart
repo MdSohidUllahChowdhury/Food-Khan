@@ -40,7 +40,6 @@ class Wallet extends StatelessWidget {
                       ),
                       SizedBox(height: 12),
                       ListTile(
-                        //leading: Icon(Icons.arrow_back),
                         title: Text(
                           "Click to add more Cradit Card\nCard to Wallet",
                           style: TextStyle(color: Colors.white, fontSize: 15),
@@ -72,13 +71,13 @@ class Wallet extends StatelessWidget {
               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,letterSpacing: 1.4),
             ),
           ),
-          SizedBox(height: 28),
+          SizedBox(height: 25),
           CustomListTile(Icons.bar_chart, "View analytics"),
           SizedBox(height: 12),
           CustomListTile(Icons.account_balance_wallet, "Pass Book"),
           SizedBox(height: 12),
           CustomListTile(Icons.account_balance, "Bank Account"),
-          SizedBox(height: 40),
+          SizedBox(height: 30),
           
           InkWell(
             onTap: () {  
