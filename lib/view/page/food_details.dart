@@ -1,5 +1,6 @@
 import 'package:Food_Khan/model/page/order/food_menu_model.dart';
 import 'package:Food_Khan/controller/provider/add_cart.dart';
+import 'package:Food_Khan/view/page/delivery.dart';
 import 'package:Food_Khan/widget/page/food_detaills/food_dp.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
@@ -243,58 +244,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ).animate().flipV().scaleXY(duration: 500.ms).then().fadeIn(duration: 1000.ms),
                 ElevatedButton(
                   onPressed: () {
-                   
-                   
-                   Get.dialog(
-                      AlertDialog(
-                        backgroundColor: const Color(0xff191D21),
-                        icon: Icon(Icons.padding, size: 50, color: Colors.yellow[700]),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        titlePadding: const EdgeInsets.only(
-                          top: 20,
-                          left: 20,
-                          right: 20,
-                        ),
-                        elevation: 20,
-                        title: Text(
-                          'Order Placed',
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.3
-                          ),
-                        ),
-                        content: Text(
-                          '\n Price:        $price\$\n Quantity:    $quantity',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                        actions: [
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton( 
-                              onPressed: () {
-                                Get.back();
-                              },
-                              child: const Text(
-                                'Paymant',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                      
-
+                  Get.to(()=>DeliveryCheckOut(totalPrice: price.toString(),));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,

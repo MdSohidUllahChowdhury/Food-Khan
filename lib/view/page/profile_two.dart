@@ -19,27 +19,24 @@ class _ProfileTwoState extends State<ProfileTwo> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF8F8F8),
+      appBar: AppBar(
+        
+      backgroundColor: const Color(0xFFF8F8F8),
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_left, size: 30, color: Colors.black),
+          onPressed: ()=>Get.back(),
+        ),
+        title: Text('My Profile', style: TextStyle(color: Colors.black)),
+
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //** */ Back Arrow and Title
-              Row(
-                children: [
-                  Icon(Icons.arrow_back_ios_new, size: 24),
-                  const SizedBox(width: 12),
-                  Text(
-                    "                  My Profile",
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30),
 
               //** */ Information Title
               Text(
@@ -212,7 +209,7 @@ class _ProfileTwoState extends State<ProfileTwo> {
                 height: 45,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFFF3A44),
+                    backgroundColor:  Colors.orange,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),

@@ -26,7 +26,7 @@ Widget BarSection() {
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(Icons.arrow_back_ios, size: 14),
+              icon: Icon(Icons.arrow_left, size: 24),
             ),
           ),
 

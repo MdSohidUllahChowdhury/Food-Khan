@@ -55,6 +55,7 @@ class Wallet extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
+                      
                       CardWallet(),
                     ],
                   ),
@@ -77,7 +78,7 @@ class Wallet extends StatelessWidget {
           CustomListTile(Icons.account_balance_wallet, "Pass Book"),
           SizedBox(height: 12),
           CustomListTile(Icons.account_balance, "Bank Account"),
-          SizedBox(height: 30),
+          SizedBox(height: 60),
           
           InkWell(
             onTap: () {  
