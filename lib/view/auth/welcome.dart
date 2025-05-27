@@ -105,7 +105,9 @@ class WelcomeScreen extends StatelessWidget {
             ),
           )
           .animate()
-          .flip(duration: const Duration(seconds: 1))
+          .fadeIn(
+            duration: const Duration(seconds: 2),
+          )
           .shimmer(
             color: Colors.green[400],
             duration: const Duration(seconds: 4),

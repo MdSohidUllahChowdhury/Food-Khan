@@ -73,6 +73,7 @@ class _BioFormScreenState extends State<BioFormScreen> {
 
               // Full Name
               TextFormField(
+                keyboardType: TextInputType.text,
                 controller: _fullNameController,
                 decoration: InputDecoration(
                   hintText: 'Full Name',
@@ -130,6 +131,7 @@ class _BioFormScreenState extends State<BioFormScreen> {
 
               // Mobile Number
               TextFormField(
+                
                 controller: _mobileNumberController,
                 decoration: InputDecoration(
                   hintText: 'Mobile Number',

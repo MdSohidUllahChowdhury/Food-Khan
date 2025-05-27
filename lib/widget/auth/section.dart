@@ -22,6 +22,8 @@ class SectionName extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
+        keyboardType: TextInputType.text,
+        textInputAction: TextInputAction.next,
         controller:authControler,
         validator:
             isRequired == true

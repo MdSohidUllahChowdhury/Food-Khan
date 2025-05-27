@@ -6,16 +6,18 @@ import 'package:get/utils.dart';
 
 class DeliveryCheckOut extends StatefulWidget {
   final String totalPrice;
-  const DeliveryCheckOut({ required this.totalPrice, super.key});
+  const DeliveryCheckOut({required this.totalPrice, super.key});
 
   @override
   State<DeliveryCheckOut> createState() => _DeliveryCheckOutState();
 }
 
 class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
-  
   String _deliveryMethod = 'Door delivery';
-  
+  final formkey = GlobalKey<FormState>();
+  final TextEditingController _addressController = TextEditingController();
+  bool isRequired = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,21 +27,22 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_left, size:30, color: Colors.black),
-          onPressed:()=> Get.back(),
+          icon: Icon(Icons.arrow_left, size: 30, color: Colors.black),
+          onPressed: () => Get.back(),
         ),
-        title: Text('Checkout', style: TextStyle(color: Colors.black))
+        title: Text('Checkout', style: TextStyle(color: Colors.black)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Delivery',
+            Text(
+              'Delivery',
               style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
-
+        
             //** */ Address Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,19 +64,37 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextField(
-                    //controller: _addressController,
-                    decoration: InputDecoration(
-                      labelText: 'Add Your Address',
-                      hintText: 'Gulshan 2, Road 12, House 45, Dhaka',
-                      prefixIcon: Icon(FontAwesomeIcons.mapMarkerAlt, color: Colors.orange, size: 20,),
+                  Form(
+                    key: formkey,
+                    child: TextFormField(
+                      keyboardType: TextInputType.text,
+                      controller: _addressController,
+                      validator:
+                          isRequired == true
+                              ? (String? value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Plese enter your address!';
+                                } else {
+                                  return null;
+                                }
+                              }
+                              : null,
+                      decoration: InputDecoration(
+                        labelText: 'Add Your Address',
+                        hintText: 'Gulshan 2, Road 12, House 435, Dhaka',
+                        prefixIcon: Icon(
+                          FontAwesomeIcons.mapMarkerAlt,
+                          color: Colors.orange,
+                          size: 20,
+                        ),
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
             SizedBox(height: 20),
-
+        
             //** */ Delivery Method Section
             Text(
               'Delivery Rider Type.',
@@ -86,13 +107,13 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      spreadRadius: 3,
-                      blurRadius: 5,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
               ),
               child: Column(
                 children: [
@@ -123,13 +144,13 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
             ),
             Spacer(),
-
             //** */ Total & Button
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Total', style: TextStyle(fontSize: 16)),
-                Text('${widget.totalPrice}\$',
+                Text(
+                  '${widget.totalPrice}\$',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
@@ -140,7 +161,23 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(()=> PaymentScreen(totalPrice: widget.totalPrice.toString(),));
+                  if (formkey.currentState!.validate()) {
+                    isRequired = false;
+                    Get.snackbar(
+                      'Address Added',
+                      'Address and Rider Type has been Added Successfully.',
+                      backgroundColor: Colors.orange,
+                      colorText: Colors.white,
+                      duration: Duration(seconds: 1),
+                    );
+                  } else {
+                    isRequired = true;
+                    return;
+                  }
+                  Get.to(
+                    () =>
+                        PaymentScreen(totalPrice: widget.totalPrice.toString()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
@@ -154,7 +191,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                 ),
               ),
             ),
-            SizedBox(height:25),
+            SizedBox(height: 25),
           ],
         ),
       ),
