@@ -1,6 +1,6 @@
+import 'package:Food_Khan/controller/routes/check_user_login.dart';
 import 'package:Food_Khan/firebase_options.dart';
 import 'package:Food_Khan/controller/provider/add_cart.dart';
-import 'package:Food_Khan/view/auth/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +13,7 @@ void main() async {
     ChangeNotifierProvider(
       create: (context) => CartController(),
       child: GetMaterialApp(
-        home: const SplashScreen(),
+        home: CheckUserLogin(),
         theme: ThemeData(
           scaffoldBackgroundColor: Color(0xff191D21),
           useMaterial3: true, 
