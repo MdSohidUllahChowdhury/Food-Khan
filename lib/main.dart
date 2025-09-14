@@ -4,6 +4,7 @@ import 'package:Food_Khan/controller/provider/add_cart.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -17,7 +18,7 @@ void main() async {
         theme: ThemeData(
           scaffoldBackgroundColor: Color(0xff191D21),
           useMaterial3: true, 
-          fontFamily: 'Roboto'),
+          fontFamily: GoogleFonts.dmSans().fontFamily,)
       ),
     ),
   );

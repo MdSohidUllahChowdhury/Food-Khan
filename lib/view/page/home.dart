@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                   InkWell(
                     onTap: () => Get.to(() =>  BioFormScreen()),
                     child: const CircleAvatar(
-                      radius: 24,
+                      radius: 26,
                       backgroundImage: NetworkImage(
                         'https://avatars.githubusercontent.com/u/157578225?v=4',
                       ),
@@ -85,17 +85,17 @@ class _HomeState extends State<Home> {
                         contentPadding: EdgeInsets.symmetric(vertical: 10),
                         hintText: 'Search Food Items...',
                         hintStyle: const TextStyle(
-                          color: Colors.white54,
+                          color: Colors.black,
                           fontSize: 14,
                           fontWeight: FontWeight.w100,
                         ),
                         prefixIcon: const Icon(
                           Icons.search,
-                          size: 26,
-                          color: Colors.orange,
+                          size: 20,
+                          color: Colors.black,
                         ),
                         filled: true,
-                        fillColor: const Color(0xff656F77),
+                        fillColor: Colors.white.withValues(alpha: 0.8),//const Color(0xff656F77),
                         border: OutlineInputBorder(
                           gapPadding: 12,
                           borderRadius: BorderRadius.circular(26),

@@ -18,18 +18,12 @@ class _ProfileTwoState extends State<ProfileTwo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8F8),
       appBar: AppBar(
-        
-      backgroundColor: const Color(0xFFF8F8F8),
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 40,
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_left, size: 30, color: Colors.black),
-          onPressed: ()=>Get.back(),
-        ),
-        title: Text('My Profile', style: TextStyle(color: Colors.black)),
-
+        title: Text('My Profile', style: TextStyle(color: Colors.white)),
       ),
       body: SafeArea(
         child: Padding(
@@ -37,17 +31,8 @@ class _ProfileTwoState extends State<ProfileTwo> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               //** */ Information Title
-              Text(
-                "Information",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const SizedBox(height: 10),
-
+              const SizedBox(height: 13),
               //** */ Profile Info Card
               Container(
                 padding: const EdgeInsets.all(16),
@@ -90,15 +75,7 @@ class _ProfileTwoState extends State<ProfileTwo> {
                         Text(
                           "test@gmail.com",
                           style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          "No 15 uti street off ovie palace\nroad effurun delta state",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
+                            fontSize: 14,
                             color: Colors.grey[700],
                           ),
                         ),
@@ -107,15 +84,22 @@ class _ProfileTwoState extends State<ProfileTwo> {
                   ],
                 ),
               ),
-              const SizedBox(height: 15),
+              SizedBox(height: 10),
               Text(
                 "Location",
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
+              SizedBox(height: 10),
               ListTile(
+                shape: RoundedRectangleBorder(
+                  // Add rounded corners
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                tileColor: Colors.white,
                 onTap: () {
                   Get.to(() => const LocationScreen());
                 },
@@ -136,9 +120,16 @@ class _ProfileTwoState extends State<ProfileTwo> {
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
+              const SizedBox(height: 10),
               ListTile(
+                shape: RoundedRectangleBorder(
+                  // Add rounded corners
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                tileColor: Colors.white,
                 onTap: () {
                   Get.to(() => const Wallet());
                 },
@@ -153,13 +144,16 @@ class _ProfileTwoState extends State<ProfileTwo> {
                   style: GoogleFonts.poppins(fontSize: 14),
                 ),
               ),
-              const SizedBox(height: 15),
-              // Payment Method Title
-              Text(
-                "Payment Method",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+              SizedBox(height: 12),
+              //* Payment Method Title
+              Expanded(
+                child: Text(
+                  "Payment Method",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -209,7 +203,7 @@ class _ProfileTwoState extends State<ProfileTwo> {
                 height: 45,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:  Colors.orange,
+                    backgroundColor: Colors.orange,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),

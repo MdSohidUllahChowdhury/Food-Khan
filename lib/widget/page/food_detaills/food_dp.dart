@@ -6,6 +6,7 @@ Widget Food_DP(String foodImage,) {
   return GlassContainer(
     height: 220,
     width: 400,
+    borderRadius: BorderRadius.all(Radius.circular(16)),
     gradient: LinearGradient(
       colors: [Colors.white.withOpacity(0.40), Colors.white.withOpacity(0.10)],
       begin: Alignment.topLeft,

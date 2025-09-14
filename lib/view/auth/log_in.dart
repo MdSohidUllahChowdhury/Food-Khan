@@ -1,4 +1,5 @@
 import 'package:Food_Khan/model/routes/navigation_bar.dart';
+import 'package:Food_Khan/view/auth/forgot_password.dart';
 import 'package:Food_Khan/view/auth/sing_up.dart';
 import 'package:Food_Khan/widget/auth/section.dart';
 import 'package:Food_Khan/widget/auth/tost_info.dart';
@@ -121,20 +122,21 @@ class _LoginState extends State<Login> {
                               isRequired: true,
                               icon: const Icon(Icons.password, size: 18),
                             ),
-                            const SizedBox(height: 10),
+                            //const SizedBox(height: 10),
                             Align(
                               alignment: Alignment.centerRight,
-                              child: const Text(
-                                'Forgot your password?       ',
+                              child: TextButton(
+                                onPressed: () => Get.to(() => const ForgotPassword()),
+                                child: Text('Forgot your password?       ',
                                 style: TextStyle(
-                                  fontSize: 10,
+                                  fontSize: 12,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w100,
                                   letterSpacing: 1.4,
-                                ),
+                                ),)
                               ),
                             ),
-                            const SizedBox(height: 25),
+                            const SizedBox(height: 15),
                             ElevatedButton(
                               onPressed: () async {
                                 if (formKey.currentState!.validate()) {

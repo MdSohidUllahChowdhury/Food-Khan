@@ -15,30 +15,29 @@ class CartDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     final providerCall = Provider.of<CartController>(context, listen: false);
     return InkWell(
-      onTap:
-          () => Get.to(() => FoodDetaills(product: item)),
+      onTap: () => Get.to(() => FoodDetaills(product: item)),
       child: Animate(
         child: Container(
+          height: 120,
+          width: 120,
           margin: const EdgeInsets.all(12),
           padding: const EdgeInsets.all(12),
-          height: 100,
           decoration: BoxDecoration(
-            color: Colors.grey.shade300,
             borderRadius: BorderRadius.circular(24),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 2,
-                color: Colors.grey.shade400,
-                blurStyle: BlurStyle.outer,
-                offset: const Offset(1, 3),
-              ),
-            ],
+            border: Border.all(color: Colors.white, width: 2),
           ),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Row(
             children: [
-              Image.asset(item.image.toString()),
+              Image.asset(
+                item.image.toString(),
+                height: 110,
+                width: 120,
+                fit: BoxFit.fill,
+              ),
+              const SizedBox(width:20),
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     item.name.toString().toUpperCase(),
@@ -46,28 +45,41 @@ class CartDemo extends StatelessWidget {
                       fontFamily: 'Bold',
                       letterSpacing: 1.3,
                       fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w800
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
+                  //SizedBox(width: 40,height: 30,),
+                  SizedBox(height: 10),
                   Text(
                     'PRICE :  ${item.price.toString()}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontFamily: 'Bold',
-                      fontSize: 12,
-                      color: Colors.deepOrangeAccent,
+                      fontSize: 15,
+                      color: Colors.white,
                     ),
                   ),
                 ],
               ),
+              const Spacer(),
               CircleAvatar(
-                radius: 20,
-                backgroundColor: const Color(0xff191D21),
-                child: IconButton(onPressed: (){
-                  Get.snackbar("Deleted", "Your Item has been deleted",backgroundColor: Colors.white, );
-                  providerCall.removeFromCart(item);
-                }, icon: Icon(Icons.delete_outline,color: Colors.red,)),
-              )
+                radius: 25,
+                backgroundColor: Colors.white,
+                child: IconButton(
+                  onPressed: () {
+                    Get.snackbar(
+                      "Deleted",
+                      "Your Item has been deleted",
+                      backgroundColor: Colors.white,
+                    );
+                    providerCall.removeFromCart(item);
+                  },
+                  icon: Icon(
+                    Icons.delete_outline,
+                    color: Colors.redAccent[700],
+                  ),
+                ),
+              ),
             ],
           ),
         ).animate().flip().shimmer(

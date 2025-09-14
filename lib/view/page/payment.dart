@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class PaymentScreenState extends State<PaymentScreen> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_left, size: 30, color: Colors.black),
+              icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 24),
           onPressed: () => Get.back(),
         ),
         title: Text('Checkout', style: TextStyle(color: Colors.black)),
@@ -61,6 +62,35 @@ class PaymentScreenState extends State<PaymentScreen> {
               ),
               child: Column(
                 children: [
+                  RadioListTile<String>(
+                    value: '',
+                    groupValue: _paymentMethod,
+                    activeColor: Colors.pinkAccent,
+                    onChanged: (value) {
+                      setState(() {
+                        _paymentMethod = value!;
+                      });
+                    },
+                    title: Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Icon(
+                            FontAwesomeIcons.moneyBills,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Text("Cash On Delivery"),
+                      ],
+                    ),
+                  ),
+                  Divider(),
                   RadioListTile<String>(
                     value: 'Card',
                     groupValue: _paymentMethod,
@@ -191,6 +221,13 @@ class PaymentScreenState extends State<PaymentScreen> {
               child: ElevatedButton(
                 onPressed: () {
                   // Add your payment logic here
+                  Get.snackbar(
+                    'Payment Successful',
+                    'Your payment of ${widget.totalPrice}\$ has been processed.',
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.green.withValues(alpha: 0.8),
+                    colorText: Colors.white,
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,

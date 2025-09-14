@@ -29,14 +29,14 @@ dependencies:
   fluttertoast: ^8.2.12
   country_picker: ^2.0.27
   go_router: ^15.1.2
-  google_fonts: ^6.2.1
+  google_fonts: ^6.3.1
   font_awesome_flutter: ^10.8.0
 
 flutter_launcher_icons:
   
   android: true
   ios: true
-  image_path: "lib/asset/image/logo.png"
+  image_path: "lib/asset/image/logoTwo.png"
 
 
 dev_dependencies:

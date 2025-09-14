@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 Widget BarSection() {
@@ -26,7 +27,7 @@ Widget BarSection() {
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(Icons.arrow_left, size: 24),
+              icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 24),
             ),
           ),
 

@@ -27,7 +27,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(Icons.arrow_left, size: 30, color: Colors.black),
+          icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 24),
           onPressed: () => Get.back(),
         ),
         title: Text('Checkout', style: TextStyle(color: Colors.black)),
@@ -42,7 +42,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
-        
+
             //** */ Address Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,7 +94,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
             ),
             SizedBox(height: 20),
-        
+
             //** */ Delivery Method Section
             Text(
               'Delivery Rider Type.',
@@ -168,7 +168,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                       'Address and Rider Type has been Added Successfully.',
                       backgroundColor: Colors.orange,
                       colorText: Colors.white,
-                      duration: Duration(seconds: 1),
+                      duration: Duration(seconds: 3),
                     );
                   } else {
                     isRequired = true;

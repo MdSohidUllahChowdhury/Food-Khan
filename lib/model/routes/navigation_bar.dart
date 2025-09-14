@@ -39,7 +39,7 @@ class _NavigationControllState extends State<NavigationControll> {
           });
         },
         backgroundColor: Colors.transparent,
-        color: const Color(0xffC9EAFD),
+        color: Color(0xffD0F1EB), // Use a single color instead of a gradient
         height: 65,
       ),
     );
