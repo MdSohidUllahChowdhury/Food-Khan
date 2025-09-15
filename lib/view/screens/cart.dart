@@ -1,5 +1,5 @@
-import 'package:Food_Khan/controller/provider/add_cart.dart';
-import 'package:Food_Khan/widget/page/cart/cart_card.dart';
+import 'package:food_khan/controller/provider/add_cart.dart';
+import 'package:food_khan/widget/screens/cart/cart_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';

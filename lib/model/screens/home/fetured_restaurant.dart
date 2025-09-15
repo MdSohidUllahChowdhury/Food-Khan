@@ -1,4 +1,4 @@
-import 'package:Food_Khan/widget/page/home/featured.dart';
+import 'package:food_khan/widget/screens/home/featured.dart';
 import 'package:flutter/material.dart';
 
 Widget FeaturedRestaurantModel() {

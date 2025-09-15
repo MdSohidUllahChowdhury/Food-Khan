@@ -9,6 +9,6 @@ Widget Fetured(Color color, Image BGImage) {
       color: color,
       //borderRadius: BorderRadius.all(Radius.circular(24)),
     ),
-    child: Expanded(child: BGImage),
+    child: BGImage,
   );
 }

@@ -1,5 +1,5 @@
-import 'package:Food_Khan/widget/page/wallet/custom_list_tile.dart';
-import 'package:Food_Khan/widget/page/wallet/wallet_card.dart';
+import 'package:food_khan/widget/screens/wallet/custom_list_tile.dart';
+import 'package:food_khan/widget/screens/wallet/wallet_card.dart';
 import 'package:flutter/material.dart';
 
 class Wallet extends StatelessWidget {

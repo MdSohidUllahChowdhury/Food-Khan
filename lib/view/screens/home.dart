@@ -1,14 +1,14 @@
-import 'package:Food_Khan/view/page/food_details.dart';
+import 'package:food_khan/view/screens/food_details.dart';
+import 'package:food_khan/view/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:Food_Khan/model/page/order/food_menu_model.dart';
-import 'package:Food_Khan/model/page/order/food_model_list.dart';
-import 'package:Food_Khan/view/page/order.dart';
-import 'package:Food_Khan/view/page/profile_info.dart';
-import 'package:Food_Khan/widget/styel/styel.dart';
-import 'package:Food_Khan/model/page/home/categories.dart';
-import 'package:Food_Khan/model/page/home/fetured_restaurant.dart';
-import 'package:Food_Khan/model/page/home/special_menu.dart';
+import 'package:food_khan/model/screens/order/food_menu_model.dart';
+import 'package:food_khan/model/screens/order/food_model_list.dart';
+import 'package:food_khan/view/screens/order.dart';
+import 'package:food_khan/widget/styel/styel.dart';
+import 'package:food_khan/model/screens/home/categories.dart';
+import 'package:food_khan/model/screens/home/fetured_restaurant.dart';
+import 'package:food_khan/model/screens/home/special_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () => Get.to(() =>  BioFormScreen()),
+                    onTap: () => Get.to(() =>  ProfileTwo()),
                     child: const CircleAvatar(
                       radius: 26,
                       backgroundImage: NetworkImage(

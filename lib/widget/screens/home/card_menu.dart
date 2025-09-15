@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 
 Widget cardMenu(
-  Color BgColor, 
-  Image BGImage, 
-  String productName,star,offPrice,restaurant
-  ) {
+  Color BgColor,
+  Image BGImage,
+  String productName,
+  star,
+  offPrice,
+  restaurant,
+) {
   return Container(
     margin: EdgeInsets.only(top: 10, left: 13),
     height: 236,
@@ -42,7 +45,11 @@ Widget cardMenu(
 
             Text(
               offPrice,
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100,color: Color.fromARGB(255, 241, 13, 13)),
+              style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w100,
+                color: Color.fromARGB(255, 241, 13, 13),
+              ),
             ),
           ],
         ),

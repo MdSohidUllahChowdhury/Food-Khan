@@ -1,3 +1,4 @@
+import 'package:food_khan/model/routes/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,7 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class PaymentScreenState extends State<PaymentScreen> {
-  String _paymentMethod = 'Card';
+  String _paymentMethod = 'Cash On Delivery';
   String _deliveryMethod = 'Door delivery';
 
   @override
@@ -24,7 +25,7 @@ class PaymentScreenState extends State<PaymentScreen> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-              icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 24),
+          icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 24),
           onPressed: () => Get.back(),
         ),
         title: Text('Checkout', style: TextStyle(color: Colors.black)),
@@ -63,9 +64,9 @@ class PaymentScreenState extends State<PaymentScreen> {
               child: Column(
                 children: [
                   RadioListTile<String>(
-                    value: '',
+                    value: 'Cash On Delivery',
                     groupValue: _paymentMethod,
-                    activeColor: Colors.pinkAccent,
+                    activeColor: Colors.greenAccent,
                     onChanged: (value) {
                       setState(() {
                         _paymentMethod = value!;
@@ -222,12 +223,13 @@ class PaymentScreenState extends State<PaymentScreen> {
                 onPressed: () {
                   // Add your payment logic here
                   Get.snackbar(
-                    'Payment Successful',
+                    'Order Successful',
                     'Your payment of ${widget.totalPrice}\$ has been processed.',
                     snackPosition: SnackPosition.BOTTOM,
                     backgroundColor: Colors.green.withValues(alpha: 0.8),
                     colorText: Colors.white,
                   );
+                  Get.to(() => NavigationControll());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,

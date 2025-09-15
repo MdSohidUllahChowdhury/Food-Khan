@@ -1,5 +1,5 @@
 import 'dart:collection';
-import 'package:Food_Khan/model/page/order/food_menu_model.dart';
+import 'package:food_khan/model/screens/order/food_menu_model.dart';
 import 'package:flutter/material.dart';
 
 class CartController extends ChangeNotifier {

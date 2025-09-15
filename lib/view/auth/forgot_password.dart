@@ -1,5 +1,5 @@
-import 'package:Food_Khan/widget/auth/section.dart';
-import 'package:Food_Khan/widget/auth/tost_info.dart';
+import 'package:food_khan/widget/auth/section.dart';
+import 'package:food_khan/widget/auth/tost_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

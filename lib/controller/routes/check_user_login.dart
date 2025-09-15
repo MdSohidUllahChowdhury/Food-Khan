@@ -1,5 +1,5 @@
-import 'package:Food_Khan/model/routes/navigation_bar.dart';
-import 'package:Food_Khan/view/auth/splash.dart';
+import 'package:food_khan/model/routes/navigation_bar.dart';
+import 'package:food_khan/view/auth/splash.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

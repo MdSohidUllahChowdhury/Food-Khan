@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:Food_Khan/widget/page/location/location_bar.dart';
+import 'package:food_khan/widget/screens/location/location_bar.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,10 +13,8 @@ class LocationScreen extends StatefulWidget {
 }
 
 class _LocationScreenState extends State<LocationScreen> {
-  
-  final String googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=23.781914961742824,90.42591531895101";
-
-  final String locationIcon = 'https://www.creativefabrica.com/wp-content/uploads/2020/10/16/SVG-Business-GPS-Flat-Icon-Vector-Graphics-6104460-2-580x435.png';    
+  final String googleMapsUrl =
+      "https://www.google.com/maps/search/?api=1&query=23.781914961742824,90.42591531895101";
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +27,26 @@ class _LocationScreenState extends State<LocationScreen> {
           const SizedBox(height: 8),
           Divider(color: Color(0xffFFAC4B), thickness: 18),
           const SizedBox(height: 60),
-          
+
           AvatarGlow(
-              startDelay: const Duration(milliseconds: 1000),
-              glowColor: Colors.white,
-              glowShape: BoxShape.circle,
-              curve: Curves.slowMiddle,
-              child:  Material(
-                shape: CircleBorder(),
-                color: Colors.transparent,
-                child: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  backgroundImage: NetworkImage(locationIcon),
-                  radius: 70.0,
+            startDelay: const Duration(milliseconds: 1000),
+            glowColor: Colors.white,
+            glowShape: BoxShape.circle,
+            curve: Curves.slowMiddle,
+            child: Material(
+              shape: CircleBorder(),
+              color: Colors.transparent,
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                radius: 80.0,
+                child: Icon(
+                  Icons.location_on_rounded,
+                  color: Colors.white,
+                  size: 70,
                 ),
               ),
             ),
+          ),
           SizedBox(height: 70),
           ElevatedButton(
             onPressed: () async {

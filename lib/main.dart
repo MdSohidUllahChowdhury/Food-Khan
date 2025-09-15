@@ -1,6 +1,6 @@
-import 'package:Food_Khan/controller/routes/check_user_login.dart';
-import 'package:Food_Khan/firebase_options.dart';
-import 'package:Food_Khan/controller/provider/add_cart.dart';
+import 'package:food_khan/controller/routes/check_user_login.dart';
+import 'package:food_khan/firebase_options.dart';
+import 'package:food_khan/controller/provider/add_cart.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
