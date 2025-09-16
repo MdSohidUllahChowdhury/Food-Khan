@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   splashscreen() async {
-    await Future.delayed(const Duration(seconds: 2), () {});
+    await Future.delayed(const Duration(seconds: 4), () {});
     Get.offAll(() => const WelcomeScreen());
   }
 
@@ -30,21 +30,12 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('lib/asset/image/logo.png'),
-            Text(
-              'THE ALTIMATE\n    FOOD APP',
-              style: TextStyle(
-                color: Color(0xff42D674),
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.4,
-              ),
-            ),
+            Image.asset('lib/asset/image/splashLogo.png'),
           ],
         ),
       ).animate().fade().flipH().shimmer(
         color: Colors.white,
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds:4),
       ),
     );
   }

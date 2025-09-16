@@ -18,7 +18,7 @@ class _NavigationControllState extends State<NavigationControll> {
     const Home(),
     const Order(),
     const CartScreen(),
-    const ProfileTwo(),
+    const Profile(),
   ];  
 
   @override

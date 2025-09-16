@@ -17,8 +17,8 @@ Widget SpecialMenuModel() {
         ),
         cardMenu(
           Color(0xffDED2F9),
-          Image.asset('lib/asset/image/con.png', cacheHeight: 137),
-          '   The Burger \n   Club',
+          Image.asset('lib/asset/image/pic_03.png', cacheHeight: 137),
+          '   The Nodules \n   Club',
           '5.0',
           ' 25% off',
           ' American'

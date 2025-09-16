@@ -3,6 +3,7 @@ import 'package:food_khan/view/screens/food_details.dart';
 import 'package:food_khan/widget/screens/order/bar_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Order extends StatefulWidget {
   const Order({super.key});
@@ -56,7 +57,7 @@ class _OrderState extends State<Order> {
                           item.name.toString(),
                           style: TextStyle(
                             letterSpacing: 1.2,
-                            fontFamily: 'Poppins',
+                            //fontFamily: 'Poppins',
                             fontSize: 20,
                             color: Colors.black,
                             fontWeight: FontWeight.w600,
@@ -68,7 +69,7 @@ class _OrderState extends State<Order> {
                         child: Chip(
                           label: Text(
                             item.price.toString(),
-                            style: TextStyle(fontSize: 13),
+                            style: TextStyle(fontSize: 13,fontFamily: GoogleFonts.numans().fontFamily,fontWeight: FontWeight.bold),
                           ),
                           backgroundColor: Colors.white,
                           labelStyle: TextStyle(color: Colors.black),

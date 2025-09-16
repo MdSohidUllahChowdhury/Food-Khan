@@ -3,34 +3,35 @@ import 'package:food_khan/view/auth/sing_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
-  
-  final String _headerOne = "DON'T FELL LIKE\n COOKING.LET'S\n ORDER FOOD DELIVERY";
-  final String _headerTwo = 'Explore all the existing Food based on your\ninterest and your perfection';
+
+  final String _headerOne =
+      "DON'T FELL LIKE\n COOKING.LET'S\n ORDER FOOD DELIVERY";
+  final String _headerTwo =
+      'Explore all the existing Food based on your\ninterest and your perfection';
   final String _imagePath = 'lib/asset/image/bg.png';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-      Animate(
-        child: Column(
+      body: Animate(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(_imagePath,
-                  height: 300,
-                  width: double.infinity,
-                ),
+                Image.asset(_imagePath, height: 300, width: double.infinity),
                 Divider(color: Color(0xff42D674), thickness: 18),
                 const SizedBox(height: 10),
                 Divider(color: Color(0xffFFAC4B), thickness: 18),
                 const SizedBox(height: 30),
-                Text(_headerOne,
+                Text(
+                  _headerOne,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontFamily: GoogleFonts.abrilFatface().fontFamily,
                     fontSize: 26,
                     color: Color(0xff42D674),
                     fontWeight: FontWeight.bold,
@@ -40,7 +41,8 @@ class WelcomeScreen extends StatelessWidget {
                 const SizedBox(height: 15),
                 Center(
                   child: Center(
-                    child: Text(_headerTwo,
+                    child: Text(
+                      _headerTwo,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 10,
@@ -105,13 +107,8 @@ class WelcomeScreen extends StatelessWidget {
             ),
           )
           .animate()
-          .fadeIn(
-            duration: const Duration(seconds: 2),
-          )
-          .shimmer(
-            color: Colors.green[400],
-            duration: const Duration(seconds: 4),
-          ),
+          .fadeIn(duration: const Duration(seconds:2))
+          .shimmer(color: Colors.white, duration: const Duration(seconds:20)),
     );
   }
 }

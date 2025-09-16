@@ -35,9 +35,6 @@ class _CartScreenState extends State<CartScreen> {
             radius: 40,
             child: IconButton(
               onPressed: () {
-               AlertDialog(actions: [
-                Text("Shakil Chowdhury")
-               ],);
                 Get.snackbar(
                   'All Favorite Item Clear',
                   'Add item to cart the it will appare here',
@@ -61,7 +58,6 @@ class _CartScreenState extends State<CartScreen> {
             (context, provider, child) => Column(
               children: [
                 const SizedBox(height: 15),
-
                 Expanded(
                   child: ListView.builder(
                     itemCount: provider.cart.length,

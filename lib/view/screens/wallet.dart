@@ -14,7 +14,7 @@ class Wallet extends StatelessWidget {
           Flexible(
             child: ClipRRect(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(36), 
+                bottomLeft: Radius.circular(36),
                 bottomRight: Radius.circular(36),
               ),
               child: Container(
@@ -55,7 +55,7 @@ class Wallet extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                      
+
                       CardWallet(),
                     ],
                   ),
@@ -69,7 +69,11 @@ class Wallet extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Text(
               '    Featured',
-              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,letterSpacing: 1.4),
+              style: TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.4,
+              ),
             ),
           ),
           SizedBox(height: 25),
@@ -79,10 +83,9 @@ class Wallet extends StatelessWidget {
           SizedBox(height: 12),
           CustomListTile(Icons.account_balance, "Bank Account"),
           SizedBox(height: 60),
-          
+
           InkWell(
-            onTap: () {  
-            },
+            onTap: () {},
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -92,17 +95,17 @@ class Wallet extends StatelessWidget {
                 color: Colors.teal.shade700,
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
-            child: Center(
-              child: Text(
-                "Add Money",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w200,
-                  letterSpacing: 1.2,
+              child: Center(
+                child: Text(
+                  "Add Money",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w200,
+                    letterSpacing: 1.2,
+                  ),
                 ),
               ),
-            ),
             ),
           ),
         ],

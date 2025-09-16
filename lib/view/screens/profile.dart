@@ -1,3 +1,4 @@
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:food_khan/view/auth/log_in.dart';
 import 'package:food_khan/view/screens/location.dart';
 import 'package:food_khan/view/screens/profile_info_edit.dart';
@@ -9,14 +10,14 @@ import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ProfileTwo extends StatefulWidget {
-  const ProfileTwo({super.key});
+class Profile extends StatefulWidget {
+  const Profile({super.key});
 
   @override
-  State<ProfileTwo> createState() => _ProfileTwoState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _ProfileTwoState extends State<ProfileTwo> {
+class _ProfileState extends State<Profile> {
   String selectedPayment = 'Card';
   String? _userEmail;
   String? _userName;
@@ -54,9 +55,9 @@ class _ProfileTwoState extends State<ProfileTwo> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //** */ Information Title
+              //!! Information Title
               const SizedBox(height: 13),
-              //** */ Profile Info Card
+              //!! Profile Info Card
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -219,7 +220,7 @@ class _ProfileTwoState extends State<ProfileTwo> {
                 ),
               ),
               SizedBox(height: 12),
-              //* Payment Method Title
+              //!! Payment Method Title
               Expanded(
                 child: Text(
                   "Payment Method",
@@ -232,62 +233,65 @@ class _ProfileTwoState extends State<ProfileTwo> {
               ),
               const SizedBox(height: 10),
 
-              //** */ Payment Method Options
-              GlassContainer(
-    height: 200,
-    //width: 400,
-    borderRadius: BorderRadius.all(Radius.circular(16)),
-    gradient: LinearGradient(
-      colors: [Colors.white.withOpacity(0.40), Colors.white.withOpacity(0.10)],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-    ),
-    borderGradient: LinearGradient(
-      colors: [
-        Colors.white.withOpacity(0.60),
-        Colors.white.withOpacity(0.10),
-        Colors.lightBlueAccent.withOpacity(0.05),
-        Colors.lightBlueAccent.withOpacity(0.6),
-      ],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      stops: [0.0, 0.39, 0.40, 1.0],
-    ),
-    blur: 15.0,
-    borderWidth: 1.5,
-    elevation: 3.0,
-    isFrostedGlass: true,
-    shadowColor: Colors.black.withOpacity(0.20),
-    alignment: Alignment.center,
-    frostedOpacity: 0.12,
-    margin: EdgeInsets.only(top: 10),
-    //padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    _buildPaymentTile(
-                      title: 'Card',
-                      icon: Icons.credit_card,
-                      color: Colors.orange,
+              //!! Payment Method Options
+              Animate(
+                child: GlassContainer(
+                    height: 200,
+                    //width: 400,
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    gradient: LinearGradient(
+                      colors: [Colors.white.withOpacity(0.40), Colors.white.withOpacity(0.10)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
-                    Divider(),
-                    _buildPaymentTile(
-                      title: 'Bank account',
-                      icon: FontAwesomeIcons.university,
-                      color: Colors.pink,
+                    borderGradient: LinearGradient(
+                      colors: [
+                        Colors.white.withOpacity(0.60),
+                        Colors.white.withOpacity(0.10),
+                        Colors.lightBlueAccent.withOpacity(0.05),
+                        Colors.lightBlueAccent.withOpacity(0.6),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.0, 0.39, 0.40, 1.0],
                     ),
-                    Divider(),
-                    _buildPaymentTile(
-                      title: 'Paypal',
-                      icon: FontAwesomeIcons.paypal,
-                      color: Colors.blue,
-                    ),
-                  ],
+                    blur: 15.0,
+                    borderWidth: 1.5,
+                    elevation: 3.0,
+                    isFrostedGlass: true,
+                    shadowColor: Colors.black.withOpacity(0.20),
+                    alignment: Alignment.center,
+                    frostedOpacity: 0.12,
+                    margin: EdgeInsets.only(top: 10),
+                    //padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      _buildPaymentTile(
+                        title: 'Card',
+                        icon: Icons.credit_card,
+                        color: Colors.orange,
+                      ),
+                      Divider(),
+                      _buildPaymentTile(
+                        title: 'Bank account',
+                        icon: FontAwesomeIcons.university,
+                        color: Colors.pink,
+                      ),
+                      Divider(),
+                      _buildPaymentTile(
+                        title: 'Paypal',
+                        icon: FontAwesomeIcons.paypal,
+                        color: Colors.blue,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              ).animate()
+          .fadeIn(duration: const Duration(seconds:2))
+          .shimmer(color: Colors.black, duration: const Duration(seconds:14)),
 
               const Spacer(),
-
-              //** */ Update Button
+              //!! Update Button
               SizedBox(
                 width: double.infinity,
                 height: 45,

@@ -38,7 +38,7 @@ class SectionName extends StatelessWidget {
         obscureText: forpassword ?? false,
         decoration: InputDecoration(
           filled: true,
-          fillColor: const Color.fromARGB(213, 190, 186, 186),
+          fillColor: Colors.grey.shade200,
           hintText: nameit,
           hintStyle: const TextStyle(fontSize: 10),
           contentPadding: const EdgeInsets.all(12),

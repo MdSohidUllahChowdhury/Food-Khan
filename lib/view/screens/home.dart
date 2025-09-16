@@ -61,13 +61,13 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             
-            //*** Header Row with profile and search box
+            //!! Header Row with profile and search box
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 17),
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () => Get.to(() =>  ProfileTwo()),
+                    onTap: () => Get.to(() =>  Profile()),
                     child: const CircleAvatar(
                       radius: 26,
                       backgroundImage: NetworkImage(

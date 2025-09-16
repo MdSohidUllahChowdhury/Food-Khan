@@ -3,6 +3,7 @@ import 'package:food_khan/widget/auth/tost_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -22,7 +23,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height +
+          height:
+              MediaQuery.of(context).size.height +
               MediaQuery.of(context).viewInsets.bottom,
           child: Stack(
             children: [
@@ -44,10 +46,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 child: Column(
                   children: [
                     const SizedBox(height: 280),
-                    const Text(
-                      'Food Khan',
+                    Text(
+                      'FOOD KHAN',
                       style: TextStyle(
-                        fontSize: 30,
+                        fontFamily: GoogleFonts.abrilFatface().fontFamily,
+
+                        fontSize: 38,
                         letterSpacing: 1.4,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -57,7 +61,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     const Text(
                       'Reset your password',
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 13,
                         color: Colors.white,
                         fontWeight: FontWeight.w100,
                         letterSpacing: 1.4,
@@ -68,70 +72,80 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
               // Form for email input
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.5,
+                top: MediaQuery.of(context).size.height * 0.513,
                 left: 10,
                 right: 10,
                 child: Card(
-                color: Colors.grey.shade700,
+                  color: Colors.grey.shade400,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(50),
                   ),
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 30,
+                    ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Form(
                           key: formKey,
                           child: SectionName(
-                                authControler: email,
-                                nameit: 'Email',
-                                isRequired: true,
-                                icon: const Icon(Icons.email, size: 18),
-                              ),
+                            authControler: email,
+                            nameit: 'Email',
+                            isRequired: true,
+                            icon: const Icon(Icons.email, size: 18),
+                          ),
                         ),
                         const SizedBox(height: 20),
                         ElevatedButton(
-                              onPressed: () async {
-                                if (formKey.currentState!.validate()) {
-                                  try {
-                                    await auth.sendPasswordResetEmail(
-                                      email: email.text.trim(),
-                                    );
-                                    TostMessage().errorMessage(
-                                        'Password reset email sent. Please check your inbox.');
-                                  } catch (error) {
-                                    TostMessage().errorMessage(error.toString());
-                                  }
-                                }
-                              },
-                              style: ButtonStyle(
-                                elevation: const WidgetStatePropertyAll(0),
-                                minimumSize: WidgetStateProperty.all<Size>(
-                                    const Size(240, 55)),
-                                backgroundColor: WidgetStateProperty.all<Color>(
-                                    const Color(0xffFFAC4B)),
-                              ),
-                              child: const Text(
-                                'Reset Password',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Colors.white,
-                                  letterSpacing: 1.2,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              try {
+                                await auth.sendPasswordResetEmail(
+                                  email: email.text.trim(),
+                                );
+                                TostMessage().errorMessage(
+                                  'Password reset email sent. Please check your inbox.',
+                                  );
+                              } catch (error) {
+                                TostMessage().errorMessage(error.toString());
+                              }
+                            }
+                          },
+                          style: ButtonStyle(
+                            elevation: const WidgetStatePropertyAll(0),
+                            minimumSize: WidgetStateProperty.all<Size>(
+                              const Size(240, 55),
                             ),
-                            TextButton(onPressed: () => Get.back(), child:Text(
-                              'Back to Login',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w100,
-                                letterSpacing: 1.4,
-                              ),
-                            )),
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                              const Color(0xffFFAC4B),
+                            ),
+                          ),
+                          child: Text(
+                            'Reset Password',
+                            style: TextStyle(
+                              fontFamily: GoogleFonts.abrilFatface().fontFamily,
+
+                              fontSize: 15,
+                              color: Colors.white,
+                              letterSpacing: 1.2,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () => Get.back(),
+                          child: Text(
+                            'Back to Login',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w100,
+                              letterSpacing: 1,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

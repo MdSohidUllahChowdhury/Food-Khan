@@ -4,6 +4,7 @@ import 'package:food_khan/widget/auth/tost_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -51,10 +52,11 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     const SizedBox(height: 100),
-                    const Text(
-                      'Food Khan',
+                    Text(
+                      'FOOD KHAN',
                       style: TextStyle(
-                        fontSize: 30,
+                        fontFamily:GoogleFonts.abrilFatface().fontFamily ,
+                        fontSize: 38,
                         letterSpacing: 1.4,
                         color: Color(0xffffffff),
                         fontWeight: FontWeight.bold,
@@ -71,10 +73,10 @@ class _RegisterState extends State<Register> {
                         letterSpacing: 1.4,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height:34),
                       Divider(color: Color(0xffffffff), thickness: 18),
-                      Divider(color: Color(0xffFFAC4B), thickness: 18),
                       Divider(color: Color(0xff191D21), thickness: 18),
+                      Divider(color: Color(0xffFFAC4B), thickness: 18),
                   ],
                 ),
               ),
@@ -82,24 +84,27 @@ class _RegisterState extends State<Register> {
               Align(
                 alignment: Alignment.center,
                 child: Container(
-                  margin: const EdgeInsets.only(top: 110, left: 17, right: 17),
+                  margin: const EdgeInsets.only(top: 220, left: 17, right: 17),
                   height: MediaQuery.of(context).size.height * 0.52,
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade700,
+                    gradient: LinearGradient(colors: [
+                      Color(0xff191D21),
+                      Color(0xffFFAC4B),
+                    ]),
                     borderRadius: BorderRadius.circular(35),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         'Create Account',
                         style: TextStyle(
                           letterSpacing: 1,
                           fontSize: 22,
                           color: Color(0xffffffff),
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'Roboto',
+                          fontFamily: GoogleFonts.abrilFatface().fontFamily,
                         ),
                       ),
                           
@@ -149,19 +154,20 @@ class _RegisterState extends State<Register> {
                               style: ButtonStyle(
                                 elevation: const WidgetStatePropertyAll(0),
                                 minimumSize: WidgetStateProperty.all<Size>(
-                                  const Size(300, 55),
+                                  const Size(315, 50),
                                 ),
                                 backgroundColor: WidgetStateProperty.all<Color>(
                                   const Color(0xffFFAC4B),
                                 ),
                               ),
-                              child: const Text(
+                              child:  Text(
                                 'Create Account',
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 15,
                                   letterSpacing: 1.2,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
+                                  fontFamily: GoogleFonts.abrilFatface().fontFamily,
                                 ),
                               ),
                             ),
