@@ -1,7 +1,7 @@
-import 'package:food_khan/view/screens/cart.dart';
-import 'package:food_khan/view/screens/home.dart';
-import 'package:food_khan/view/screens/order.dart';
-import 'package:food_khan/view/screens/profile.dart';
+import 'package:food_khan/view/screens/cart/cart.dart';
+import 'package:food_khan/view/screens/home/home.dart';
+import 'package:food_khan/view/screens/order/order.dart';
+import 'package:food_khan/view/screens/profile/profile.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 

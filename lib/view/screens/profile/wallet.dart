@@ -1,5 +1,6 @@
-import 'package:food_khan/widget/screens/wallet/custom_list_tile.dart';
-import 'package:food_khan/widget/screens/wallet/wallet_card.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_khan/widget/screens/profile/wallet/custom_list_tile.dart';
+import 'package:food_khan/widget/screens/profile/wallet/wallet_card.dart';
 import 'package:flutter/material.dart';
 
 class Wallet extends StatelessWidget {
@@ -27,16 +28,26 @@ class Wallet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(height: 70),
-                      Center(
-                        child: Text(
-                          "Your Cadit Card",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            letterSpacing: 1.2,
-                            fontWeight: FontWeight.w100,
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              FontAwesomeIcons.solidArrowAltCircleLeft,
+                              size: 24,
+                              color: Colors.white,
+                            ),
+                            onPressed: () => Navigator.pop(context),
                           ),
-                        ),
+                          Text(
+                            "Your Cadit Card",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              letterSpacing: 1.2,
+                              fontWeight: FontWeight.w100,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(height: 12),
                       ListTile(

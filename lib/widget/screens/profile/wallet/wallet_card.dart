@@ -1,4 +1,4 @@
-import 'package:food_khan/model/screens/wallet/image_path.dart';
+import 'package:food_khan/widget/screens/profile/wallet/image_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 

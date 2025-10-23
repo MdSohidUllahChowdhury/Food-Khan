@@ -1,5 +1,5 @@
 import 'package:food_khan/model/screens/order/food_model_list.dart';
-import 'package:food_khan/view/screens/food_details.dart';
+import 'package:food_khan/view/screens/order/food_details/food_details.dart';
 import 'package:food_khan/widget/screens/order/bar_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -56,7 +56,7 @@ flutter:
   assets:
     - lib/asset/image/
 
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: lib/asset/font/Roboto_Condensed-Medium.ttf
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: lib/asset/font/Roboto_Condensed-Medium.ttf

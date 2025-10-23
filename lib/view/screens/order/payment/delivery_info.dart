@@ -1,4 +1,4 @@
-import 'package:food_khan/view/screens/payment.dart';
+import 'package:food_khan/view/screens/order/payment/payment_method.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';

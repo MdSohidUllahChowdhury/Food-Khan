@@ -1,8 +1,8 @@
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:food_khan/view/auth/log_in.dart';
-import 'package:food_khan/view/screens/location.dart';
-import 'package:food_khan/view/screens/profile_info_edit.dart';
-import 'package:food_khan/view/screens/wallet.dart';
+import 'package:food_khan/view/screens/profile/location.dart';
+import 'package:food_khan/view/screens/profile/bio_data.dart';
+import 'package:food_khan/view/screens/profile/wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,7 +78,7 @@ class _ProfileState extends State<Profile> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.network(
-                        'https://media.licdn.com/dms/image/v2/D4D03AQH9JWn1iO9fJA/profile-displayphoto-scale_400_400/B4DZj7Zm0dH4Ag-/0/1756564453498?e=1760572800&v=beta&t=3KktbhcItce-xTriLxfp7YU6t3qVlvgSGI6obcjjRME',
+                        'https://www.pngall.com/wp-content/uploads/5/Profile-PNG-High-Quality-Image.png',
                         height: 70,
                         width: 70,
                       ),

@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:food_khan/widget/screens/location/location_bar.dart';
+import 'package:food_khan/widget/screens/profile/location_bar.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,8 +28,8 @@ class _LocationScreenState extends State<LocationScreen> {
           Divider(color: Color(0xffFFAC4B), thickness: 18),
           const SizedBox(height: 60),
 
-          AvatarGlow(
-            startDelay: const Duration(milliseconds: 1000),
+          AvatarGlow(repeat: false,
+           duration: Duration(seconds:4),
             glowColor: Colors.white,
             glowShape: BoxShape.circle,
             curve: Curves.slowMiddle,
@@ -38,11 +38,15 @@ class _LocationScreenState extends State<LocationScreen> {
               color: Colors.transparent,
               child: CircleAvatar(
                 backgroundColor: Colors.transparent,
-                radius: 80.0,
-                child: Icon(
-                  Icons.location_on_rounded,
-                  color: Colors.white,
-                  size: 70,
+                radius: 95.0,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 90.0,
+                  child: Icon(
+                    Icons.location_on_rounded,
+                    color: Color(0xff42D674),
+                    size: 80,
+                  ),
                 ),
               ),
             ),

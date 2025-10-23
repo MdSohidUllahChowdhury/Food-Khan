@@ -1,11 +1,11 @@
-import 'package:food_khan/view/screens/food_details.dart';
-import 'package:food_khan/view/screens/profile.dart';
+import 'package:food_khan/view/screens/order/food_details/food_details.dart';
+import 'package:food_khan/view/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:food_khan/model/screens/order/food_menu_model.dart';
 import 'package:food_khan/model/screens/order/food_model_list.dart';
-import 'package:food_khan/view/screens/order.dart';
-import 'package:food_khan/widget/styel/styel.dart';
+import 'package:food_khan/view/screens/order/order.dart';
+import 'package:food_khan/widget/style/styel.dart';
 import 'package:food_khan/model/screens/home/categories.dart';
 import 'package:food_khan/model/screens/home/fetured_restaurant.dart';
 import 'package:food_khan/model/screens/home/special_menu.dart';

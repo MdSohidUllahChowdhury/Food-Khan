@@ -1,7 +1,7 @@
 import 'package:food_khan/model/screens/order/food_menu_model.dart';
 import 'package:food_khan/controller/provider/add_cart.dart';
-import 'package:food_khan/view/screens/delivery.dart';
-import 'package:food_khan/widget/screens/food_detaills/food_dp.dart';
+import 'package:food_khan/view/screens/order/payment/delivery_info.dart';
+import 'package:food_khan/widget/screens/order/food_detaills/food_dp.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
