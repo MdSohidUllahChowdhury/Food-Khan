@@ -20,7 +20,7 @@ class SectionName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 25),
+      margin: const EdgeInsets.symmetric(horizontal: 25),height: MediaQuery.of(context).size.height*.060,
       child: TextFormField(
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,

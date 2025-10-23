@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:food_khan/view/auth/log_in.dart';
 import 'package:food_khan/view/screens/profile/location.dart';
@@ -18,26 +19,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  final fireBaseData = FirebaseAuth.instance;
   String selectedPayment = 'Card';
-  String? _userEmail;
-  String? _userName;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadUserData();
-  }
-
-  void _loadUserData() {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      setState(() {
-        _userName = user.displayName;
-        _userEmail = user.email;
-      });
-    }
-  }
-
   final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -84,42 +67,90 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     const SizedBox(width: 16),
-                    // Name and Email
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _userName ?? "User Name",
-                          style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          _userEmail ?? "user@example.com",
-                          style: GoogleFonts.poppins(
-                            fontSize: 14,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          "Bangladesh,Dhaka",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Colors.grey[700],
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          "01870347***",
-                          style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
+
+                    //!!!!! Name and Email
+                    Builder(
+                      builder: (context) {
+                        final uid = FirebaseAuth.instance.currentUser?.uid;
+                        if (uid == null) {
+                          return const Center(
+                            child: Text(
+                              'Not signed in',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          );
+                        }
+
+                        final fireBaseInit =
+                            FirebaseFirestore.instance
+                                .collection("Auth User Informatin")
+                                .doc(uid)
+                                .snapshots();
+
+                        return StreamBuilder(
+                          stream: fireBaseInit,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              return Center(
+                                child: Text('Error: ${snapshot.error}'),
+                              );
+                            }
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                            final doc = snapshot.data;
+                            if (doc == null || !doc.exists) {
+                              return const Center(
+                                child: Text(
+                                  'No profile found',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              );
+                            }
+                            final data = doc.data()!;
+
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data["User Name"] ?? "User Name",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  data["Email"] ?? "user@example.com",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 11,
+                                    color: Colors.grey[700],
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                // Text(
+                                //   "Bangladesh,Dhaka",
+                                //   style: GoogleFonts.poppins(
+                                //     fontSize: 12,
+                                //     color: Colors.grey[700],
+                                //   ),
+                                // ),
+                                // const SizedBox(height: 4),
+                                Text(
+                                  data["Phone"] ?? 0181111111,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 11,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
                     ),
                     Spacer(),
                     Column(
@@ -235,60 +266,67 @@ class _ProfileState extends State<Profile> {
 
               //!! Payment Method Options
               Animate(
-                child: GlassContainer(
-                    height: 200,
-                    //width: 400,
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
-                    gradient: LinearGradient(
-                      colors: [Colors.white.withOpacity(0.40), Colors.white.withOpacity(0.10)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                    child: GlassContainer(
+                      height: 200,
+                      //width: 400,
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.white.withOpacity(0.40),
+                          Colors.white.withOpacity(0.10),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderGradient: LinearGradient(
+                        colors: [
+                          Colors.white.withOpacity(0.60),
+                          Colors.white.withOpacity(0.10),
+                          Colors.lightBlueAccent.withOpacity(0.05),
+                          Colors.lightBlueAccent.withOpacity(0.6),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        stops: [0.0, 0.39, 0.40, 1.0],
+                      ),
+                      blur: 15.0,
+                      borderWidth: 1.5,
+                      elevation: 3.0,
+                      isFrostedGlass: true,
+                      shadowColor: Colors.black.withOpacity(0.20),
+                      alignment: Alignment.center,
+                      frostedOpacity: 0.12,
+                      margin: EdgeInsets.only(top: 10),
+                      //padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          _buildPaymentTile(
+                            title: 'Card',
+                            icon: Icons.credit_card,
+                            color: Colors.orange,
+                          ),
+                          Divider(),
+                          _buildPaymentTile(
+                            title: 'Bank account',
+                            icon: FontAwesomeIcons.university,
+                            color: Colors.pink,
+                          ),
+                          Divider(),
+                          _buildPaymentTile(
+                            title: 'Paypal',
+                            icon: FontAwesomeIcons.paypal,
+                            color: Colors.blue,
+                          ),
+                        ],
+                      ),
                     ),
-                    borderGradient: LinearGradient(
-                      colors: [
-                        Colors.white.withOpacity(0.60),
-                        Colors.white.withOpacity(0.10),
-                        Colors.lightBlueAccent.withOpacity(0.05),
-                        Colors.lightBlueAccent.withOpacity(0.6),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.0, 0.39, 0.40, 1.0],
-                    ),
-                    blur: 15.0,
-                    borderWidth: 1.5,
-                    elevation: 3.0,
-                    isFrostedGlass: true,
-                    shadowColor: Colors.black.withOpacity(0.20),
-                    alignment: Alignment.center,
-                    frostedOpacity: 0.12,
-                    margin: EdgeInsets.only(top: 10),
-                    //padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      _buildPaymentTile(
-                        title: 'Card',
-                        icon: Icons.credit_card,
-                        color: Colors.orange,
-                      ),
-                      Divider(),
-                      _buildPaymentTile(
-                        title: 'Bank account',
-                        icon: FontAwesomeIcons.university,
-                        color: Colors.pink,
-                      ),
-                      Divider(),
-                      _buildPaymentTile(
-                        title: 'Paypal',
-                        icon: FontAwesomeIcons.paypal,
-                        color: Colors.blue,
-                      ),
-                    ],
+                  )
+                  .animate()
+                  .fadeIn(duration: const Duration(seconds: 2))
+                  .shimmer(
+                    color: Colors.black,
+                    duration: const Duration(seconds: 14),
                   ),
-                ),
-              ).animate()
-          .fadeIn(duration: const Duration(seconds:2))
-          .shimmer(color: Colors.black, duration: const Duration(seconds:14)),
 
               const Spacer(),
               //!! Update Button
@@ -338,7 +376,10 @@ class _ProfileState extends State<Profile> {
       },
       contentPadding: const EdgeInsets.symmetric(horizontal: 12),
       activeColor: color,
-      title: Text(title, style: GoogleFonts.poppins(fontSize: 14,color: Colors.white)),
+      title: Text(
+        title,
+        style: GoogleFonts.poppins(fontSize: 14, color: Colors.white),
+      ),
       secondary: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(

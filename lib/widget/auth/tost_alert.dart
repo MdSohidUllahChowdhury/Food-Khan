@@ -3,7 +3,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class TostMessage{
  
- void errorMessage(String message){
+ void rightMessage(String message){
+    Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb:5,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+      
+    );
+  }
+ void wrongMessage(String message){
     Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,

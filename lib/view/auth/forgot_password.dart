@@ -1,5 +1,5 @@
 import 'package:food_khan/widget/auth/section.dart';
-import 'package:food_khan/widget/auth/tost_info.dart';
+import 'package:food_khan/widget/auth/tost_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -105,18 +105,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 await auth.sendPasswordResetEmail(
                                   email: email.text.trim(),
                                 );
-                                TostMessage().errorMessage(
+                                TostMessage().rightMessage(
                                   'Password reset email sent. Please check your inbox.',
                                   );
                               } catch (error) {
-                                TostMessage().errorMessage(error.toString());
+                                TostMessage().wrongMessage(error.toString());
                               }
                             }
                           },
                           style: ButtonStyle(
                             elevation: const WidgetStatePropertyAll(0),
                             minimumSize: WidgetStateProperty.all<Size>(
-                              const Size(240, 55),
+                              const Size(285, 50),
                             ),
                             backgroundColor: WidgetStateProperty.all<Color>(
                               const Color(0xffFFAC4B),

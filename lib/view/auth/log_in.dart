@@ -2,7 +2,7 @@ import 'package:food_khan/model/routes/navigation_bar.dart';
 import 'package:food_khan/view/auth/forgot_password.dart';
 import 'package:food_khan/view/auth/sing_up.dart';
 import 'package:food_khan/widget/auth/section.dart';
-import 'package:food_khan/widget/auth/tost_info.dart';
+import 'package:food_khan/widget/auth/tost_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,8 +18,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
+  final email = TextEditingController();
+  final password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,6 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.all(20),
                   height: MediaQuery.of(context).size.height * 0.53,
                   decoration: BoxDecoration(
-                    //color: Colors.grey.shade500,
                     gradient: LinearGradient(
                       colors: [Color(0xff191D21), Color(0xffFFAC4B)],
                     ),
@@ -126,7 +125,6 @@ class _LoginState extends State<Login> {
                               isRequired: true,
                               icon: const Icon(Icons.password, size: 18),
                             ),
-                            //const SizedBox(height: 10),
                             Align(
                               alignment: Alignment.centerRight,
                               child: TextButton(
@@ -143,7 +141,6 @@ class _LoginState extends State<Login> {
                                 ),
                               ),
                             ),
-                            //const SizedBox(height: 15),
                             ElevatedButton(
                               onPressed: () async {
                                 if (formKey.currentState!.validate()) {
@@ -154,15 +151,15 @@ class _LoginState extends State<Login> {
                                           password: password.text.trim(),
                                         )
                                         .then((onValue) {
-                                          TostMessage().errorMessage(
-                                            onValue.user!.email.toString(),
+                                          TostMessage().rightMessage(
+                                            'Successfully Logged In',
                                           );
                                         });
                                     Get.offAll(
                                       () => const NavigationControll(),
                                     );
                                   } catch (error) {
-                                    TostMessage().errorMessage(
+                                    TostMessage().wrongMessage(
                                       error.toString(),
                                     );
                                   }

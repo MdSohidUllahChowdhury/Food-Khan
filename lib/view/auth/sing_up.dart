@@ -1,6 +1,7 @@
+import 'package:food_khan/controller/firebase_auth/auth_firebase.dart';
 import 'package:food_khan/view/auth/log_in.dart';
 import 'package:food_khan/widget/auth/section.dart';
-import 'package:food_khan/widget/auth/tost_info.dart';
+import 'package:food_khan/widget/auth/tost_alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,9 +17,11 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
     
     final formkey = GlobalKey<FormState>();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    FirebaseAuth auth = FirebaseAuth.instance;
+    final auth = FirebaseAuth.instance;
+    final emailController = TextEditingController();
+    final nameController = TextEditingController();
+    final phoneController = TextEditingController();
+    final passwordController = TextEditingController();
   
   @override
   Widget build(BuildContext context) {
@@ -116,6 +119,13 @@ class _RegisterState extends State<Register> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SectionName(
+                              authControler: nameController,
+                              nameit: 'Name',
+                              isRequired: true,
+                              icon: const Icon(Icons.panorama_photosphere_outlined,size: 18),
+                            ),
+                            const SizedBox(height: 16),
+                            SectionName(
                               authControler: emailController,
                               nameit: 'Email',
                               isRequired: true,
@@ -123,15 +133,16 @@ class _RegisterState extends State<Register> {
                             ),
                             const SizedBox(height: 16),
                             SectionName(
-                              authControler: passwordController,
-                              nameit: 'Password',
-                              forpassword: true,
+                              authControler: phoneController,
+                              nameit: 'Phone',
+                              forpassword: false,
                               isRequired: true,
-                              icon: const Icon(Icons.password,size: 18,),
+                              icon: const Icon(Icons.sim_card,size: 18,),
                             ),
                             const SizedBox(height: 16),
                             SectionName(
-                              nameit: 'Confirm Password',
+                              nameit: 'Password',
+                              authControler: passwordController,
                               forpassword: true,
                               isRequired: true,
                               icon: Icon(Icons.password,size: 18,),
@@ -145,9 +156,17 @@ class _RegisterState extends State<Register> {
                                       email: emailController.text.trim(),
                                       password: passwordController.text.trim(),
                                     );
+                                    Map<String,dynamic> info = {
+                                      "User Name" : nameController.text.trim(),
+                                      "Email" : emailController.text.trim(),
+                                      "Phone": phoneController.text.trim()
+                                    };
+                                    final User? userID = FirebaseAuth.instance.currentUser;
+                                   await Database().authInfo(info,userID!.uid);
                                     Get.offAll(() => const Login());
+                                    TostMessage().rightMessage("Account Created");
                                   } catch (error) {
-                                    TostMessage().errorMessage(error.toString());
+                                    TostMessage().wrongMessage(error.toString());
                                   }
                                 }
                               },
