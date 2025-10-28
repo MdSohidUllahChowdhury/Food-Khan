@@ -1,3 +1,4 @@
+import 'package:food_khan/database/featured_restaurant/restaurant_model.dart';
 import 'package:food_khan/database/special_menu/menu_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -13,5 +14,16 @@ class SupabaseService {
     // Cast to list
     final List<dynamic> data = response;
     return data.map((e) => MenuInfo.fromJson(e)).toList();
+  }
+
+  Future<List<RestaurantModel>> fetchRestaurantInfo() async {
+    final response = await client.from('featured_restaurent').select().order('created_at', ascending: false);
+
+    // Debug print (you can remove later)
+    print('Raw Supabase response: $response');
+
+    // Cast to list
+    final List<dynamic> data = response;
+    return data.map((e) => RestaurantModel.fromJson(e)).toList();
   }
 }

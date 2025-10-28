@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_khan/database/special_menu/menu_model.dart';
-import 'package:food_khan/database/special_menu/service_file.dart';
+import 'package:food_khan/database/service/service_file.dart';
 
 class ShowData extends StatefulWidget {
   const ShowData({super.key});
@@ -97,7 +97,7 @@ class _ShowDataState extends State<ShowData> {
                         Text(
                           'Food Type',
                           style: TextStyle(
-                            fontSize:11,
+                            fontSize:9,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

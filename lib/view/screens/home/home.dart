@@ -1,15 +1,13 @@
-import 'package:food_khan/database/special_menu/show_data.dart';
+import 'package:food_khan/database/featured_restaurant/show_restaurant.dart';
+import 'package:food_khan/database/special_menu/show_special_menu.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
 import 'package:food_khan/view/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:food_khan/model/screens/order/food_menu_model.dart';
 import 'package:food_khan/model/screens/order/food_model_list.dart';
-import 'package:food_khan/view/screens/order/order.dart';
 import 'package:food_khan/widget/style/styel.dart';
 import 'package:food_khan/model/screens/home/categories.dart';
-import 'package:food_khan/model/screens/home/fetured_restaurant.dart';
-import 'package:food_khan/model/screens/home/special_menu.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,7 +17,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
   final TextEditingController searchController = TextEditingController();
   List<FoodMenuModel> filteredProducts = [];
 
@@ -61,14 +58,13 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
             //!! Header Row with profile and search box
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 17),
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () => Get.to(() =>  Profile()),
+                    onTap: () => Get.to(() => Profile()),
                     child: const CircleAvatar(
                       radius: 26,
                       backgroundImage: NetworkImage(
@@ -96,7 +92,9 @@ class _HomeState extends State<Home> {
                           color: Colors.black,
                         ),
                         filled: true,
-                        fillColor: Colors.white.withValues(alpha: 0.8),//const Color(0xff656F77),
+                        fillColor: Colors.white.withValues(
+                          alpha: 0.8,
+                        ), //const Color(0xff656F77),
                         border: OutlineInputBorder(
                           gapPadding: 12,
                           borderRadius: BorderRadius.circular(26),
@@ -150,38 +148,44 @@ class _HomeState extends State<Home> {
                               ),
                               onTap: () {
                                 Get.to(
-                                 ()=> FoodDetaills(
+                                  () => FoodDetaills(
                                     product: filteredProducts[index],
-                              ),
+                                  ),
+                                );
+                              },
                             );
                           },
-                        );
-                      },
-                    ),
+                        ),
                   ],
                 ),
               ),
 
             const SizedBox(height: 20),
-            Text("  Popular categories", style: CustomTextStyle.title),
+            Text("  Popular Categories", style: CustomTextStyle.title),
             CategoriModel(),
 
+            // const SizedBox(height: 20),
+            // Text("  Today’s special menu", style: CustomTextStyle.title),
+            // InkWell(
+            //   onTap: () => Get.to(() => const Order()),
+            //   child: SpecialMenuModel(),
+            // ),
             const SizedBox(height: 20),
-            Text("  Today’s special menu", style: CustomTextStyle.title),
-            InkWell(
-              onTap: () => Get.to(() => const Order()),
-              child: SpecialMenuModel(),
+            Text("  Today’s Special Menu", style: CustomTextStyle.title),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.338,
+              child: ShowData(),
             ),
 
+            // const SizedBox(height: 20),
+            // Text("  Featured restaurants", style: CustomTextStyle.title),
+            // FeaturedRestaurantModel(),
             const SizedBox(height: 20),
-            Text("  Supabase DataBase", style: CustomTextStyle.title),
+            Text("  Featured Restaurants", style: CustomTextStyle.title),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.348,
-              child: ShowData()),
-
-            const SizedBox(height: 20),
-            Text("  Featured restaurants", style: CustomTextStyle.title),
-            FeaturedRestaurantModel(),
+              height: MediaQuery.of(context).size.height * 0.44,
+              child: RestaurantInfo(),
+            ),
           ],
         ),
       ),
