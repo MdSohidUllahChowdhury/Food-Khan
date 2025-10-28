@@ -17,6 +17,9 @@ dependencies:
   firebase_auth: ^5.5.3
   firebase_core: ^3.13.0
   firebase_core_web: ^2.22.0
+  
+  # Supabase
+  supabase_flutter: ^2.10.3
 
   # State Management
   get: ^4.7.2
@@ -46,13 +49,18 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "lib/asset/image/logoThree.png"
+  image_path: "lib/asset/image/appLogo.png"
 
 flutter:
   uses-material-design: true
 
   assets:
     - lib/asset/image/
+    - lib/asset/image/bank_card/
+    - lib/asset/image/category/
+    - lib/asset/image/featured_restaurant/
+    - lib/asset/image/order/
+    - lib/asset/image/special_menu/
 
   # fonts:
   #   - family: Roboto

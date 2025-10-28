@@ -12,7 +12,7 @@ class WelcomeScreen extends StatelessWidget {
       "DON'T FELL LIKE\n COOKING.LET'S\n ORDER FOOD DELIVERY";
   final String _headerTwo =
       'Explore all the existing Food based on your\ninterest and your perfection';
-  final String _imagePath = 'lib/asset/image/bg.png';
+  final String _imagePath = 'lib/asset/image/welcome_screen_image.png';
 
   @override
   Widget build(BuildContext context) {

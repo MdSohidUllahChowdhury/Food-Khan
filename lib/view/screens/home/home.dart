@@ -1,3 +1,4 @@
+import 'package:food_khan/database/special_menu/show_data.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
 import 'package:food_khan/view/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
@@ -171,6 +172,12 @@ class _HomeState extends State<Home> {
               onTap: () => Get.to(() => const Order()),
               child: SpecialMenuModel(),
             ),
+
+            const SizedBox(height: 20),
+            Text("  Supabase DataBase", style: CustomTextStyle.title),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.348,
+              child: ShowData()),
 
             const SizedBox(height: 20),
             Text("  Featured restaurants", style: CustomTextStyle.title),
