@@ -107,8 +107,8 @@ class WelcomeScreen extends StatelessWidget {
             ),
           )
           .animate()
-          .fadeIn(duration: const Duration(seconds:2))
-          .shimmer(color: Colors.white, duration: const Duration(seconds:20)),
+          .fadeIn(duration: const Duration(seconds: 2))
+          .shimmer(color: Colors.white, duration: const Duration(seconds: 20)),
     );
   }
 }

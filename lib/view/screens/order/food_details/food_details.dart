@@ -1,6 +1,5 @@
-import 'package:food_khan/database/special_menu/menu_model.dart';
-import 'package:food_khan/model/screens/order/food_menu_model.dart';
-import 'package:food_khan/controller/provider/add_cart.dart';
+import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
+import 'package:food_khan/controller/provider/cart_provider.dart';
 import 'package:food_khan/view/screens/order/payment/delivery_info.dart';
 import 'package:food_khan/widget/screens/order/food_detaills/food_dp.dart';
 import 'package:avatar_glow/avatar_glow.dart';
@@ -65,7 +64,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
             Food_DP(widget.product.imageUrl),
             const SizedBox(height: 15),
 
-            //* Favorite Button and Cart Funcation Done this Section
+            //* Favorite Button and add to Cart 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -86,7 +85,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     shape: const CircleBorder(),
                     child: CircleAvatar(
                       radius: 20,
-                      backgroundColor: Colors.white,
+                      backgroundColor: widget.product.background_color ?? Colors.white,
                       child: Center(
                         child: InkWell(
                           onTap: () {
@@ -171,6 +170,8 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ],
               ),
             ),
+            
+            //* Qunatity Up and Down + -
             SizedBox(
               height: 50,
               child: Row(
@@ -240,7 +241,8 @@ class _FoodDetaillsState extends State<FoodDetaills> {
               ),
             ),
             const SizedBox(height: 20),
-            //** Order Now Button and Price
+            
+            //** Price and Order Now Button
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -277,7 +279,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
+                    backgroundColor: widget.product.background_color,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 90,
                       vertical: 22,
@@ -298,7 +300,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            SizedBox(height:15),
           ],
         ),
       ),

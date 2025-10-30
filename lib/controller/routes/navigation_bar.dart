@@ -19,7 +19,7 @@ class _NavigationControllState extends State<NavigationControll> {
     const Order(),
     const CartScreen(),
     const Profile(),
-  ];  
+  ];
 
   @override
   Widget build(BuildContext context) {

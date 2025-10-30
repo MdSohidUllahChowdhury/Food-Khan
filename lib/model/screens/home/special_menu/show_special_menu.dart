@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_khan/database/special_menu/menu_model.dart';
-import 'package:food_khan/database/service/service_file.dart';
+import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
+import 'package:food_khan/controller/supabase/service_file.dart';
 
 class ShowData extends StatefulWidget {
   const ShowData({super.key});
@@ -15,22 +15,21 @@ class _ShowDataState extends State<ShowData> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<MenuInfo>>(
-      future: _service.fetchUsers(),
+      future: _service.fetcTodatSpecialMenu(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
-    
+
         if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         }
-    
+
         final users = snapshot.data ?? [];
         if (users.isEmpty) {
           return const Center(child: Text('No users found'));
         }
-    
-    
+
         return ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: users.length,
@@ -53,7 +52,7 @@ class _ShowDataState extends State<ShowData> {
                       height: MediaQuery.of(context).size.height * 0.19,
                       child: Image(image: NetworkImage(user.imageUrl)),
                     ),
-            
+
                     Text(
                       user.name,
                       style: TextStyle(
@@ -65,12 +64,8 @@ class _ShowDataState extends State<ShowData> {
                     SizedBox(height: 6),
                     Row(
                       children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.orangeAccent,
-                          size: 16,
-                        ),
-                        SizedBox(width:3),
+                        Icon(Icons.star, color: Colors.orangeAccent, size: 16),
+                        SizedBox(width: 3),
                         Text(
                           user.rating.toString(),
                           style: TextStyle(
@@ -79,8 +74,12 @@ class _ShowDataState extends State<ShowData> {
                           ),
                         ),
                         SizedBox(width: 20),
-                        Icon(Icons.local_offer_rounded, color: Colors.red, size: 15),
-                        SizedBox(width:3),
+                        Icon(
+                          Icons.local_offer_rounded,
+                          color: Colors.red,
+                          size: 15,
+                        ),
+                        SizedBox(width: 3),
                         Text(
                           user.discount.toString(),
                           style: TextStyle(
@@ -91,18 +90,22 @@ class _ShowDataState extends State<ShowData> {
                         ),
                       ],
                     ),
-                    SizedBox(height:4),
+                    SizedBox(height: 4),
                     Row(
                       children: [
                         Text(
                           'Food Type',
                           style: TextStyle(
-                            fontSize:9,
+                            fontSize: 9,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         SizedBox(width: 10),
-                        Icon(Icons.menu_book_rounded, color: Colors.black, size: 10),
+                        Icon(
+                          Icons.menu_book_rounded,
+                          color: Colors.black,
+                          size: 10,
+                        ),
                         SizedBox(width: 3),
                         Text(
                           user.category.toString(),

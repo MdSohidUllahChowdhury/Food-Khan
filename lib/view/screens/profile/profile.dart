@@ -30,7 +30,7 @@ class _ProfileState extends State<Profile> {
         toolbarHeight: 40,
         elevation: 0,
         centerTitle: true,
-        title: Text('My Profile', style: TextStyle(color: Colors.white)),
+        title: Text('Profile', style: TextStyle(color: Colors.white)),
       ),
       body: SafeArea(
         child: Padding(
@@ -58,15 +58,16 @@ class _ProfileState extends State<Profile> {
                 child: Row(
                   children: [
                     // Avatar
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
+                    CircleAvatar(
+                      backgroundColor: Colors.amber,
+                      radius: 30,
                       child: Image.network(
-                        'https://www.pngall.com/wp-content/uploads/5/Profile-PNG-High-Quality-Image.png',
-                        height: 70,
+                        'https://www.pngall.com/wp-content/uploads/20/Pop-Mart-Labubu-Unique-Art-Style-PNG.png',
+                        height: 80,
                         width: 70,
                       ),
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width:10),
 
                     //!!!!! Name and Email
                     Builder(
@@ -190,16 +191,8 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
-              Text(
-                "Location",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-              SizedBox(height: 10),
+              
+              SizedBox(height: 30),
               ListTile(
                 shape: RoundedRectangleBorder(
                   // Add rounded corners
@@ -220,15 +213,7 @@ class _ProfileState extends State<Profile> {
                   style: GoogleFonts.poppins(fontSize: 14),
                 ),
               ),
-              const SizedBox(height: 10),
-              Text(
-                "Wallet",
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
+              
               const SizedBox(height: 10),
               ListTile(
                 shape: RoundedRectangleBorder(
@@ -250,19 +235,17 @@ class _ProfileState extends State<Profile> {
                   style: GoogleFonts.poppins(fontSize: 14),
                 ),
               ),
-              SizedBox(height: 12),
+              Expanded(child: SizedBox(height: 12)),
               //!! Payment Method Title
-              Expanded(
-                child: Text(
-                  "Payment Method",
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
+              Text(
+                "Payment Method",
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              const SizedBox(height: 10),
+              //const SizedBox(height: 10),
 
               //!! Payment Method Options
               Animate(

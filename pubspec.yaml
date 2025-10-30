@@ -58,9 +58,6 @@ flutter:
     - lib/asset/image/
     - lib/asset/image/bank_card/
     - lib/asset/image/category/
-    - lib/asset/image/featured_restaurant/
-    - lib/asset/image/order/
-    - lib/asset/image/special_menu/
 
   # fonts:
   #   - family: Roboto

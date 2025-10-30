@@ -107,7 +107,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 );
                                 TostMessage().rightMessage(
                                   'Password reset email sent. Please check your inbox.',
-                                  );
+                                );
                               } catch (error) {
                                 TostMessage().wrongMessage(error.toString());
                               }

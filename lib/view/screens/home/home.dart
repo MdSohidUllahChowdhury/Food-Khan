@@ -1,12 +1,11 @@
-import 'package:food_khan/database/featured_restaurant/show_restaurant.dart';
-import 'package:food_khan/database/special_menu/menu_model.dart';
-import 'package:food_khan/database/special_menu/show_special_menu.dart';
+import 'package:food_khan/model/screens/home/featured_restaurant/show_restaurant.dart';
+import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
+import 'package:food_khan/model/screens/home/special_menu/show_special_menu.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
+import 'package:food_khan/view/screens/order/order.dart';
 import 'package:food_khan/view/screens/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:food_khan/model/screens/order/food_menu_model.dart';
-import 'package:food_khan/model/screens/order/food_model_list.dart';
 import 'package:food_khan/widget/style/styel.dart';
 import 'package:food_khan/model/screens/home/categories.dart';
 
@@ -134,13 +133,13 @@ class _HomeState extends State<Home> {
                                 backgroundColor: Colors.transparent,
                                 radius: 50,
                                 child: Image(
-                                  image: NetworkImage(product.imageUrl ?? ''),
+                                  image: NetworkImage(product.imageUrl),
                                 ),
                               ),
                               subtitle: Align(
                                 alignment: Alignment.topCenter,
                                 child: Text(
-                                  product.name ?? "",
+                                  product.name,
                                   style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
@@ -165,23 +164,16 @@ class _HomeState extends State<Home> {
             Text("  Popular Categories", style: CustomTextStyle.title),
             CategoriModel(),
 
-            // const SizedBox(height: 20),
-            // Text("  Today’s special menu", style: CustomTextStyle.title),
-            // InkWell(
-            //   onTap: () => Get.to(() => const Order()),
-            //   child: SpecialMenuModel(),
-            // ),
             const SizedBox(height: 20),
             Text("  Today’s Special Menu", style: CustomTextStyle.title),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.338,
-              child: ShowData(),
+              child: InkWell(
+                onTap: () => Get.to(() => Order()),
+                child: ShowData()),
             ),
 
-            // const SizedBox(height: 20),
-            // Text("  Featured restaurants", style: CustomTextStyle.title),
-            // FeaturedRestaurantModel(),
-            const SizedBox(height:6),
+            const SizedBox(height: 6),
             Text("  Featured Restaurants", style: CustomTextStyle.title),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.44,

@@ -1,6 +1,5 @@
-import 'package:food_khan/database/service/service_file.dart';
-import 'package:food_khan/database/special_menu/menu_model.dart';
-
+import 'package:food_khan/controller/supabase/service_file.dart';
+import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
 import 'package:food_khan/widget/screens/order/bar_section.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ class Order extends StatefulWidget {
 
 final SupabaseService _service = SupabaseService();
 
-
 class _OrderState extends State<Order> {
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class _OrderState extends State<Order> {
           BarSection(),
           Expanded(
             child: FutureBuilder<List<MenuInfo>>(
-              future: _service.fetchUsers(),
+              future: _service.fetcTodatSpecialMenu(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -41,9 +39,7 @@ class _OrderState extends State<Order> {
                 }
 
                 return GridView.builder(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 2,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 0.70,
@@ -54,15 +50,18 @@ class _OrderState extends State<Order> {
                   itemBuilder: (context, index) {
                     final item = items[index];
 
-                    // Use the item directly since FoodDetaills now accepts MenuInfo
                     return InkWell(
                       onTap: () => Get.to(() => FoodDetaills(product: item)),
                       child: Container(
-                        margin: const EdgeInsets.only(top: 6, left: 4, right: 4),
+                        margin: const EdgeInsets.only(
+                          top: 6,
+                          left: 4,
+                          right: 4,
+                        ),
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: item.background_color,
-                          borderRadius: BorderRadius.circular(10),
+                          color: item.background_color ?? Colors.white,
+                          borderRadius: BorderRadius.circular(16),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +73,6 @@ class _OrderState extends State<Order> {
                                   item.imageUrl.isNotEmpty
                                       ? Image.network(
                                         item.imageUrl,
-                                        //fit: BoxFit.cover,
                                       )
                                       : const SizedBox.shrink(),
                             ),
@@ -120,7 +118,7 @@ class _OrderState extends State<Order> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 10),
                             Row(
                               children: [
                                 const Text(

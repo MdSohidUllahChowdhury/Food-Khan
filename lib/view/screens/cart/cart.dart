@@ -1,4 +1,4 @@
-import 'package:food_khan/controller/provider/add_cart.dart';
+import 'package:food_khan/controller/provider/cart_provider.dart';
 import 'package:food_khan/widget/screens/cart/cart_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -39,7 +39,7 @@ class _CartScreenState extends State<CartScreen> {
                   'All Favorite Item Clear',
                   'Add item to cart the it will appare here',
                   backgroundColor: Colors.red,
-                  snackPosition: SnackPosition.TOP
+                  snackPosition: SnackPosition.TOP,
                 );
                 cart.clearCart();
               },

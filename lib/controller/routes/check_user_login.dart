@@ -1,4 +1,4 @@
-import 'package:food_khan/model/routes/navigation_bar.dart';
+import 'package:food_khan/controller/routes/navigation_bar.dart';
 import 'package:food_khan/view/auth/splash.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,10 @@ class _CheckUserLoginState extends State<CheckUserLogin> {
     return Scaffold(
       body: Center(
         child: FutureBuilder(
-          future: Future.delayed(const Duration(seconds: 2), () => CheckUserLogin()),
+          future: Future.delayed(
+            const Duration(seconds: 2),
+            () => CheckUserLogin(),
+          ),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
@@ -29,14 +32,15 @@ class _CheckUserLoginState extends State<CheckUserLogin> {
       ),
     );
   }
-  void CheckUserLogin(){
+
+  void CheckUserLogin() {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       // User is logged in, navigate to home screen
-      Get.offAll(()=> NavigationControll());
+      Get.offAll(() => NavigationControll());
     } else {
       // User is not logged in, navigate to login screen
-      Get.offAll(()=> const SplashScreen());
+      Get.offAll(() => const SplashScreen());
     }
   }
 }

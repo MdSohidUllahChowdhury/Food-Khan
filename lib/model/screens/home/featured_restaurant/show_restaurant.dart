@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_khan/database/featured_restaurant/restaurant_model.dart';
-import 'package:food_khan/database/service/service_file.dart';
+import 'package:food_khan/model/screens/home/featured_restaurant/restaurant_model.dart';
+import 'package:food_khan/controller/supabase/service_file.dart';
 
 class RestaurantInfo extends StatefulWidget {
   const RestaurantInfo({super.key});

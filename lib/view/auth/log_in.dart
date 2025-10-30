@@ -1,4 +1,4 @@
-import 'package:food_khan/model/routes/navigation_bar.dart';
+import 'package:food_khan/controller/routes/navigation_bar.dart';
 import 'package:food_khan/view/auth/forgot_password.dart';
 import 'package:food_khan/view/auth/sing_up.dart';
 import 'package:food_khan/widget/auth/section.dart';

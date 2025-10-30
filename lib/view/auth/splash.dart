@@ -29,13 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Animate(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('lib/asset/image/splashLogo.png'),
-          ],
+          children: [Image.asset('lib/asset/image/splashLogo.png')],
         ),
       ).animate().fade().flipH().shimmer(
         color: Colors.white,
-        duration: const Duration(seconds:4),
+        duration: const Duration(seconds: 4),
       ),
     );
   }

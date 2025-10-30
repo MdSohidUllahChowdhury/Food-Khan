@@ -1,4 +1,4 @@
-import 'package:food_khan/controller/firebase_auth/auth_firebase.dart';
+import 'package:food_khan/controller/firebase_auth/auth_data_collection.dart';
 import 'package:food_khan/view/auth/log_in.dart';
 import 'package:food_khan/widget/auth/section.dart';
 import 'package:food_khan/widget/auth/tost_alert.dart';
@@ -15,23 +15,21 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-    
-    final formkey = GlobalKey<FormState>();
-    final auth = FirebaseAuth.instance;
-    final emailController = TextEditingController();
-    final nameController = TextEditingController();
-    final phoneController = TextEditingController();
-    final passwordController = TextEditingController();
-  
+  final formkey = GlobalKey<FormState>();
+  final auth = FirebaseAuth.instance;
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height +
+          height:
+              MediaQuery.of(context).size.height +
               MediaQuery.of(context).viewInsets.bottom,
           child: Stack(
             children: [
@@ -44,10 +42,7 @@ class _RegisterState extends State<Register> {
                     bottomRight: Radius.circular(50),
                   ),
                   gradient: LinearGradient(
-                    colors: [
-                      Color(0xff191D21),
-                      Color(0xffFFAC4B),
-                    ],
+                    colors: [Color(0xff191D21), Color(0xffFFAC4B)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -58,7 +53,7 @@ class _RegisterState extends State<Register> {
                     Text(
                       'FOOD KHAN',
                       style: TextStyle(
-                        fontFamily:GoogleFonts.abrilFatface().fontFamily ,
+                        fontFamily: GoogleFonts.abrilFatface().fontFamily,
                         fontSize: 38,
                         letterSpacing: 1.4,
                         color: Color(0xffffffff),
@@ -76,24 +71,23 @@ class _RegisterState extends State<Register> {
                         letterSpacing: 1.4,
                       ),
                     ),
-                    const SizedBox(height:34),
-                      Divider(color: Color(0xffffffff), thickness: 18),
-                      Divider(color: Color(0xff191D21), thickness: 18),
-                      Divider(color: Color(0xffFFAC4B), thickness: 18),
+                    const SizedBox(height: 34),
+                    Divider(color: Color(0xffffffff), thickness: 18),
+                    Divider(color: Color(0xff191D21), thickness: 18),
+                    Divider(color: Color(0xffFFAC4B), thickness: 18),
                   ],
                 ),
               ),
-          
+
               Align(
                 alignment: Alignment.center,
                 child: Container(
                   margin: const EdgeInsets.only(top: 220, left: 17, right: 17),
                   height: MediaQuery.of(context).size.height * 0.52,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Color(0xff191D21),
-                      Color(0xffFFAC4B),
-                    ]),
+                    gradient: LinearGradient(
+                      colors: [Color(0xff191D21), Color(0xffFFAC4B)],
+                    ),
                     borderRadius: BorderRadius.circular(35),
                   ),
                   child: Column(
@@ -110,7 +104,7 @@ class _RegisterState extends State<Register> {
                           fontFamily: GoogleFonts.abrilFatface().fontFamily,
                         ),
                       ),
-                          
+
                       const SizedBox(height: 20),
                       Form(
                         key: formkey,
@@ -122,14 +116,17 @@ class _RegisterState extends State<Register> {
                               authControler: nameController,
                               nameit: 'Name',
                               isRequired: true,
-                              icon: const Icon(Icons.panorama_photosphere_outlined,size: 18),
+                              icon: const Icon(
+                                Icons.panorama_photosphere_outlined,
+                                size: 18,
+                              ),
                             ),
                             const SizedBox(height: 16),
                             SectionName(
                               authControler: emailController,
                               nameit: 'Email',
                               isRequired: true,
-                              icon: const Icon(Icons.email,size: 18),
+                              icon: const Icon(Icons.email, size: 18),
                             ),
                             const SizedBox(height: 16),
                             SectionName(
@@ -137,7 +134,7 @@ class _RegisterState extends State<Register> {
                               nameit: 'Phone',
                               forpassword: false,
                               isRequired: true,
-                              icon: const Icon(Icons.sim_card,size: 18,),
+                              icon: const Icon(Icons.sim_card, size: 18),
                             ),
                             const SizedBox(height: 16),
                             SectionName(
@@ -145,7 +142,7 @@ class _RegisterState extends State<Register> {
                               authControler: passwordController,
                               forpassword: true,
                               isRequired: true,
-                              icon: Icon(Icons.password,size: 18,),
+                              icon: Icon(Icons.password, size: 18),
                             ),
                             const SizedBox(height: 25),
                             ElevatedButton(
@@ -156,17 +153,25 @@ class _RegisterState extends State<Register> {
                                       email: emailController.text.trim(),
                                       password: passwordController.text.trim(),
                                     );
-                                    Map<String,dynamic> info = {
-                                      "User Name" : nameController.text.trim(),
-                                      "Email" : emailController.text.trim(),
-                                      "Phone": phoneController.text.trim()
+                                    Map<String, dynamic> info = {
+                                      "User Name": nameController.text.trim(),
+                                      "Email": emailController.text.trim(),
+                                      "Phone": phoneController.text.trim(),
                                     };
-                                    final User? userID = FirebaseAuth.instance.currentUser;
-                                   await Database().authInfo(info,userID!.uid);
+                                    final User? userID =
+                                        FirebaseAuth.instance.currentUser;
+                                    await Database().authInfo(
+                                      info,
+                                      userID!.uid,
+                                    );
                                     Get.offAll(() => const Login());
-                                    TostMessage().rightMessage("Account Created");
+                                    TostMessage().rightMessage(
+                                      "Account Created",
+                                    );
                                   } catch (error) {
-                                    TostMessage().wrongMessage(error.toString());
+                                    TostMessage().wrongMessage(
+                                      error.toString(),
+                                    );
                                   }
                                 }
                               },
@@ -179,14 +184,15 @@ class _RegisterState extends State<Register> {
                                   const Color(0xffFFAC4B),
                                 ),
                               ),
-                              child:  Text(
+                              child: Text(
                                 'Create Account',
                                 style: TextStyle(
                                   fontSize: 15,
                                   letterSpacing: 1.2,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
-                                  fontFamily: GoogleFonts.abrilFatface().fontFamily,
+                                  fontFamily:
+                                      GoogleFonts.abrilFatface().fontFamily,
                                 ),
                               ),
                             ),

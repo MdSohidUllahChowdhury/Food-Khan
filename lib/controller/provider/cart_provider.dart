@@ -1,6 +1,5 @@
 import 'dart:collection';
-import 'package:food_khan/database/special_menu/menu_model.dart';
-import 'package:food_khan/model/screens/order/food_menu_model.dart';
+import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
 import 'package:flutter/material.dart';
 
 class CartController extends ChangeNotifier {
@@ -9,7 +8,7 @@ class CartController extends ChangeNotifier {
 
   void adtoCart(MenuInfo item) {
     cart.add(item);
-    notifyListeners(); 
+    notifyListeners();
   }
 
   void removeFromCart(MenuInfo item) {

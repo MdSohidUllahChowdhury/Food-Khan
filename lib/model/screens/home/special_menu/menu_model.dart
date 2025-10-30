@@ -20,7 +20,6 @@ class MenuInfo {
     this.category,
     this.background_color,
     this.rating,
-
     //required this.createdAt,
   });
 
@@ -33,7 +32,10 @@ class MenuInfo {
       rating: json['rating'],
       discount: json['discount'],
       category: json['category'],
-      background_color: Color(int.parse(json['background_color'].substring(1, 7), radix: 16) + 0xFF000000),
+      background_color: Color(
+        int.parse(json['background_color'].substring(1, 7), radix: 16) +
+            0xFF000000,
+      ),
       //createdAt: DateTime.parse(json['created_at']),
     );
   }
