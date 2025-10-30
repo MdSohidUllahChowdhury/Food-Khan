@@ -1,3 +1,4 @@
+import 'package:food_khan/database/special_menu/menu_model.dart';
 import 'package:food_khan/model/screens/order/food_menu_model.dart';
 import 'package:food_khan/controller/provider/add_cart.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
@@ -9,7 +10,7 @@ import 'package:provider/provider.dart';
 class CartDemo extends StatelessWidget {
   const CartDemo({super.key, required this.item});
 
-  final FoodMenuModel item;
+  final MenuInfo item;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,8 @@ class CartDemo extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Image.asset(
-                item.image.toString(),
+              Image.network(
+                item.imageUrl.toString(),
                 height: 110,
                 width: 120,
                 fit: BoxFit.fill,
@@ -44,7 +45,7 @@ class CartDemo extends StatelessWidget {
                     style: const TextStyle(
                       fontFamily: 'Bold',
                       letterSpacing: 1.3,
-                      fontSize: 18,
+                      fontSize: 13,
                       color: Colors.white,
                       fontWeight: FontWeight.w800,
                     ),
@@ -55,7 +56,7 @@ class CartDemo extends StatelessWidget {
                     'PRICE :  ${item.price.toString()}',
                     style: TextStyle(
                       fontFamily: 'Bold',
-                      fontSize: 15,
+                      fontSize: 13,
                       color: Colors.white,
                     ),
                   ),
@@ -63,7 +64,7 @@ class CartDemo extends StatelessWidget {
               ),
               const Spacer(),
               CircleAvatar(
-                radius: 25,
+                radius:20,
                 backgroundColor: Colors.white,
                 child: IconButton(
                   onPressed: () {

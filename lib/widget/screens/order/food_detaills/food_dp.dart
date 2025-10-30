@@ -47,7 +47,7 @@ Widget Food_DP(String foodImage,) {
           //color: Colors.white,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Image.asset(foodImage, cacheHeight: 210),
+        child: Image(image: NetworkImage(foodImage),),
       ),
     ).animate().flipH(duration: Duration(seconds: 2)),
   );

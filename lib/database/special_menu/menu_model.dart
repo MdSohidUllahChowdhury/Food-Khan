@@ -4,20 +4,23 @@ class MenuInfo {
   final String id;
   final String name;
   final String imageUrl;
-  final String rating;
-  final String discount;
-  final String category;
-  final Color background_color;
+  final String price;
+  String? rating;
+  String? discount;
+  String? category;
+  Color? background_color;
   //final DateTime createdAt;
 
   MenuInfo({
     required this.id,
     required this.name,
     required this.imageUrl,
-    required this.rating,
-    required this.discount,
-    required this.category,
-    required this.background_color,
+    required this.price,
+    this.discount,
+    this.category,
+    this.background_color,
+    this.rating,
+
     //required this.createdAt,
   });
 
@@ -26,6 +29,7 @@ class MenuInfo {
       id: json['id'],
       name: json['name'],
       imageUrl: json['image_url'],
+      price: json['price'],
       rating: json['rating'],
       discount: json['discount'],
       category: json['category'],

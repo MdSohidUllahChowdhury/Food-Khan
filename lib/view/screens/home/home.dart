@@ -1,4 +1,5 @@
 import 'package:food_khan/database/featured_restaurant/show_restaurant.dart';
+import 'package:food_khan/database/special_menu/menu_model.dart';
 import 'package:food_khan/database/special_menu/show_special_menu.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
 import 'package:food_khan/view/screens/profile/profile.dart';
@@ -18,7 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final TextEditingController searchController = TextEditingController();
-  List<FoodMenuModel> filteredProducts = [];
+  List<MenuInfo> filteredProducts = [];
 
   void filterProducts() {
     final query = searchController.text.toLowerCase().trim();
@@ -29,8 +30,8 @@ class _HomeState extends State<Home> {
     } else {
       setState(() {
         filteredProducts =
-            foodMenuList.where((product) {
-              return product.name!.toLowerCase().contains(query);
+            filteredProducts.where((product) {
+              return product.name.toLowerCase().contains(query);
             }).toList();
       });
     }
@@ -133,7 +134,7 @@ class _HomeState extends State<Home> {
                                 backgroundColor: Colors.transparent,
                                 radius: 50,
                                 child: Image(
-                                  image: AssetImage(product.image ?? ''),
+                                  image: NetworkImage(product.imageUrl ?? ''),
                                 ),
                               ),
                               subtitle: Align(
@@ -180,7 +181,7 @@ class _HomeState extends State<Home> {
             // const SizedBox(height: 20),
             // Text("  Featured restaurants", style: CustomTextStyle.title),
             // FeaturedRestaurantModel(),
-            const SizedBox(height: 20),
+            const SizedBox(height:6),
             Text("  Featured Restaurants", style: CustomTextStyle.title),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.44,

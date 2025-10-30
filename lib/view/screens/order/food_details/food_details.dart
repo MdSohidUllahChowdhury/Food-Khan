@@ -1,3 +1,4 @@
+import 'package:food_khan/database/special_menu/menu_model.dart';
 import 'package:food_khan/model/screens/order/food_menu_model.dart';
 import 'package:food_khan/controller/provider/add_cart.dart';
 import 'package:food_khan/view/screens/order/payment/delivery_info.dart';
@@ -10,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class FoodDetaills extends StatefulWidget {
-  final FoodMenuModel product;
+  final MenuInfo product;
   const FoodDetaills({super.key, required this.product});
 
   @override
@@ -61,7 +62,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            Food_DP(widget.product.image.toString()),
+            Food_DP(widget.product.imageUrl),
             const SizedBox(height: 15),
 
             //* Favorite Button and Cart Funcation Done this Section

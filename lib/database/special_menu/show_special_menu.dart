@@ -82,7 +82,7 @@ class _ShowDataState extends State<ShowData> {
                         Icon(Icons.local_offer_rounded, color: Colors.red, size: 15),
                         SizedBox(width:3),
                         Text(
-                          user.discount,
+                          user.discount.toString(),
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -105,7 +105,7 @@ class _ShowDataState extends State<ShowData> {
                         Icon(Icons.menu_book_rounded, color: Colors.black, size: 10),
                         SizedBox(width: 3),
                         Text(
-                          user.category,
+                          user.category.toString(),
                           style: TextStyle(
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
