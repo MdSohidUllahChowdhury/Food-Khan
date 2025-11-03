@@ -48,10 +48,9 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ],
       ),
-//backgroundColor: Colors.amber.shade600,
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.amber.shade600,
+          color: Colors.grey.shade300,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(36),topRight: Radius.circular(36))
         ),
         child: Consumer<CartController>(

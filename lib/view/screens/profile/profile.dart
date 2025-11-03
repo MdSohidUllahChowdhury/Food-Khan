@@ -66,7 +66,7 @@ class _ProfileState extends State<Profile> {
                         width: 70,
                       ),
                     ),
-                    const SizedBox(width:10),
+                    const SizedBox(width: 10),
 
                     //!!!!! Name and Email
                     Builder(
@@ -131,7 +131,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 const SizedBox(height: 4),
-                                
+
                                 Text(
                                   data["Phone"] ?? 0181111111,
                                   style: GoogleFonts.poppins(
@@ -166,7 +166,7 @@ class _ProfileState extends State<Profile> {
                   ],
                 ),
               ),
-              
+
               SizedBox(height: 30),
               ListTile(
                 shape: RoundedRectangleBorder(
@@ -176,7 +176,7 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Get.to(() => const LocationScreen());
                 },
-                contentPadding: const EdgeInsets.symmetric(horizontal:10),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                 leading: Icon(
                   FontAwesomeIcons.mapMarkerAlt,
                   size: 24,
@@ -184,10 +184,10 @@ class _ProfileState extends State<Profile> {
                 ),
                 title: Text(
                   "Find Our Restaurent by Press on Location Icon",
-                  style: GoogleFonts.poppins(fontSize:10),
+                  style: GoogleFonts.poppins(fontSize: 10),
                 ),
               ),
-              
+
               const SizedBox(height: 10),
               ListTile(
                 shape: RoundedRectangleBorder(
@@ -297,7 +297,11 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   onPressed: () {
-                    Get.snackbar('Updated', 'Stay with us for your best food',backgroundColor: Colors.amber);
+                    Get.snackbar(
+                      'Updated',
+                      'Stay with us for your best food',
+                      backgroundColor: Colors.amber,
+                    );
                     // handle update
                   },
                   child: Text(

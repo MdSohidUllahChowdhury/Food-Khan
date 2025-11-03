@@ -1,19 +1,30 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_khan/controller/firebase/order_info.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/utils.dart';
 
 class DeliveryCheckOut extends StatefulWidget {
   final String totalPrice;
-  const DeliveryCheckOut({required this.totalPrice, super.key});
+  final String foodName;
+  final String foodQuantity;
+  const DeliveryCheckOut({
+    required this.totalPrice,
+    required this.foodName,
+    required this.foodQuantity,
+    super.key,
+  });
 
   @override
   State<DeliveryCheckOut> createState() => _DeliveryCheckOutState();
 }
 
 class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
-  final formkey = GlobalKey<FormState>();
+  final formkeyAddress = GlobalKey<FormState>();
+  final formkeyNumber = GlobalKey<FormState>();
   final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _mobileController = TextEditingController();
   bool isRequired = true;
   String _maleType = 'Male';
   String _paymentMethod = 'Cash On Delivery';
@@ -79,7 +90,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Form(
-                      key: formkey,
+                      key: formkeyAddress,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         controller: _addressController,
@@ -99,6 +110,61 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                           prefixIcon: Icon(
                             FontAwesomeIcons.mapMarkerAlt,
                             color: Colors.orange,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Add Your Mobile Number',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text('change', style: TextStyle(color: Colors.orange)),
+                ],
+              ),
+
+              SizedBox(height: 10),
+
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Form(
+                      key: formkeyNumber,
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: _mobileController,
+                        validator:
+                            isRequired == true
+                                ? (String? value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Plese enter your mobile number!';
+                                  } else {
+                                    return null;
+                                  }
+                                }
+                                : null,
+                        decoration: InputDecoration(
+                          labelText: 'Add Number',
+                          prefixIcon: Icon(
+                            FontAwesomeIcons.phone,
+                            color: Colors.lightBlue,
                             size: 20,
                           ),
                         ),
@@ -293,14 +359,40 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
 
               SizedBox(height: 20),
-              //** */ Total & Button
+              //** */ Food Name
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Food Name', style: TextStyle(fontSize: 16)),
+                  Text(
+                    widget.foodName.toString(),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+
+              //** */ Total Price
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text('Total', style: TextStyle(fontSize: 16)),
                   Text(
                     '${widget.totalPrice}\$',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
+
+              //** */ Total Quantity
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Quanity', style: TextStyle(fontSize: 16)),
+                  Text(
+                    widget.foodQuantity.toString(),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -310,8 +402,23 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                 height: 60,
                 child: ElevatedButton(
                   onPressed: () {
-                    if (formkey.currentState!.validate()) {
+                    if (formkeyAddress.currentState!.validate() &&
+                        formkeyNumber.currentState!.validate()) {
                       isRequired = false;
+                      Map<String, dynamic> collection = {
+                        "1. Food Name": widget.foodName,
+                        "2. Price": widget.totalPrice,
+                        "3. Quantity": widget.foodQuantity,
+                        "4. Address": _addressController.text.trim(),
+                        "5. Number": _mobileController.text.trim(),
+                        "6. Payment Method": _paymentMethod.trim(),
+                        "7. Delivery Rider Type": _maleType.trim(),
+                        "8. Delivery Method": _doorDelivery.trim(),
+                      };
+
+                      final User? user = FirebaseAuth.instance.currentUser;
+
+                      OrderInfo().paymentSteps(collection, user!.uid);
                       Get.snackbar(
                         'Successfully Confirmed Order',
                         'Stay with us for for the best food',
@@ -323,12 +430,6 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                       isRequired = true;
                       return;
                     }
-
-                    // Get.to(
-                    //   // () => PaymentScreen(
-                    //   //   totalPrice: widget.totalPrice.toString(),
-                    //   // ),
-                    // );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,

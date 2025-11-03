@@ -94,7 +94,7 @@ class CartDemo extends StatelessWidget {
                           );
                           providerCall.removeFromCart(item);
                         },
-                        icon: Icon(FontAwesomeIcons.solidTrashCan,size: 14,color:Colors.red),
+                        icon: Icon(FontAwesomeIcons.solidTrashCan,size: 16,color:Colors.red),
                       ),
                     ],
                   ),

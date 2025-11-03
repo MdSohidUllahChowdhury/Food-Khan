@@ -1,6 +1,6 @@
 import 'package:food_khan/controller/api/supabase_api.dart';
 import 'package:food_khan/controller/routes/check_user_login.dart';
-import 'package:food_khan/controller/firebase_auth/firebase_options.dart';
+import 'package:food_khan/controller/firebase/firebase_options.dart';
 import 'package:food_khan/controller/provider/cart_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

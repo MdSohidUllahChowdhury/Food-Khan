@@ -1,4 +1,4 @@
-import 'package:food_khan/controller/firebase_auth/auth_data_collection.dart';
+import 'package:food_khan/controller/firebase/auth_data_collection.dart';
 import 'package:food_khan/view/auth/log_in.dart';
 import 'package:food_khan/widget/auth/section.dart';
 import 'package:food_khan/widget/auth/tost_alert.dart';

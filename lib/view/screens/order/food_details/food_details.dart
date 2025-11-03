@@ -274,8 +274,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ElevatedButton(
                   onPressed: () {
                     Get.to(
-                      //()=> CheckoutScreen(),
-                      () => DeliveryCheckOut(totalPrice: price.toString()),
+                      () => DeliveryCheckOut(totalPrice: price.toString(),foodName: widget.product.name,foodQuantity: quantity.toString(),),
                     );
                   },
                   style: ElevatedButton.styleFrom(
