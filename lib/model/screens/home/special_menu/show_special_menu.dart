@@ -48,6 +48,7 @@ class _ShowDataState extends State<ShowData> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.19,
                       child: Image(image: NetworkImage(user.imageUrl)),
@@ -58,39 +59,41 @@ class _ShowDataState extends State<ShowData> {
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                     SizedBox(height: 6),
                     Row(
                       children: [
-                        Icon(Icons.star, color: Colors.orangeAccent, size: 16),
+                        Icon(Icons.star, color: Colors.orangeAccent, size: 12),
                         SizedBox(width: 3),
                         Text(
                           user.rating.toString(),
                           style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w300,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                         SizedBox(width: 20),
                         Icon(
                           Icons.local_offer_rounded,
                           color: Colors.red,
-                          size: 15,
+                          size: 12,
                         ),
                         SizedBox(width: 3),
                         Text(
                           user.discount.toString(),
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 11,
                             fontWeight: FontWeight.w500,
                             color: Colors.red,
                           ),
                         ),
+                       
                       ],
                     ),
-                    SizedBox(height: 4),
+                    SizedBox(height: 10),
+                    
                     Row(
                       children: [
                         Text(
@@ -114,6 +117,8 @@ class _ShowDataState extends State<ShowData> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
+                        SizedBox(width: 23),
+                         
                       ],
                     ),
                   ],

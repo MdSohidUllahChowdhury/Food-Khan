@@ -133,13 +133,13 @@ class _HomeState extends State<Home> {
                                 backgroundColor: Colors.transparent,
                                 radius: 50,
                                 child: Image(
-                                  image: NetworkImage(product.imageUrl),
+                                  image: NetworkImage(product.imageUrl.trim().toString()),
                                 ),
                               ),
                               subtitle: Align(
                                 alignment: Alignment.topCenter,
                                 child: Text(
-                                  product.name,
+                                  product.name.trim().toString(),
                                   style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
@@ -160,21 +160,22 @@ class _HomeState extends State<Home> {
                 ),
               ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height:10),
             Text("  Popular Categories", style: CustomTextStyle.title),
             CategoriModel(),
 
             const SizedBox(height: 20),
             Text("  Today’s Special Menu", style: CustomTextStyle.title),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.338,
+              height: MediaQuery.of(context).size.height * 0.33,
               child: InkWell(
                 onTap: () => Get.to(() => Order()),
                 child: ShowData()),
             ),
 
-            const SizedBox(height: 6),
+            const SizedBox(height:20),
             Text("  Featured Restaurants", style: CustomTextStyle.title),
+            SizedBox(height: 12),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.44,
               child: RestaurantInfo(),

@@ -74,7 +74,6 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     fontSize: 18,
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
-                    letterSpacing: 1.2,
                   ),
                 ),
                 AvatarGlow(
@@ -275,6 +274,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ElevatedButton(
                   onPressed: () {
                     Get.to(
+                      //()=> CheckoutScreen(),
                       () => DeliveryCheckOut(totalPrice: price.toString()),
                     );
                   },

@@ -1,3 +1,4 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
 import 'package:food_khan/controller/provider/cart_provider.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
@@ -18,67 +19,86 @@ class CartDemo extends StatelessWidget {
       onTap: () => Get.to(() => FoodDetaills(product: item)),
       child: Animate(
         child: Container(
-          height: 120,
-          width: 120,
-          margin: const EdgeInsets.all(12),
-          padding: const EdgeInsets.all(12),
+          height: MediaQuery.of(context).size.height * .15,
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: Colors.white, width: 2),
+            color: const Color(0xff191D21)
           ),
           child: Row(
             children: [
               Image.network(
                 item.imageUrl.toString(),
-                height: 110,
-                width: 120,
-                fit: BoxFit.fill,
+                height: MediaQuery.of(context).size.height * .16,
+                width: MediaQuery.of(context).size.width * .32,
               ),
-              const SizedBox(width:20),
+              const SizedBox(width: 10),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item.name.toString().toUpperCase(),
+                    item.name.toString(),
                     style: const TextStyle(
                       fontFamily: 'Bold',
-                      letterSpacing: 1.3,
                       fontSize: 13,
                       color: Colors.white,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  //SizedBox(width: 40,height: 30,),
                   SizedBox(height: 10),
                   Text(
-                    'PRICE :  ${item.price.toString()}',
+                    '\$${item.price.toString()}',
                     style: TextStyle(
                       fontFamily: 'Bold',
                       fontSize: 13,
+                      fontWeight: FontWeight.w800,
                       color: Colors.white,
                     ),
                   ),
-                ],
-              ),
-              const Spacer(),
-              CircleAvatar(
-                radius:20,
-                backgroundColor: Colors.white,
-                child: IconButton(
-                  onPressed: () {
-                    Get.snackbar(
-                      "Deleted",
-                      "Your Item has been deleted",
-                      backgroundColor: Colors.white,
-                    );
-                    providerCall.removeFromCart(item);
-                  },
-                  icon: Icon(
-                    Icons.delete_outline,
-                    color: Colors.redAccent[700],
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height * .040,
+                        width: MediaQuery.of(context).size.width * .22,
+                        margin: const EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.red, width: 1),
+                        ),
+
+                        child: Center(
+                          child: Text(
+                            'Order',
+                            style: TextStyle(
+                              fontFamily: 'Bold',
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: MediaQuery.of(context).size.width*.18,),
+                      IconButton(
+                        onPressed: () {
+                          Get.snackbar(
+                            "Deleted",
+                            "Your Item has been deleted",
+                            backgroundColor: Colors.white,
+                          );
+                          providerCall.removeFromCart(item);
+                        },
+                        icon: Icon(FontAwesomeIcons.solidTrashCan,size: 14,color:Colors.red),
+                      ),
+                    ],
                   ),
-                ),
+                ],
               ),
             ],
           ),

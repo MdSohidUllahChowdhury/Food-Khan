@@ -1,4 +1,3 @@
-import 'package:food_khan/view/screens/order/payment/payment_method.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -13,186 +12,339 @@ class DeliveryCheckOut extends StatefulWidget {
 }
 
 class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
-  String _deliveryMethod = 'Door delivery';
   final formkey = GlobalKey<FormState>();
   final TextEditingController _addressController = TextEditingController();
   bool isRequired = true;
+  String _maleType = 'Male';
+  String _paymentMethod = 'Cash On Delivery';
+  String _doorDelivery = 'Door Delivery';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.grey.shade200,
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade100,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 24),
+          icon: Icon(
+            FontAwesomeIcons.solidArrowAltCircleLeft,
+            size: 24,
+            color: Colors.black,
+          ),
           onPressed: () => Get.back(),
         ),
-        title: Text('Checkout', style: TextStyle(color: Colors.black)),
+        title: Text('Payment Steps', style: TextStyle(color: Colors.black)),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Delivery',
-              style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-
-            //** */ Address Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Address Details',
-                  style: TextStyle(fontWeight: FontWeight.w600),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Delivery',
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
-                Text('change', style: TextStyle(color: Colors.orange)),
-              ],
-            ),
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              SizedBox(height: 20),
+
+              //** */ Address Section
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Form(
-                    key: formkey,
-                    child: TextFormField(
-                      keyboardType: TextInputType.text,
-                      controller: _addressController,
-                      validator:
-                          isRequired == true
-                              ? (String? value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Plese enter your address!';
-                                } else {
-                                  return null;
+                  Text(
+                    'Address Details',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text('change', style: TextStyle(color: Colors.orange)),
+                ],
+              ),
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Form(
+                      key: formkey,
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        controller: _addressController,
+                        validator:
+                            isRequired == true
+                                ? (String? value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Plese enter your address!';
+                                  } else {
+                                    return null;
+                                  }
                                 }
-                              }
-                              : null,
-                      decoration: InputDecoration(
-                        labelText: 'Add Your Address',
-                        hintText: 'Gulshan 2, Road 12, House 435, Dhaka',
-                        prefixIcon: Icon(
-                          FontAwesomeIcons.mapMarkerAlt,
-                          color: Colors.orange,
-                          size: 20,
+                                : null,
+                        decoration: InputDecoration(
+                          labelText: 'Add Your Address',
+                          hintText: 'Gulshan 2, Road 12, House 435, Dhaka',
+                          prefixIcon: Icon(
+                            FontAwesomeIcons.mapMarkerAlt,
+                            color: Colors.orange,
+                            size: 20,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: 20),
+              SizedBox(height: 20),
 
-            //** */ Delivery Method Section
-            Text(
-              'Delivery Rider Type.',
-              style: TextStyle(fontWeight: FontWeight.w600),
-            ),
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                    offset: const Offset(0, 3), // changes position of shadow
-                  ),
-                ],
+              //** */ Delivery Rider Section
+              Text(
+                'Delivery Rider Type.',
+                style: TextStyle(fontWeight: FontWeight.w600),
               ),
-              child: Column(
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    RadioListTile<String>(
+                      groupValue: _maleType,
+                      value: 'Male',
+                      title: Text('Male'),
+                      activeColor: Colors.green,
+                      onChanged: (value) {
+                        setState(() {
+                          _maleType = value!;
+                        });
+                      },
+                    ),
+                    Divider(),
+                    RadioListTile<String>(
+                      groupValue: _maleType,
+                      value: 'Female',
+                      title: Text('Female'),
+                      activeColor: Colors.pink,
+                      onChanged: (value) {
+                        setState(() {
+                          _maleType = value!;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+
+              //** */ Payment Method
+              Text(
+                'Payment Method',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    RadioListTile<String>(
+                      groupValue: _paymentMethod,
+                      value: 'Cash On Delivery',
+                      activeColor: Colors.greenAccent,
+                      onChanged: (value) {
+                        setState(() {
+                          _paymentMethod = value!;
+                        });
+                      },
+                      title: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: Colors.greenAccent,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              FontAwesomeIcons.moneyBills,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text("Cash On Delivery"),
+                        ],
+                      ),
+                    ),
+                    Divider(),
+                    RadioListTile<String>(
+                      value: 'Card',
+                      groupValue: _paymentMethod,
+                      activeColor: Colors.orange,
+                      onChanged: (value) {
+                        setState(() {
+                          _paymentMethod = value!;
+                        });
+                      },
+                      title: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              Icons.credit_card,
+                              color: Colors.white,
+                              size: 20,
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text("Card"),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+
+              //** */ Delivery Method
+              Text(
+                'Delivery Method.',
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    RadioListTile<String>(
+                      value: 'Door Delivery',
+                      groupValue: _doorDelivery,
+                      activeColor: Colors.orange,
+                      onChanged: (value) {
+                        setState(() {
+                          _doorDelivery = value!;
+                        });
+                      },
+                      title: Text('Door Delivery'),
+                    ),
+                    Divider(),
+                    RadioListTile<String>(
+                      value: 'Pick Up',
+                      groupValue: _doorDelivery,
+                      activeColor: Colors.redAccent,
+                      onChanged: (value) {
+                        setState(() {
+                          _doorDelivery = value!;
+                        });
+                      },
+                      title: Text('Pick Up'),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 20),
+              //** */ Total & Button
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  RadioListTile<String>(
-                    title: Text('Male'),
-                    value: 'Door delivery',
-                    groupValue: _deliveryMethod,
-                    activeColor: Colors.green,
-                    onChanged: (value) {
-                      setState(() {
-                        _deliveryMethod = value!;
-                      });
-                    },
-                  ),
-                  Divider(),
-                  RadioListTile<String>(
-                    title: Text('Female'),
-                    value: 'Pick up',
-                    groupValue: _deliveryMethod,
-                    activeColor: Colors.pink,
-                    onChanged: (value) {
-                      setState(() {
-                        _deliveryMethod = value!;
-                      });
-                    },
+                  Text('Total', style: TextStyle(fontSize: 16)),
+                  Text(
+                    '${widget.totalPrice}\$',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
-            ),
-            Spacer(),
-            //** */ Total & Button
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Total', style: TextStyle(fontSize: 16)),
-                Text(
-                  '${widget.totalPrice}\$',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            SizedBox(
-              width: double.infinity,
-              height: 60,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    isRequired = false;
-                    Get.snackbar(
-                      'Address Added',
-                      'Address and Rider Type has been Added Successfully.',
-                      backgroundColor: Colors.orange,
-                      colorText: Colors.white,
-                      duration: Duration(seconds: 3),
-                    );
-                  } else {
-                    isRequired = true;
-                    return;
-                  }
-                  Get.to(
-                    () =>
-                        PaymentScreen(totalPrice: widget.totalPrice.toString()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+              SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                height: 60,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (formkey.currentState!.validate()) {
+                      isRequired = false;
+                      Get.snackbar(
+                        'Successfully Confirmed Order',
+                        'Stay with us for for the best food',
+                        backgroundColor: Colors.orange,
+                        colorText: Colors.white,
+                        duration: Duration(seconds: 3),
+                      );
+                    } else {
+                      isRequired = true;
+                      return;
+                    }
+
+                    // Get.to(
+                    //   // () => PaymentScreen(
+                    //   //   totalPrice: widget.totalPrice.toString(),
+                    //   // ),
+                    // );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.orange,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    'Order Confirm',
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
-                child: Text(
-                  'Proceed to Payment',
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
               ),
-            ),
-            SizedBox(height: 25),
-          ],
+              SizedBox(height: 25),
+            ],
+          ),
         ),
       ),
     );

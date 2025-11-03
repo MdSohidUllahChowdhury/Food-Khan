@@ -27,11 +27,13 @@ class _NavigationControllState extends State<NavigationControll> {
       backgroundColor: Color(0xff191D21),
       body: pagedata[onpageindex],
       bottomNavigationBar: CurvedNavigationBar(
+        buttonBackgroundColor:Colors.amber,
+        //buttonBackgroundColor: Color(0xff353535),
         items: [
-          Icon(Icons.home, size: 30),
-          Icon(Icons.fastfood, size: 30),
-          Icon(Icons.favorite, size: 30),
-          Icon(Icons.person, size: 30),
+          Icon(Icons.home, size: 30,color: Colors.white,),
+          Icon(Icons.fastfood, size: 30,color: Colors.white,),
+          Icon(Icons.favorite_sharp, size: 30,color: Colors.white,),
+          Icon(Icons.person, size: 30,color: Colors.white,),
         ],
         onTap: (gotopage) {
           setState(() {
@@ -39,7 +41,9 @@ class _NavigationControllState extends State<NavigationControll> {
           });
         },
         backgroundColor: Colors.transparent,
-        color: Color(0xffD0F1EB), // Use a single color instead of a gradient
+        //color: Color(0xff3CA377),
+        color: Colors.transparent,
+        //color: Color(0xffD0F1EB), // Use a single color instead of a gradient
         height: 65,
       ),
     );

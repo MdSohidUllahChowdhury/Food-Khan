@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:food_khan/view/auth/log_in.dart';
 import 'package:food_khan/view/screens/profile/location.dart';
-import 'package:food_khan/view/screens/profile/bio_data.dart';
 import 'package:food_khan/view/screens/profile/wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -132,14 +131,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ),
                                 const SizedBox(height: 4),
-                                // Text(
-                                //   "Bangladesh,Dhaka",
-                                //   style: GoogleFonts.poppins(
-                                //     fontSize: 12,
-                                //     color: Colors.grey[700],
-                                //   ),
-                                // ),
-                                // const SizedBox(height: 4),
+                                
                                 Text(
                                   data["Phone"] ?? 0181111111,
                                   style: GoogleFonts.poppins(
@@ -154,39 +146,22 @@ class _ProfileState extends State<Profile> {
                       },
                     ),
                     Spacer(),
-                    Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Color(0xff191D21),
-                          radius: 23,
-                          child: IconButton(
-                            onPressed: () {
-                              Get.to(() => BioDataScreen());
-                            },
-                            icon: Icon(
-                              FontAwesomeIcons.tools,
-                              color: Colors.white,
-                            ),
-                          ),
+                    SizedBox(height: 4),
+                    CircleAvatar(
+                      backgroundColor: Colors.orange,
+                      radius: 18,
+                      child: IconButton(
+                        onPressed: () async {
+                          await auth.signOut().then(
+                            (value) => Get.offAll(() => const Login()),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.exit_to_app_rounded,
+                          color: Colors.black,
+                          size: 20,
                         ),
-                        SizedBox(height: 4),
-                        CircleAvatar(
-                          backgroundColor: Colors.orange,
-                          radius: 23,
-                          child: IconButton(
-                            onPressed: () async {
-                              await auth.signOut().then(
-                                (value) => Get.offAll(() => const Login()),
-                              );
-                            },
-                            icon: Icon(
-                              Icons.exit_to_app_rounded,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
@@ -195,14 +170,13 @@ class _ProfileState extends State<Profile> {
               SizedBox(height: 30),
               ListTile(
                 shape: RoundedRectangleBorder(
-                  // Add rounded corners
                   borderRadius: BorderRadius.circular(16),
                 ),
                 tileColor: Colors.white,
                 onTap: () {
                   Get.to(() => const LocationScreen());
                 },
-                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                contentPadding: const EdgeInsets.symmetric(horizontal:10),
                 leading: Icon(
                   FontAwesomeIcons.mapMarkerAlt,
                   size: 24,
@@ -210,7 +184,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 title: Text(
                   "Find Our Restaurent by Press on Location Icon",
-                  style: GoogleFonts.poppins(fontSize: 14),
+                  style: GoogleFonts.poppins(fontSize:10),
                 ),
               ),
               
@@ -224,7 +198,7 @@ class _ProfileState extends State<Profile> {
                 onTap: () {
                   Get.to(() => const Wallet());
                 },
-                contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 13),
                 leading: Icon(
                   FontAwesomeIcons.wallet,
                   size: 24,
@@ -232,7 +206,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 title: Text(
                   "Add Money to Your Wallet by Press on Wallet Icon",
-                  style: GoogleFonts.poppins(fontSize: 14),
+                  style: GoogleFonts.poppins(fontSize: 10),
                 ),
               ),
               Expanded(child: SizedBox(height: 12)),
@@ -251,7 +225,6 @@ class _ProfileState extends State<Profile> {
               Animate(
                     child: GlassContainer(
                       height: 200,
-                      //width: 400,
                       borderRadius: BorderRadius.all(Radius.circular(16)),
                       gradient: LinearGradient(
                         colors: [
@@ -274,7 +247,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       blur: 15.0,
                       borderWidth: 1.5,
-                      elevation: 3.0,
+                      //elevation: 3.0,
                       isFrostedGlass: true,
                       shadowColor: Colors.black.withOpacity(0.20),
                       alignment: Alignment.center,
@@ -324,6 +297,7 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                   onPressed: () {
+                    Get.snackbar('Updated', 'Stay with us for your best food',backgroundColor: Colors.amber);
                     // handle update
                   },
                   child: Text(

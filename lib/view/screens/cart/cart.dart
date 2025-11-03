@@ -19,10 +19,10 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff191D21),
-        toolbarHeight: 30,
+        toolbarHeight: 100,
         elevation: 0,
         title: const Text(
-          "Your Food Cart",
+          "Favorite Cart",
           style: TextStyle(
             fontSize: 20,
             color: Colors.white,
@@ -30,44 +30,46 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ),
         actions: [
-          CircleAvatar(
-            backgroundColor: Colors.amber,
-            radius: 40,
-            child: IconButton(
-              onPressed: () {
-                Get.snackbar(
-                  'All Favorite Item Clear',
-                  'Add item to cart the it will appare here',
-                  backgroundColor: Colors.red,
-                  snackPosition: SnackPosition.TOP,
-                );
-                cart.clearCart();
-              },
-              icon: Icon(
-                FontAwesomeIcons.solidTrashCan,
-                size: 16,
-                color: Colors.black,
-              ),
+          IconButton(
+            onPressed: () {
+              Get.snackbar(
+                'All Favorite Item Clear',
+                'Add item to cart the it will appare here',
+                backgroundColor: Colors.red,
+                snackPosition: SnackPosition.TOP,
+              );
+              cart.clearCart();
+            },
+            icon: Icon(
+              FontAwesomeIcons.solidTrashCan,
+              size: 16,
+              color: Colors.white,
             ),
           ),
         ],
       ),
-
-      body: Consumer<CartController>(
-        builder:
-            (context, provider, child) => Column(
-              children: [
-                const SizedBox(height: 15),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: provider.cart.length,
-                    itemBuilder: (context, index) {
-                      return CartDemo(item: provider.cart[index]);
-                    },
+//backgroundColor: Colors.amber.shade600,
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.amber.shade600,
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(36),topRight: Radius.circular(36))
+        ),
+        child: Consumer<CartController>(
+          builder:
+              (context, provider, child) => Column(
+                children: [
+                  const SizedBox(height: 15),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: provider.cart.length,
+                      itemBuilder: (context, index) {
+                        return CartDemo(item: provider.cart[index]);
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+        ),
       ),
     );
   }

@@ -8,13 +8,21 @@ Widget cardChips(Color BgColor, Image BGImage) {
     },
     child: Container(
       margin: EdgeInsets.only(top: 10,left: 10),
-      height: 64,
-      width: 103.64,
+      height: 34,
+      width:90,
       decoration: BoxDecoration(
         color: BgColor,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: BGImage,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          BGImage,
+          Text('Burgger',style: TextStyle(
+            fontSize: 10
+          ),)
+        ],
+      ),
     ),
   );
 }
