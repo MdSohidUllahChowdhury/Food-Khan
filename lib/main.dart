@@ -22,6 +22,7 @@ void main() async {
     ChangeNotifierProvider(
       create: (context) => CartController(),
       child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         home: CheckUserLogin(),
         theme: ThemeData(
           scaffoldBackgroundColor: Color(0xff191D21),

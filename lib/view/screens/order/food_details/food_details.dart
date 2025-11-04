@@ -95,7 +95,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                                   'Added to Favorite',
                                   'Successfully Added',
                                   backgroundColor: Colors.white,
-                                  snackPosition: SnackPosition.BOTTOM,
+                                  snackPosition: SnackPosition.TOP,
                                 );
                                 providerCall.adtoCart(widget.product);
                               } else {
@@ -103,7 +103,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                                   'Removed from Favorite',
                                   'Successfully Removed',
                                   backgroundColor: Colors.white,
-                                  snackPosition: SnackPosition.BOTTOM,
+                                  snackPosition: SnackPosition.TOP,
                                 );
                                 providerCall.removeFromCart(widget.product);
                               }
