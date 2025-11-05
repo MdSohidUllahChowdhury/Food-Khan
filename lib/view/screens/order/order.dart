@@ -20,7 +20,7 @@ class _OrderState extends State<Order> {
     return Scaffold(
       body: Column(
         children: [
-          BarSection(),
+          BarSection(context),
           Expanded(
             child: FutureBuilder<List<MenuInfo>>(
               future: _service.fetcTodatSpecialMenu(),
@@ -58,7 +58,7 @@ class _OrderState extends State<Order> {
                           left: 4,
                           right: 4,
                         ),
-                        padding: const EdgeInsets.all(12),
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
                         decoration: BoxDecoration(
                           color: item.background_color ?? Colors.white,
                           borderRadius: BorderRadius.circular(16),
@@ -66,17 +66,37 @@ class _OrderState extends State<Order> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Container(
+                              height: 35,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(50),
+                                  bottomRight: Radius.circular(50),
+                                ),
+                              ),
+
+                              child: Center(
+                                child: Text(
+                                  '\$${item.price}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                              ),
+                            ),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.18,
                               width: double.infinity,
                               child:
                                   item.imageUrl.isNotEmpty
-                                      ? Image.network(
-                                        item.imageUrl,
-                                      )
+                                      ? Image.network(item.imageUrl)
                                       : const SizedBox.shrink(),
                             ),
-                            const SizedBox(height: 8),
+                            const SizedBox(height: 4),
                             Text(
                               item.name,
                               style: const TextStyle(
@@ -118,7 +138,7 @@ class _OrderState extends State<Order> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 4),
                             Row(
                               children: [
                                 const Text(

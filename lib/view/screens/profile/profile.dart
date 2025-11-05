@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:food_khan/view/auth/log_in.dart';
@@ -151,11 +152,47 @@ class _ProfileState extends State<Profile> {
                       backgroundColor: Colors.orange,
                       radius: 18,
                       child: IconButton(
-                        onPressed: () async {
-                          await auth.signOut().then(
-                            (value) => Get.offAll(() => const Login()),
-                          );
+                        onPressed: () {
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.warning,
+                            borderSide: const BorderSide(
+                              color: Colors.yellow,
+                              width: 2,
+                            ),
+                            width: 280,
+                            buttonsBorderRadius: const BorderRadius.all(
+                              Radius.circular(2),
+                            ),
+                            dismissOnTouchOutside: true,
+                            dismissOnBackKeyPress: false,
+                            // onDismissCallback: (type) {
+                            //   ScaffoldMessenger.of(context).showSnackBar(
+                            //     SnackBar(
+                            //       content: Text('Dismissed by $type'),
+                            //     ),
+                            //   );
+                            // },
+                            headerAnimationLoop: false,
+                            animType: AnimType.bottomSlide,
+                            title: 'Are You Sure?',
+                            desc: 'Are You Want to Log Out?',
+                            showCloseIcon: false,
+                            btnOkText: 'Log Out',
+
+                            btnCancelOnPress: () {},
+                            btnOkOnPress: () async {
+                              await auth.signOut().then(
+                                (value) => Get.offAll(() => const Login()),
+                              );
+                            },
+                          ).show();
                         },
+                        // onPressed: () async {
+                        //   await auth.signOut().then(
+                        //     (value) => Get.offAll(() => const Login()),
+                        //   );
+                        // },
                         icon: Icon(
                           Icons.exit_to_app_rounded,
                           color: Colors.black,
@@ -278,10 +315,10 @@ class _ProfileState extends State<Profile> {
                     ),
                   )
                   .animate()
-                  .fadeIn(duration: const Duration(seconds: 2))
+                  .fadeIn(duration: const Duration(seconds: 1))
                   .shimmer(
                     color: Colors.black,
-                    duration: const Duration(seconds: 14),
+                    duration: const Duration(seconds:1),
                   ),
 
               const Spacer(),

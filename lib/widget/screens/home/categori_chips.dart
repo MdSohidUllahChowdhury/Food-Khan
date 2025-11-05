@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:food_khan/widget/auth/tost_alert.dart';
 
-Widget cardChips(Color BgColor, Image BGImage) {
+Widget categorieChips(Color BgColor, Image BGImage) {
   return InkWell(
     onTap: () {
-      Get.snackbar("The Feature is Coming Soon", "Development is in Progress",backgroundColor: Color(0xffD0F1EB),);
+      TostMessage().upcoming("The Feature is Coming Soon");
     },
     child: Container(
       margin: EdgeInsets.only(top: 10,left: 10),
@@ -12,7 +12,8 @@ Widget cardChips(Color BgColor, Image BGImage) {
       width:90,
       decoration: BoxDecoration(
         color: BgColor,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white,width: 2)
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

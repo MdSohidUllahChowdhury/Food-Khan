@@ -1,14 +1,18 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:food_khan/controller/firebase/order_info.dart';
+import 'package:food_khan/controller/routes/navigation_bar.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/utils.dart';
 
 class DeliveryCheckOut extends StatefulWidget {
+  
   final String totalPrice;
   final String foodName;
   final String foodQuantity;
+  
   const DeliveryCheckOut({
     required this.totalPrice,
     required this.foodName,
@@ -21,14 +25,15 @@ class DeliveryCheckOut extends StatefulWidget {
 }
 
 class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
+  
   final formkeyAddress = GlobalKey<FormState>();
   final formkeyNumber = GlobalKey<FormState>();
-  final TextEditingController _addressController = TextEditingController();
-  final TextEditingController _mobileController = TextEditingController();
-  bool isRequired = true;
+  final _addressController = TextEditingController();
+  final _mobileController = TextEditingController();
   String _maleType = 'Male';
   String _paymentMethod = 'Cash On Delivery';
   String _doorDelivery = 'Door Delivery';
+  bool isRequired = true;
 
   @override
   Widget build(BuildContext context) {
@@ -55,17 +60,8 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Delivery',
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(height: 20),
 
-              //** */ Address Section
+              //! Address Section
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -109,7 +105,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                           hintText: 'Gulshan 2, Road 12, House 435, Dhaka',
                           prefixIcon: Icon(
                             FontAwesomeIcons.mapMarkerAlt,
-                            color: Colors.orange,
+                            color: Colors.red,
                             size: 20,
                           ),
                         ),
@@ -119,7 +115,8 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                 ),
               ),
               SizedBox(height: 20),
-
+              
+              //! Mobile Section
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -175,7 +172,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
               SizedBox(height: 20),
 
-              //** */ Delivery Rider Section
+              //! Delivery Rider Section
               Text(
                 'Delivery Rider Type.',
                 style: TextStyle(fontWeight: FontWeight.w600),
@@ -191,7 +188,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                       color: Colors.grey.withOpacity(0.1),
                       spreadRadius: 3,
                       blurRadius: 5,
-                      offset: const Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3)
                     ),
                   ],
                 ),
@@ -225,7 +222,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
               SizedBox(height: 20),
 
-              //** */ Payment Method
+              //! Payment Method
               Text(
                 'Payment Method',
                 style: TextStyle(fontWeight: FontWeight.w600),
@@ -309,7 +306,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
               SizedBox(height: 20),
 
-              //** */ Delivery Method
+              //! Delivery Method
               Text(
                 'Delivery Method.',
                 style: TextStyle(fontWeight: FontWeight.w600),
@@ -359,7 +356,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
 
               SizedBox(height: 20),
-              //** */ Food Name
+              //! Food Name
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -372,7 +369,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
               SizedBox(height: 20),
 
-              //** */ Total Price
+              //! Total Price
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -385,7 +382,7 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
               ),
               SizedBox(height: 20),
 
-              //** */ Total Quantity
+              //! Total Quantity
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -397,6 +394,8 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                 ],
               ),
               SizedBox(height: 20),
+              
+              //! Confirm Botton
               SizedBox(
                 width: double.infinity,
                 height: 60,
@@ -417,20 +416,32 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                       };
 
                       final User? user = FirebaseAuth.instance.currentUser;
-
                       OrderInfo().paymentSteps(collection, user!.uid);
-                      Get.snackbar(
-                        'Successfully Confirmed Order',
-                        'Stay with us for for the best food',
-                        backgroundColor: Colors.orange,
-                        colorText: Colors.white,
-                        duration: Duration(seconds: 3),
-                      );
+
+                      AwesomeDialog(
+                        context: context,
+                        animType: AnimType.leftSlide,
+                        headerAnimationLoop: false,
+                        dialogType: DialogType.success,
+                        showCloseIcon: false,
+                        title: 'Successfully Confirmed Order',
+                        desc: 'Stay with us for the best food',
+                        btnOkOnPress: () {
+                          Get.to(() => NavigationControll());
+                        },
+                        btnOkIcon: Icons.check_circle,
+                        btnOkText: 'Done',
+                        onDismissCallback: (type) {
+                          debugPrint('Dialog Dissmiss from callback $type');
+                        },
+                      ).show();
+                    
                     } else {
                       isRequired = true;
                       return;
                     }
                   },
+                  
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orange,
                     shape: RoundedRectangleBorder(
@@ -438,8 +449,8 @@ class _DeliveryCheckOutState extends State<DeliveryCheckOut> {
                     ),
                   ),
                   child: Text(
-                    'Order Confirm',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    'Confirm Order',
+                    style: TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.w700),
                   ),
                 ),
               ),

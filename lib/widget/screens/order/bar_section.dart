@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-Widget BarSection() {
+Widget BarSection(BuildContext context) {
   return Stack(
     children: [
       Container(
-        height: 320,
+        height: MediaQuery.of(context).size.height*.329,
         width: 355,
         decoration: BoxDecoration(
           color: Color(0xffFFAC4B),
@@ -18,9 +18,8 @@ Widget BarSection() {
         ),
       ),
       Column(
-        //mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 55),
+          SizedBox(height: 30),
           Align(
             alignment: Alignment.topLeft,
             child: IconButton(
@@ -30,22 +29,23 @@ Widget BarSection() {
               icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 24),
             ),
           ),
-
           Align(
             alignment: Alignment.topLeft,
             child: Text(
               '    Restaurant  Takeaway',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100,color: Colors.black54),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400,color: Colors.black54),
             ),
           ),
           Align(
             alignment: Alignment.topLeft,
             child: Text(
               '  Fast Food',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 35, fontWeight: FontWeight.w700,),
             ),
           ),
-          Image.asset('lib/asset/image/food_girl.png', fit: BoxFit.fitWidth),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Image.asset('lib/asset/image/food_girl.png',height: 155,)),
         ],
       ),
     ],
