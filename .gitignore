@@ -43,3 +43,12 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Project-specific controller folders to ignore (sensitive local configs)
+lib/controller/api/
+lib/controller/firebase/
+lib/controller/supabae/
+
+# IDE / metadata files
+application_backend.iml
+.metadata
