@@ -24,10 +24,9 @@ Explore a world of cuisine with stunning visual food displays and complete menu 
 ## 🎯 Key features
 
 - Creat user account via Firebase Auth
-- Display menu items pulled from Supabase
+- Display food items and details pulled from Supabase
 - Detail screen for each item with add-to-cart support (Provider)
 - Checkout flow with payment and delivery selection
-- Defensive parsing for backend data (hex color → Color)
 
 ---
 
@@ -58,48 +57,5 @@ This mix keeps business logic testable (controllers) while keeping UI code in vi
 - UI libs: `google_fonts`, `font_awesome_flutter`, `flutter_animate`, `avatar_glow`
 
 ---
-
-## 🚀 Development — quick start
-
-### Prerequisites
-
-- Flutter SDK (see `pubspec.yaml` for the Dart SDK constraint)
-- Android SDK or Xcode
-- A Supabase project (URL + anon key)
-
-### Run locally
-
-1. Clone and enter the repo
-
-```bash
-git clone <https://github.com/MdSohidUllahChowdhury/Food-Khan>
-cd "food khan"
-```
-
-2. Install dependencies
-
-```bash
-flutter pub get
-```
-
-3. Run with Supabase credentials (recommended)
-
-```bash
-flutter run \
-  --dart-define=SUPABASE_URL=https://your-project.supabase.co \
-  --dart-define=SUPABASE_ANON_KEY=your_anon_key
-```
-
-4. If you modified native assets, regenerate icons and clean build
-
-```bash
-flutter pub run flutter_launcher_icons:main
-flutter clean
-flutter run
-```
-
----
-
-## 📄 License
 
 MIT — see `LICENSE` in the repository root.
