@@ -1,6 +1,12 @@
 # 🍽️ Food Khan — (Flutter Mobile App)
 
-An approachable Flutter demo app showing food menu powered by Supabase with Firebase initialization available. The app uses Provider for app-level state (cart), GetX for navigation and lightweight UI helpers, and follows an MVC-inspired project structure for maintainable code.
+Welcome to the ultimate Food app experience, built with Flutter for blazing-fast performance. Take the hassle out of deciding what to eat, letting you focus on the delicious part!
+
+Explore a world of cuisine with stunning visual food displays and complete menu access. Once you've made your choice, our intuitive interface guides you from food details straight to a quick checkout. Manage your budget and enjoy a secure COD payment process for every order. Your cart keeps everything organized, and we use precise location services to ensure your food arrives fresh and fast.
+
+---
+
+![image alt](https://github.com/MdSohidUllahChowdhury/Food-Khan/blob/main/lib/asset/image/food_khan_screen_shorts.png)
 
 ---
 
@@ -11,10 +17,7 @@ An approachable Flutter demo app showing food menu powered by Supabase with Fire
 - Provider for app-wide state
 - GetX for concise navigation and snackbars
 - MVC-style organization: Models, Views (screens/widgets), Controllers (services/providers)
-
----
-
-![App Icon](lib/asset/image/splashLogo.png)
+  
 
 ---
 
