@@ -1,0 +1,102 @@
+# 🍽️ Food Khan — (Flutter Mobile App)
+
+An approachable Flutter demo app showing food menu powered by Supabase with Firebase initialization available. The app uses Provider for app-level state (cart), GetX for navigation and lightweight UI helpers, and follows an MVC-inspired project structure for maintainable code.
+
+---
+
+## 🚀 Quick summary
+
+- Supabase-driven (REST + optional realtime stream)
+- Firebase initialized (ready for auth / User Data Collection / analytics)
+- Provider for app-wide state
+- GetX for concise navigation and snackbars
+- MVC-style organization: Models, Views (screens/widgets), Controllers (services/providers)
+
+---
+
+![App Icon](lib/asset/image/splashLogo.png)
+
+---
+
+## 🎯 Key features
+
+- Creat user account via Firebase Auth
+- Display menu items pulled from Supabase
+- Detail screen for each item with add-to-cart support (Provider)
+- Checkout flow with payment and delivery selection
+- Defensive parsing for backend data (hex color → Color)
+
+---
+
+## 🏗 Architecture & Patterns
+
+The project follows an MVC-style separation:
+
+- Models: `lib/database/*` — data classes (e.g. `MenuInfo`) and `fromJson` parsing
+- Views: `lib/view/*` and `lib/widget/*` — UI screens and reusable components
+- Controllers: `lib/controller/*` — Supabase/Firebase services and Provider controllers
+
+State & navigation approach:
+
+- Provider: single source of truth for shared app state (cart, user session)
+- GetX (`get`): navigation helpers and lightweight UI utilities (snackbars, `Get.to`)
+
+This mix keeps business logic testable (controllers) while keeping UI code in view layers.
+
+---
+
+## 🛠 Tech stack
+
+- Flutter & Dart
+- Supabase (`supabase_flutter`) for backend data and optional realtime
+- Firebase (`firebase_core`, `firebase_auth`, `cloud_firestore`) — init code present
+- Provider — state management
+- GetX (`get`) — routing and UI helpers
+- UI libs: `google_fonts`, `font_awesome_flutter`, `flutter_animate`, `avatar_glow`
+
+---
+
+## 🚀 Development — quick start
+
+### Prerequisites
+
+- Flutter SDK (see `pubspec.yaml` for the Dart SDK constraint)
+- Android SDK or Xcode
+- A Supabase project (URL + anon key)
+
+### Run locally
+
+1. Clone and enter the repo
+
+```bash
+git clone <https://github.com/MdSohidUllahChowdhury/Food-Khan>
+cd "food khan"
+```
+
+2. Install dependencies
+
+```bash
+flutter pub get
+```
+
+3. Run with Supabase credentials (recommended)
+
+```bash
+flutter run \
+  --dart-define=SUPABASE_URL=https://your-project.supabase.co \
+  --dart-define=SUPABASE_ANON_KEY=your_anon_key
+```
+
+4. If you modified native assets, regenerate icons and clean build
+
+```bash
+flutter pub run flutter_launcher_icons:main
+flutter clean
+flutter run
+```
+
+---
+
+## 📄 License
+
+MIT — see `LICENSE` in the repository root.

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_khan/widget/auth/tost_alert.dart';
 
-Widget categorieChips(Color BgColor, Image BGImage) {
+Widget categorieChips(Color BgColor, Image BGImage,String categorie_name) {
   return InkWell(
     onTap: () {
       TostMessage().upcoming("The Feature is Coming Soon");
@@ -19,8 +19,8 @@ Widget categorieChips(Color BgColor, Image BGImage) {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           BGImage,
-          Text('Burgger',style: TextStyle(
-            fontSize: 10
+          Text(categorie_name,style: TextStyle(
+            fontSize: 10,fontWeight: FontWeight.w600
           ),)
         ],
       ),
