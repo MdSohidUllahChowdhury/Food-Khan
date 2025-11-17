@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:glass_kit/glass_kit.dart';
 
-Widget Food_DP(String foodImage,) {
+Widget Food_DP(String foodImage, BuildContext context) {
   return GlassContainer(
-    height: 220,
-    width: 400,
-    borderRadius: BorderRadius.all(Radius.circular(16)),
+    height: MediaQuery.of(context).size.height * 0.3,
+    width: MediaQuery.of(context).size.width * 0.95,
+    borderRadius: BorderRadius.all(Radius.circular(8)),
     gradient: LinearGradient(
       colors: [Colors.white.withOpacity(0.40), Colors.white.withOpacity(0.10)],
       begin: Alignment.topLeft,
@@ -47,7 +47,7 @@ Widget Food_DP(String foodImage,) {
           //color: Colors.white,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Image(image: NetworkImage(foodImage),),
+        child: Image(image: NetworkImage(foodImage)),
       ),
     ).animate().flipH(duration: Duration(seconds: 2)),
   );

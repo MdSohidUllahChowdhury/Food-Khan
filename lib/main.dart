@@ -16,7 +16,7 @@ void main() async {
   // Initialize Supabase
   await Supabase.initialize(
     url: SupabaseAPI().url,
-    anonKey: SupabaseAPI().anonKey
+    anonKey: SupabaseAPI().anonKey,
   );
   runApp(
     ChangeNotifierProvider(
@@ -26,8 +26,9 @@ void main() async {
         home: CheckUserLogin(),
         theme: ThemeData(
           scaffoldBackgroundColor: Color(0xff191D21),
-          useMaterial3: true, 
-          fontFamily: GoogleFonts.dmSans().fontFamily,)
+          useMaterial3: true,
+          fontFamily: GoogleFonts.jost().fontFamily,
+        ),
       ),
     ),
   );

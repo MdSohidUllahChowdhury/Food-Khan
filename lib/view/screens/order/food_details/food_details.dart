@@ -51,6 +51,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
           "Food Details",
           style: TextStyle(
             fontSize: 20,
+            letterSpacing: 1.4,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -61,10 +62,10 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            Food_DP(widget.product.imageUrl),
-            const SizedBox(height: 15),
+            Food_DP(widget.product.imageUrl, context),
+            const SizedBox(height: 20),
 
-            //* Favorite Button and add to Cart 
+            //* Favorite Button and add to Cart
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -72,6 +73,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                   "Add to Favorite",
                   style: TextStyle(
                     fontSize: 18,
+                    letterSpacing: 1.4,
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                   ),
@@ -84,7 +86,8 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     shape: const CircleBorder(),
                     child: CircleAvatar(
                       radius: 20,
-                      backgroundColor: widget.product.background_color ?? Colors.white,
+                      backgroundColor:
+                          widget.product.background_color ?? Colors.white,
                       child: Center(
                         child: InkWell(
                           onTap: () {
@@ -121,20 +124,20 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ),
               ],
             ),
-            const SizedBox(height: 22),
+            const SizedBox(height: 25),
 
             //* Product Name and Description
             Container(
               margin: const EdgeInsets.only(bottom: 25),
-              height: 200,
+              height: MediaQuery.of(context).size.height * 0.25,
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: const Color(0xff191D21),
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.shade400,
+                    color: Colors.grey.shade700,
                     blurRadius: 5,
                     offset: const Offset(0, 1),
                   ),
@@ -146,7 +149,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                   Text(
                     widget.product.name.toString().toUpperCase(),
                     style: const TextStyle(
-                      fontSize: 22,
+                      fontSize: 26,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -157,19 +160,19 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                   const Text(
                     "Mexican food truck serving tacos, burritos, and quesadillas. The Taco Truck is a popular food truck that serves delicious Mexican cuisine.",
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 13,
                       color: Colors.white,
                       fontWeight: FontWeight.w100,
                       letterSpacing: 1.2,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  Expanded(child: const SizedBox(height: 10)),
                   const Divider(color: Color(0xff42D674), thickness: 5),
                   const Divider(color: Color(0xffffffff), thickness: 5),
                 ],
               ),
             ),
-            
+
             //* Qunatity Up and Down + -
             SizedBox(
               height: 50,
@@ -240,10 +243,10 @@ class _FoodDetaillsState extends State<FoodDetaills> {
               ),
             ),
             const SizedBox(height: 20),
-            
+
             //** Price and Order Now Button
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Animate(
                       child: CircleAvatar(
@@ -274,7 +277,11 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ElevatedButton(
                   onPressed: () {
                     Get.to(
-                      () => DeliveryCheckOut(totalPrice: price.toString(),foodName: widget.product.name,foodQuantity: quantity.toString(),),
+                      () => DeliveryCheckOut(
+                        totalPrice: price.toString(),
+                        foodName: widget.product.name,
+                        foodQuantity: quantity.toString(),
+                      ),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -299,7 +306,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                 ),
               ],
             ),
-            SizedBox(height:15),
+            SizedBox(height: 15),
           ],
         ),
       ),
