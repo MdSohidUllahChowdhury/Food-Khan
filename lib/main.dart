@@ -1,4 +1,4 @@
-import 'package:food_khan/controller/api/supabase_api.dart';
+import 'package:food_khan/controller/supabase/supabase_api.dart';
 import 'package:food_khan/controller/routes/check_user_login.dart';
 import 'package:food_khan/controller/firebase/firebase_options.dart';
 import 'package:food_khan/controller/provider/cart_provider.dart';
