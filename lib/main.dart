@@ -1,6 +1,7 @@
 import 'package:food_khan/controller/supabase/supabase_api.dart';
-import 'package:food_khan/controller/routes/check_user_login.dart';
+import 'package:food_khan/view/auth/splash.dart';
 import 'package:food_khan/controller/firebase/firebase_options.dart';
+import 'package:food_khan/controller/firebase/session_manager.dart';
 import 'package:food_khan/controller/provider/cart_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // Initialize SessionManager for auto logout
+  await SessionManager.initialize();
   // Initialize Supabase
   await Supabase.initialize(
     url: SupabaseAPI().url,
@@ -23,7 +26,7 @@ void main() async {
       create: (context) => CartController(),
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: CheckUserLogin(),
+        home: const SplashScreen(),
         theme: ThemeData(
           scaffoldBackgroundColor: Color(0xff191D21),
           useMaterial3: true,

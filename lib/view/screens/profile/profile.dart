@@ -1,7 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:food_khan/view/auth/log_in.dart';
+import 'package:food_khan/controller/firebase/session_manager.dart';
 import 'package:food_khan/view/screens/profile/location.dart';
 import 'package:food_khan/view/screens/profile/wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -158,41 +158,29 @@ class _ProfileState extends State<Profile> {
                             dialogType: DialogType.warning,
                             borderSide: const BorderSide(
                               color: Colors.yellow,
-                              width: 2,
+                              width: 1,
                             ),
-                            width: 280,
+                            width: 380,
                             buttonsBorderRadius: const BorderRadius.all(
                               Radius.circular(2),
                             ),
                             dismissOnTouchOutside: true,
                             dismissOnBackKeyPress: false,
-                            // onDismissCallback: (type) {
-                            //   ScaffoldMessenger.of(context).showSnackBar(
-                            //     SnackBar(
-                            //       content: Text('Dismissed by $type'),
-                            //     ),
-                            //   );
-                            // },
                             headerAnimationLoop: false,
                             animType: AnimType.bottomSlide,
                             title: 'Are You Sure?',
                             desc: 'Are You Want to Log Out?',
                             showCloseIcon: false,
-                            btnOkText: 'Log Out',
+                            btnOkText: 'Yes',
+                            btnCancelText: 'No',
 
                             btnCancelOnPress: () {},
                             btnOkOnPress: () async {
-                              await auth.signOut().then(
-                                (value) => Get.offAll(() => const Login()),
-                              );
+                              // Use SessionManager for secure logout
+                              await SessionManager.instance.logout();
                             },
                           ).show();
                         },
-                        // onPressed: () async {
-                        //   await auth.signOut().then(
-                        //     (value) => Get.offAll(() => const Login()),
-                        //   );
-                        // },
                         icon: Icon(
                           Icons.exit_to_app_rounded,
                           color: Colors.black,
@@ -318,7 +306,7 @@ class _ProfileState extends State<Profile> {
                   .fadeIn(duration: const Duration(seconds: 1))
                   .shimmer(
                     color: Colors.black,
-                    duration: const Duration(seconds:1),
+                    duration: const Duration(seconds: 1),
                   ),
 
               const Spacer(),

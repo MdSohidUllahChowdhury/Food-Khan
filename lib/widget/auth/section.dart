@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SectionName extends StatelessWidget {
-    final TextEditingController? authControler;
+  final TextEditingController? authControler;
 
   final String nameit;
   final bool? forpassword;
@@ -20,11 +20,12 @@ class SectionName extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 25),height: MediaQuery.of(context).size.height*.060,
+      margin: const EdgeInsets.symmetric(horizontal: 25),
+      height: MediaQuery.of(context).size.height * .060,
       child: TextFormField(
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.next,
-        controller:authControler,
+        controller: authControler,
         validator:
             isRequired == true
                 ? (String? value) {
