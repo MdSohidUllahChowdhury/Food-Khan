@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:food_khan/controller/routes/navigation_bar.dart';
+import 'package:get/route_manager.dart';
 
 Widget BarSection(BuildContext context) {
   return Stack(
@@ -23,9 +25,9 @@ Widget BarSection(BuildContext context) {
             alignment: Alignment.topLeft,
             child: IconButton(
               onPressed: () {
-                //Get.to(() => NavigationControll());
+                Get.to(() => NavigationControll());
               },
-              icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 24),
+              icon: Icon(FontAwesomeIcons.solidArrowAltCircleLeft, size: 30),
             ),
           ),
           Align(

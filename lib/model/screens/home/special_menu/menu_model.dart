@@ -39,4 +39,6 @@ class MenuInfo {
       //createdAt: DateTime.parse(json['created_at']),
     );
   }
+
+  get quantity => null;
 }

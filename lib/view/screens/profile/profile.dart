@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
   final fireBaseData = FirebaseAuth.instance;
   String selectedPayment = 'Card';
   final auth = FirebaseAuth.instance;
-  late ValueNotifier<int> _refreshTrigger = ValueNotifier(0);
+  late final ValueNotifier<int> _refreshTrigger = ValueNotifier(0);
   String? _profileImageUrl;
 
   @override

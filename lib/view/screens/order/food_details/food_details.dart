@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
 import 'package:food_khan/controller/provider/cart_provider.dart';
 import 'package:food_khan/view/screens/order/payment/delivery_info.dart';
@@ -94,20 +95,56 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                             setState(() {
                               fill = !fill;
                               if (fill) {
-                                Get.snackbar(
-                                  'Added to Favorite',
-                                  'Successfully Added',
-                                  backgroundColor: Colors.white,
-                                  snackPosition: SnackPosition.TOP,
-                                );
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.success,
+                                  borderSide: BorderSide(
+                                    color:
+                                        widget.product.background_color ??
+                                        Colors.white,
+                                    width: 1,
+                                  ),
+                                  width: 380,
+                                  buttonsBorderRadius: const BorderRadius.all(
+                                    Radius.circular(2),
+                                  ),
+                                  dismissOnTouchOutside: true,
+                                  dismissOnBackKeyPress: false,
+                                  headerAnimationLoop: false,
+                                  animType: AnimType.bottomSlide,
+                                  title: 'Added to Favorite',
+                                  desc: 'Successfully Added',
+                                  showCloseIcon: false,
+                                  btnOkText: 'Done',
+                                  btnOkOnPress: () {},
+                                ).show();
+
                                 providerCall.adtoCart(widget.product);
                               } else {
-                                Get.snackbar(
-                                  'Removed from Favorite',
-                                  'Successfully Removed',
-                                  backgroundColor: Colors.white,
-                                  snackPosition: SnackPosition.TOP,
-                                );
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.infoReverse,
+                                  borderSide: BorderSide(
+                                    color:
+                                        widget.product.background_color ??
+                                        Colors.white,
+                                    width: 1,
+                                  ),
+                                  width: 380,
+                                  buttonsBorderRadius: const BorderRadius.all(
+                                    Radius.circular(2),
+                                  ),
+                                  dismissOnTouchOutside: true,
+                                  dismissOnBackKeyPress: false,
+                                  headerAnimationLoop: false,
+                                  animType: AnimType.bottomSlide,
+                                  title: 'Removed from Favorite',
+                                  desc: 'Successfully Removed',
+                                  showCloseIcon: false,
+                                  btnOkText: 'OK',
+                                  btnOkOnPress: () {},
+                                ).show();
+
                                 providerCall.removeFromCart(widget.product);
                               }
                             });

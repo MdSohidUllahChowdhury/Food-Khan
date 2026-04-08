@@ -22,7 +22,7 @@ class _CartScreenState extends State<CartScreen> {
         toolbarHeight: 100,
         elevation: 0,
         title: const Text(
-          "Favorite Cart",
+          "Favorite",
           style: TextStyle(
             fontSize: 20,
             color: Colors.white,
@@ -65,7 +65,7 @@ class _CartScreenState extends State<CartScreen> {
                     child: ListView.builder(
                       itemCount: provider.cart.length,
                       itemBuilder: (context, index) {
-                        return CartDemo(item: provider.cart[index]);
+                        return Cart_screen(item: provider.cart[index]);
                       },
                     ),
                   ),

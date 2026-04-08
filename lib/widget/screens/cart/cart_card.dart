@@ -7,11 +7,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-class CartDemo extends StatelessWidget {
-  const CartDemo({super.key, required this.item});
+class Cart_screen extends StatelessWidget {
+ const Cart_screen({required this.item, super.key});
 
   final MenuInfo item;
-
   @override
   Widget build(BuildContext context) {
     final providerCall = Provider.of<CartController>(context, listen: false);
@@ -24,7 +23,7 @@ class CartDemo extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
-            color: const Color(0xff191D21)
+            color: Colors.black.withAlpha(70),
           ),
           child: Row(
             children: [
@@ -39,15 +38,16 @@ class CartDemo extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item.name.toString(),
+                    item.name.toString().toUpperCase(),
                     style: const TextStyle(
                       fontFamily: 'Bold',
+                      wordSpacing: 3,
                       fontSize: 13,
                       color: Colors.white,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 4),
                   Text(
                     '\$${item.price.toString()}',
                     style: TextStyle(
@@ -57,34 +57,33 @@ class CartDemo extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
                         height: MediaQuery.of(context).size.height * .040,
-                        width: MediaQuery.of(context).size.width * .22,
+                        width: MediaQuery.of(context).size.width * .24,
                         margin: const EdgeInsets.only(top: 10),
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.red, width: 1),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.black, width: .8),
                         ),
 
                         child: Center(
                           child: Text(
-                            'Order',
+                            'ORDER NOW',
                             style: TextStyle(
-                              fontFamily: 'Bold',
-                              fontSize: 11,
-                              fontWeight: FontWeight.w800,
+                              fontFamily: 'beeno',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
                               color: Colors.black,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: MediaQuery.of(context).size.width*.18,),
+                      SizedBox(width: MediaQuery.of(context).size.width * .18),
                       IconButton(
                         onPressed: () {
                           Get.snackbar(
@@ -94,7 +93,11 @@ class CartDemo extends StatelessWidget {
                           );
                           providerCall.removeFromCart(item);
                         },
-                        icon: Icon(FontAwesomeIcons.solidTrashCan,size: 16,color:Colors.red),
+                        icon: Icon(
+                          FontAwesomeIcons.solidTrashCan,
+                          size: 16,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
