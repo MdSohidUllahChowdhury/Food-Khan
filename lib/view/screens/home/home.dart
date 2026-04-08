@@ -1,9 +1,10 @@
+import 'package:food_khan/controller/supabase/profile_image_service.dart';
 import 'package:food_khan/model/screens/home/featured_restaurant/show_restaurant.dart';
 import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
 import 'package:food_khan/model/screens/home/special_menu/show_special_menu.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
 import 'package:food_khan/view/screens/order/order.dart';
-import 'package:food_khan/view/screens/profile/profile.dart';
+import 'package:food_khan/view/screens/profile/change_pro_pic.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:food_khan/widget/style/styel.dart';
@@ -11,14 +12,15 @@ import 'package:food_khan/model/screens/home/categories.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
-
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  final TextEditingController searchController = TextEditingController();
+  final searchController = TextEditingController();
   List<MenuInfo> filteredProducts = [];
+  late final ValueNotifier<int> _refreshTrigger = ValueNotifier(0);
+  String? _profileImageUrl;
 
   void filterProducts() {
     final query = searchController.text.toLowerCase().trim();
@@ -36,11 +38,17 @@ class _HomeState extends State<Home> {
     }
   }
 
+  Future<void> _fetchProfileImage() async {
+    final url = await ProfileImageService().getUserProfileImageUrl();
+    if (mounted) setState(() => _profileImageUrl = url);
+  }
+
   @override
   void initState() {
     super.initState();
     searchController.addListener(() {
       filterProducts();
+      _fetchProfileImage();
     });
   }
 
@@ -64,12 +72,74 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () => Get.to(() => Profile()),
-                    child: const CircleAvatar(
-                      radius: 26,
-                      backgroundImage: NetworkImage(
-                        'https://avatars.githubusercontent.com/u/157578225?v=4',
-                      ),
+                    onTap: () {
+                      Get.to(
+                        () => ProfileScreen(
+                          onImageUpdated: (newUrl) {
+                            //Instantly update without waiting for FutureBuilder to re-run
+                            setState(() => _profileImageUrl = newUrl);
+                          },
+                        ),
+                      )?.then((_) {
+                        _refreshTrigger.value++;
+                      });
+                    },
+                    child: ValueListenableBuilder<int>(
+                      valueListenable: _refreshTrigger,
+                      builder: (context, refreshCount, _) {
+                        return FutureBuilder<String?>(
+                          key: ValueKey(refreshCount),
+                          future:
+                              ProfileImageService().getUserProfileImageUrl(),
+                          builder: (context, snapshot) {
+                            final imageUrl = snapshot.data;
+
+                            return Stack(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: Colors.blue,
+                                  radius: 32,
+                                  backgroundImage:
+                                      imageUrl != null
+                                          ? NetworkImage(imageUrl)
+                                          : null,
+                                  child:
+                                      imageUrl == null
+                                          ? const Icon(
+                                            Icons.person,
+                                            size: 50,
+                                            color: Colors.white,
+                                          )
+                                          : null,
+                                ),
+                                Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.orange,
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.orange.withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 4,
+                                        ),
+                                      ],
+                                    ),
+                                    padding: const EdgeInsets.all(6),
+                                    child: const Icon(
+                                      Icons.edit,
+                                      size: 12,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(width: 30),
@@ -133,7 +203,9 @@ class _HomeState extends State<Home> {
                                 backgroundColor: Colors.transparent,
                                 radius: 50,
                                 child: Image(
-                                  image: NetworkImage(product.imageUrl.trim().toString()),
+                                  image: NetworkImage(
+                                    product.imageUrl.trim().toString(),
+                                  ),
                                 ),
                               ),
                               subtitle: Align(
@@ -160,7 +232,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
 
-            const SizedBox(height:10),
+            const SizedBox(height: 10),
             Text("  Popular Categories", style: CustomTextStyle.title),
             CategoriModel(),
 
@@ -170,10 +242,11 @@ class _HomeState extends State<Home> {
               height: MediaQuery.of(context).size.height * 0.33,
               child: InkWell(
                 onTap: () => Get.to(() => Order()),
-                child: ShowData()),
+                child: ShowData(),
+              ),
             ),
 
-            const SizedBox(height:20),
+            const SizedBox(height: 20),
             Text("  Featured Restaurants", style: CustomTextStyle.title),
             SizedBox(height: 12),
             SizedBox(

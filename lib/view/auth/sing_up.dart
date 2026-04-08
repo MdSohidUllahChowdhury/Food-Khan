@@ -21,6 +21,7 @@ class _RegisterState extends State<Register> {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {

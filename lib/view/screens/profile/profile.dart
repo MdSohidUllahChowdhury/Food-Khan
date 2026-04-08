@@ -2,6 +2,8 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:food_khan/controller/firebase/session_manager.dart';
+import 'package:food_khan/controller/supabase/profile_image_service.dart';
+import 'package:food_khan/view/screens/profile/change_pro_pic.dart';
 import 'package:food_khan/view/screens/profile/location.dart';
 import 'package:food_khan/view/screens/profile/wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,6 +24,20 @@ class _ProfileState extends State<Profile> {
   final fireBaseData = FirebaseAuth.instance;
   String selectedPayment = 'Card';
   final auth = FirebaseAuth.instance;
+  late ValueNotifier<int> _refreshTrigger = ValueNotifier(0);
+  String? _profileImageUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchProfileImage();
+  }
+
+  Future<void> _fetchProfileImage() async {
+    final url = await ProfileImageService().getUserProfileImageUrl();
+    if (mounted) setState(() => _profileImageUrl = url);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,19 +73,83 @@ class _ProfileState extends State<Profile> {
                 ),
                 child: Row(
                   children: [
-                    // Avatar
-                    CircleAvatar(
-                      backgroundColor: Colors.amber,
-                      radius: 30,
-                      child: Image.network(
-                        'https://www.pngall.com/wp-content/uploads/20/Pop-Mart-Labubu-Unique-Art-Style-PNG.png',
-                        height: 80,
-                        width: 70,
+                    InkWell(
+                      onTap: () {
+                        Get.to(
+                          () => ProfileScreen(
+                            onImageUpdated: (newUrl) {
+                              // ✅ Instantly update without waiting for FutureBuilder to re-run
+                              setState(() => _profileImageUrl = newUrl);
+                            },
+                          ),
+                        )?.then((_) {
+                          _refreshTrigger.value++;
+                        });
+                      },
+                      child: ValueListenableBuilder<int>(
+                        valueListenable: _refreshTrigger,
+                        builder: (context, refreshCount, _) {
+                          return FutureBuilder<String?>(
+                            key: ValueKey(refreshCount),
+                            future:
+                                ProfileImageService()
+                                    .getUserProfileImageUrl(), // ✅ no argument
+                            builder: (context, snapshot) {
+                              final imageUrl = snapshot.data;
+
+                              return Stack(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.blue,
+                                    radius: 50,
+                                    backgroundImage:
+                                        imageUrl != null
+                                            ? NetworkImage(imageUrl)
+                                            : null,
+                                    child:
+                                        imageUrl == null
+                                            ? const Icon(
+                                              Icons.person,
+                                              size: 50,
+                                              color: Colors.white,
+                                            )
+                                            : null,
+                                  ),
+                                  Positioned(
+                                    bottom: 0,
+                                    right: 0,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.orange,
+                                        shape: BoxShape.circle,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.orange.withOpacity(
+                                              0.5,
+                                            ),
+                                            spreadRadius: 2,
+                                            blurRadius: 4,
+                                          ),
+                                        ],
+                                      ),
+                                      padding: const EdgeInsets.all(6),
+                                      child: const Icon(
+                                        Icons.edit,
+                                        size: 18,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(width: 10),
 
-                    //!!!!! Name and Email
+                    //!!!!! Name ,Email and Phone Number
                     Builder(
                       builder: (context) {
                         final uid = FirebaseAuth.instance.currentUser?.uid;
@@ -150,7 +230,7 @@ class _ProfileState extends State<Profile> {
                     SizedBox(height: 4),
                     CircleAvatar(
                       backgroundColor: Colors.orange,
-                      radius: 18,
+                      radius: 23,
                       child: IconButton(
                         onPressed: () {
                           AwesomeDialog(
@@ -184,7 +264,7 @@ class _ProfileState extends State<Profile> {
                         icon: Icon(
                           Icons.exit_to_app_rounded,
                           color: Colors.black,
-                          size: 20,
+                          size: 25,
                         ),
                       ),
                     ),

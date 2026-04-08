@@ -158,10 +158,31 @@ class _LoginState extends State<Login> {
                                     Get.offAll(
                                       () => const NavigationControll(),
                                     );
-                                  } catch (error) {
-                                    TostMessage().wrongMessage(
-                                      error.toString(),
-                                    );
+                                  } catch (e) {
+                                    String message = "Something went wrong";
+
+                                    if (e is FirebaseAuthException) {
+                                      switch (e.code) {
+                                        case 'invalid-credential':
+                                          message =
+                                              "Please check your email or password";
+                                          break;
+                                        case 'user-not-found':
+                                          message =
+                                              "No user found with this email";
+                                          break;
+                                        case 'wrong-password':
+                                          message = "Incorrect password";
+                                          break;
+                                        case 'invalid-email':
+                                          message = "Invalid email format";
+                                          break;
+                                        default:
+                                          message = "Authentication failed";
+                                      }
+                                    }
+
+                                    TostMessage().wrongMessage(message);
                                   }
                                 }
                               },

@@ -6,5 +6,6 @@ class Database {
         .collection("Auth User Informatin")
         .doc(id)
         .set(collection);
+        
   }
 }

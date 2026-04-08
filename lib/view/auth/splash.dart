@@ -14,8 +14,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   Future<void> _initializeApp() async {
-    // Wait for splash animation to complete
     await Future.delayed(const Duration(seconds: 4));
 
     // Check user authentication status
