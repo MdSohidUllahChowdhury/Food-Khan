@@ -12,7 +12,7 @@ class ForgotPassword extends StatefulWidget {
   State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-TextEditingController email = TextEditingController();
+final email = TextEditingController();
 final formKey = GlobalKey<FormState>();
 final auth = FirebaseAuth.instance;
 

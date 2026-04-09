@@ -17,7 +17,6 @@ Explore a world of cuisine with stunning visual food displays and complete menu 
 - Provider for app-wide state
 - GetX for concise navigation and snackbars
 - MVC-style organization: Models, Views (screens/widgets), Controllers (services/providers)
-  
 
 ---
 
@@ -27,6 +26,7 @@ Explore a world of cuisine with stunning visual food displays and complete menu 
 - Display food items and details pulled from Supabase
 - Detail screen for each item with add-to-cart support (Provider)
 - Checkout flow with payment and delivery selection
+- Profile picture feature
 
 ---
 

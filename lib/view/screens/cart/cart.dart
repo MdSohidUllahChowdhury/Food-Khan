@@ -15,7 +15,9 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+
     final cart = Provider.of<CartController>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff191D21),
@@ -48,6 +50,7 @@ class _CartScreenState extends State<CartScreen> {
           ),
         ],
       ),
+
       body: Container(
         decoration: BoxDecoration(
           color: Colors.grey.shade300,
@@ -65,7 +68,7 @@ class _CartScreenState extends State<CartScreen> {
                     child: ListView.builder(
                       itemCount: provider.cart.length,
                       itemBuilder: (context, index) {
-                        return Cart_screen(item: provider.cart[index]);
+                        return CartCard(item: provider.cart[index]);
                       },
                     ),
                   ),

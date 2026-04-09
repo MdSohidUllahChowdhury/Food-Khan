@@ -4,7 +4,7 @@ import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
 import 'package:food_khan/model/screens/home/special_menu/show_special_menu.dart';
 import 'package:food_khan/view/screens/order/food_details/food_details.dart';
 import 'package:food_khan/view/screens/order/order.dart';
-import 'package:food_khan/view/screens/profile/change_pro_pic.dart';
+import 'package:food_khan/view/screens/profile/add_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:food_khan/widget/style/styel.dart';
@@ -17,9 +17,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   final searchController = TextEditingController();
   List<MenuInfo> filteredProducts = [];
   late final ValueNotifier<int> _refreshTrigger = ValueNotifier(0);
+  // ignore: unused_field
   String? _profileImageUrl;
 
   void filterProducts() {

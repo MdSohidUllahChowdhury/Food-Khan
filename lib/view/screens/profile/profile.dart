@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:food_khan/controller/firebase/session_manager.dart';
 import 'package:food_khan/controller/supabase/profile_image_service.dart';
-import 'package:food_khan/view/screens/profile/change_pro_pic.dart';
+import 'package:food_khan/view/screens/profile/add_profile.dart';
 import 'package:food_khan/view/screens/profile/location.dart';
 import 'package:food_khan/view/screens/profile/wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,16 +15,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
-
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+
   final fireBaseData = FirebaseAuth.instance;
   String selectedPayment = 'Card';
   final auth = FirebaseAuth.instance;
   late final ValueNotifier<int> _refreshTrigger = ValueNotifier(0);
+  // ignore: unused_field
   String? _profileImageUrl;
 
   @override

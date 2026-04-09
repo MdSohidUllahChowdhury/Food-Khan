@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileImageService {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final SupabaseClient _supabase = Supabase.instance.client;
-
   final String _tableName = 'user_profile';
   final String _bucketName = 'avatars';
 
@@ -53,10 +53,10 @@ class ProfileImageService {
         onConflict: 'user_email', // must match a UNIQUE constraint on this column
       );
 
-      print('✅ Uploaded & saved: $imageUrl');
+      print('Uploaded & saved: $imageUrl');
       return imageUrl;
     } catch (e) {
-      print('❌ Upload error: $e');
+      print('Upload error: $e');
       if (e.toString().contains('403') || e.toString().contains('Unauthorized')) {
         throw Exception('Storage upload failed (403). Check Supabase RLS on "avatars" bucket.');
       }
@@ -82,7 +82,7 @@ class ProfileImageService {
           .update({'uploaded_image': null, 'updated_at': DateTime.now().toIso8601String()})
           .eq('user_email', userEmail);
     } catch (e) {
-      print('❌ Remove error: $e');
+      print('Remove error: $e');
       throw Exception('Failed to remove image. Please try again.');
     }
   }
@@ -100,10 +100,10 @@ class ProfileImageService {
           .maybeSingle();
 
       final url = response?['uploaded_image'] as String?;
-      print(url != null ? '✅ Found: $url' : '⚠️ No image for $userEmail');
+      print(url != null ? 'Found: $url' : 'No image for $userEmail');
       return url;
     } catch (e) {
-      print('❌ Fetch error: $e');
+      print('Fetch error: $e');
       return null;
     }
   }

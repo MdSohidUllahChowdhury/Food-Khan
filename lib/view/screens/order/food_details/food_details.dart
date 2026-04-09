@@ -1,7 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:food_khan/model/screens/home/special_menu/menu_model.dart';
 import 'package:food_khan/controller/provider/cart_provider.dart';
-import 'package:food_khan/view/screens/order/payment/delivery_info.dart';
+import 'package:food_khan/view/screens/order/food_details/delivery_form/delivery_info.dart';
 import 'package:food_khan/widget/screens/order/food_detaills/food_dp.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,9 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         margin: const EdgeInsets.only(top: 22, left: 20, right: 20),
         child: Column(
           children: [
+
             const SizedBox(height: 10),
+            //** Food Image Display
             Food_DP(widget.product.imageUrl, context),
             const SizedBox(height: 20),
 
@@ -70,10 +72,10 @@ class _FoodDetaillsState extends State<FoodDetaills> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Add to Favorite",
+                Text(
+                  "Add to Favorite →".toUpperCase(),
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 15,
                     letterSpacing: 1.4,
                     color: Colors.white,
                     fontWeight: FontWeight.w700,

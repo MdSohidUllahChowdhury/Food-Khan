@@ -24,11 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
     if (mounted) {
       if (user != null && !SessionManager.instance.isSessionExpired()) {
         // User is logged in and session is valid
-        print('✅ User logged in: ${user.email}');
+        print('User logged in: ${user.email}');
         Get.offAll(() => NavigationControll());
       } else {
         // User is not logged in or session expired
-        print('❌ User not logged in or session expired');
+        print('User not logged in or session expired');
         Get.offAll(() => const WelcomeScreen());
       }
     }

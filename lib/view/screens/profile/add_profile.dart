@@ -15,16 +15,11 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  final _profileImageService = ProfileImageService();
   bool _isLoading = false;
   File? _imageFile;
   String? _existingImageUrl; //FIX: hold current saved URL
-  final _profileImageService = ProfileImageService();
-
-  @override
-  void initState() {
-    super.initState();
-    _loadExistingImage();
-  }
 
   Future<void> _loadExistingImage() async {
     final url = await _profileImageService.getUserProfileImageUrl();
@@ -99,6 +94,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _loadExistingImage();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -146,7 +147,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               const SizedBox(height: 50),
-              // Select Image button
+
+
+              //! Select Image button
               Container(
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
@@ -212,6 +215,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
               const SizedBox(height: 40),
+
+              //! Save button
               SizedBox(
                 width: double.infinity,
                 height: 50,
