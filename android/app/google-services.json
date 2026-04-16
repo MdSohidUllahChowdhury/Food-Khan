@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "296937901145",
+    "project_id": "food-khan",
+    "storage_bucket": "food-khan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296937901145:android:d0a57bf0a81711aa22f548",
+        "android_client_info": {
+          "package_name": "com.example.application_backend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1ZD7qdm_30RmVKyxrPeBmee4GsxX5ArA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -46,7 +46,6 @@ app.*.map.json
 # Project-specific controller folders to ignore (sensitive local configs)
 lib/controller/api/
 lib/controller/firebase/
-lib/controller/supabase/
 
 # IDE / metadata files
 application_backend.iml

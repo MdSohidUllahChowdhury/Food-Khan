@@ -21,7 +21,6 @@ class FoodDetaills extends StatefulWidget {
 class _FoodDetaillsState extends State<FoodDetaills> {
   int quantity = 1;
   int price = 0;
-  bool fill = false;
 
   @override
   void initState() {
@@ -31,8 +30,6 @@ class _FoodDetaillsState extends State<FoodDetaills> {
 
   @override
   Widget build(BuildContext context) {
-    final providerCall = Provider.of<CartController>(context, listen: false);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -62,7 +59,6 @@ class _FoodDetaillsState extends State<FoodDetaills> {
         margin: const EdgeInsets.only(top: 22, left: 20, right: 20),
         child: Column(
           children: [
-
             const SizedBox(height: 10),
             //** Food Image Display
             Food_DP(widget.product.imageUrl, context),
@@ -73,7 +69,7 @@ class _FoodDetaillsState extends State<FoodDetaills> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Add to Favorite →".toUpperCase(),
+                  "Add to Cart →".toUpperCase(),
                   style: TextStyle(
                     fontSize: 15,
                     letterSpacing: 1.4,
@@ -81,85 +77,140 @@ class _FoodDetaillsState extends State<FoodDetaills> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                AvatarGlow(
-                  duration: Duration(seconds: 2),
-                  repeat: false,
-                  child: Material(
-                    color: Colors.white,
-                    shape: const CircleBorder(),
-                    child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor:
-                          widget.product.background_color ?? Colors.white,
-                      child: Center(
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              fill = !fill;
-                              if (fill) {
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.success,
-                                  borderSide: BorderSide(
-                                    color:
-                                        widget.product.background_color ??
-                                        Colors.white,
-                                    width: 1,
-                                  ),
-                                  width: 380,
-                                  buttonsBorderRadius: const BorderRadius.all(
-                                    Radius.circular(2),
-                                  ),
-                                  dismissOnTouchOutside: true,
-                                  dismissOnBackKeyPress: false,
-                                  headerAnimationLoop: false,
-                                  animType: AnimType.bottomSlide,
-                                  title: 'Added to Favorite',
-                                  desc: 'Successfully Added',
-                                  showCloseIcon: false,
-                                  btnOkText: 'Done',
-                                  btnOkOnPress: () {},
-                                ).show();
+                Consumer<CartController>(
+                  builder: (context, providerCall, child) {
+                    final isInCart = providerCall.isInCart(widget.product.id);
+                    final isBusy = providerCall.isItemBusy(widget.product.id);
 
-                                providerCall.adtoCart(widget.product);
-                              } else {
-                                AwesomeDialog(
-                                  context: context,
-                                  dialogType: DialogType.infoReverse,
-                                  borderSide: BorderSide(
-                                    color:
-                                        widget.product.background_color ??
-                                        Colors.white,
-                                    width: 1,
-                                  ),
-                                  width: 380,
-                                  buttonsBorderRadius: const BorderRadius.all(
-                                    Radius.circular(2),
-                                  ),
-                                  dismissOnTouchOutside: true,
-                                  dismissOnBackKeyPress: false,
-                                  headerAnimationLoop: false,
-                                  animType: AnimType.bottomSlide,
-                                  title: 'Removed from Favorite',
-                                  desc: 'Successfully Removed',
-                                  showCloseIcon: false,
-                                  btnOkText: 'OK',
-                                  btnOkOnPress: () {},
-                                ).show();
+                    return AvatarGlow(
+                      duration: Duration(seconds: 2),
+                      repeat: false,
+                      child: Material(
+                        color: Colors.white,
+                        shape: const CircleBorder(),
+                        child: CircleAvatar(
+                          radius: 20,
+                          backgroundColor:
+                              widget.product.background_color ?? Colors.white,
+                          child: Center(
+                            child: InkWell(
+                              onTap:
+                                  isBusy
+                                      ? null
+                                      : () async {
+                                        try {
+                                          if (isInCart) {
+                                            await providerCall.removeByMenuId(
+                                              widget.product.id,
+                                            );
+                                            if (!context.mounted) {
+                                              return;
+                                            }
 
-                                providerCall.removeFromCart(widget.product);
-                              }
-                            });
-                          },
-                          child: Icon(
-                            fill ? Icons.favorite : Icons.favorite_border,
-                            color: fill ? Colors.red : Colors.black,
-                            size: 30,
+                                            AwesomeDialog(
+                                              context: context,
+                                              dialogType:
+                                                  DialogType.infoReverse,
+                                              borderSide: BorderSide(
+                                                color:
+                                                    widget
+                                                        .product
+                                                        .background_color ??
+                                                    Colors.white,
+                                                width: 1,
+                                              ),
+                                              width: 380,
+                                              buttonsBorderRadius:
+                                                  const BorderRadius.all(
+                                                    Radius.circular(2),
+                                                  ),
+                                              dismissOnTouchOutside: true,
+                                              dismissOnBackKeyPress: false,
+                                              headerAnimationLoop: false,
+                                              animType: AnimType.bottomSlide,
+                                              title: 'Removed from Cart',
+                                              desc: 'Successfully removed',
+                                              showCloseIcon: false,
+                                              btnOkText: 'OK',
+                                              btnOkOnPress: () {},
+                                            ).show();
+                                          } else {
+                                            await providerCall.addToCart(
+                                              widget.product,
+                                              quantity: quantity,
+                                            );
+                                            if (!context.mounted) {
+                                              return;
+                                            }
+
+                                            AwesomeDialog(
+                                              context: context,
+                                              dialogType: DialogType.success,
+                                              borderSide: BorderSide(
+                                                color:
+                                                    widget
+                                                        .product
+                                                        .background_color ??
+                                                    Colors.white,
+                                                width: 1,
+                                              ),
+                                              width: 380,
+                                              buttonsBorderRadius:
+                                                  const BorderRadius.all(
+                                                    Radius.circular(2),
+                                                  ),
+                                              dismissOnTouchOutside: true,
+                                              dismissOnBackKeyPress: false,
+                                              headerAnimationLoop: false,
+                                              animType: AnimType.bottomSlide,
+                                              title: 'Added to Cart',
+                                              desc:
+                                                  'Saved to your cart in Supabase',
+                                              showCloseIcon: false,
+                                              btnOkText: 'Done',
+                                              btnOkOnPress: () {},
+                                            ).show();
+                                          }
+                                        } catch (_) {
+                                          if (!mounted) {
+                                            return;
+                                          }
+
+                                          Get.snackbar(
+                                            'Cart error',
+                                            providerCall.errorMessage ??
+                                                'Unable to update cart right now.',
+                                            backgroundColor: Colors.red,
+                                            colorText: Colors.white,
+                                          );
+                                        }
+                                      },
+                              child:
+                                  isBusy
+                                      ? const SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: Colors.black,
+                                        ),
+                                      )
+                                      : Icon(
+                                        isInCart
+                                            ? Icons.favorite
+                                            : Icons.favorite_border,
+                                        color:
+                                            isInCart
+                                                ? Colors.red
+                                                : Colors.black,
+                                        size: 30,
+                                      ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
               ],
             ),

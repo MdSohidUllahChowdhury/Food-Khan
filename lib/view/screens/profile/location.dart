@@ -14,7 +14,7 @@ class LocationScreen extends StatefulWidget {
 
 class _LocationScreenState extends State<LocationScreen> {
   final String googleMapsUrl =
-      "https://www.google.com/maps/search/?api=1&query=23.781914961742824,90.42591531895101";
+      "https://tinyurl.com/2t5kjy34";
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,9 @@ class _LocationScreenState extends State<LocationScreen> {
           Divider(color: Color(0xffFFAC4B), thickness: 18),
           const SizedBox(height: 60),
 
-          AvatarGlow(repeat: false,
-           duration: Duration(seconds:4),
+          AvatarGlow(
+            repeat: false,
+            duration: Duration(seconds: 4),
             glowColor: Colors.white,
             glowShape: BoxShape.circle,
             curve: Curves.slowMiddle,

@@ -14,6 +14,10 @@ class CartCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final providerCall = Provider.of<CartController>(context, listen: false);
+    final isRemoving = context.select<CartController, bool>(
+      (provider) => provider.isItemBusy(item.id),
+    );
+
     return Animate(
       child: Container(
         height: MediaQuery.of(context).size.height * .15,
@@ -47,14 +51,27 @@ class CartCard extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  '\$${item.price.toString()}',
-                  style: TextStyle(
+                  item.price.toString().contains('\$')
+                      ? item.price.toString()
+                      : '\$${item.price}',
+                  style: const TextStyle(
                     fontFamily: 'Bold',
                     fontSize: 13,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
                   ),
                 ),
+                if (item.quantity > 1) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    'Qty: ${item.quantity}',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -88,19 +105,50 @@ class CartCard extends StatelessWidget {
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width * .18),
                     IconButton(
-                      onPressed: () {
-                        Get.snackbar(
-                          "Deleted",
-                          "Your Item has been deleted",
-                          backgroundColor: Colors.white,
-                        );
-                        providerCall.removeFromCart(item);
-                      },
-                      icon: Icon(
-                        FontAwesomeIcons.solidTrashCan,
-                        size: 16,
-                        color: Colors.white,
-                      ),
+                      onPressed:
+                          isRemoving
+                              ? null
+                              : () async {
+                                try {
+                                  await providerCall.removeFromCart(item);
+                                  if (!context.mounted) {
+                                    return;
+                                  }
+
+                                  Get.snackbar(
+                                    "Deleted",
+                                    "Your item has been deleted",
+                                    backgroundColor: Colors.white,
+                                  );
+                                } catch (_) {
+                                  if (!context.mounted) {
+                                    return;
+                                  }
+
+                                  Get.snackbar(
+                                    "Cart error",
+                                    providerCall.errorMessage ??
+                                        "Unable to remove this item right now.",
+                                    backgroundColor: Colors.red,
+                                    colorText: Colors.white,
+                                  );
+                                }
+                              },
+                      icon:
+                          isRemoving
+                              ? const SizedBox(
+                                height: 16,
+                                width: 16,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Colors.white,
+                                ),
+                              )
+                              : const Icon(
+                                FontAwesomeIcons.solidTrashCan,
+                                size: 16,
+                                color: Colors.white,
+                              ),
                     ),
                   ],
                 ),

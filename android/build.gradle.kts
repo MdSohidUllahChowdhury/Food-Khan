@@ -1,3 +1,8 @@
+plugins {
+    // Change 4.4.0 to 4.3.15 to resolve the conflict
+    id("com.google.gms.google-services") version "4.3.15" apply false
+}
+
 allprojects {
     repositories {
         google()

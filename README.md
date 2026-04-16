@@ -1,8 +1,10 @@
-# 🍽️ Food Khan — (Flutter Mobile App)
+# 🔵 Food Khan (Flutter Mobile App)
 
-Welcome to the ultimate Food app experience, built with Flutter for blazing-fast performance. Take the hassle out of deciding what to eat, letting you focus on the delicious part!
+Experience the future of food delivery with a Flutter-powered interface designed for blazing-fast performance and zero friction.
 
-Explore a world of cuisine with stunning visual food displays and complete menu access. Once you've made your choice, our intuitive interface guides you from food details straight to a quick checkout. Manage your budget and enjoy a secure COD payment process for every order. Your cart keeps everything organized, and we use precise location services to ensure your food arrives fresh and fast.
+- Visual Feast : High-definition galleries that make every dish look as good as it tastes.
+- Seamless Flow : From cravings to checkout in just a few taps.
+- Smart Logistics : Integrated location services and a secure COD system ensure arrives exactly where you are.
 
 ---
 
@@ -10,7 +12,7 @@ Explore a world of cuisine with stunning visual food displays and complete menu 
 
 ---
 
-## 🚀 Quick summary
+## 🔵 Project Preview
 
 - Supabase-driven (REST + optional realtime stream)
 - Firebase initialized (ready for auth / User Data Collection / analytics)
@@ -20,7 +22,7 @@ Explore a world of cuisine with stunning visual food displays and complete menu 
 
 ---
 
-## 🎯 Key features
+## 🔵 Key features
 
 - Creat user account via Firebase Auth
 - Display food items and details pulled from Supabase
@@ -30,7 +32,7 @@ Explore a world of cuisine with stunning visual food displays and complete menu 
 
 ---
 
-## 🏗 Architecture & Patterns
+## 🔵 Architecture & Patterns
 
 The project follows an MVC-style separation:
 
@@ -47,7 +49,7 @@ This mix keeps business logic testable (controllers) while keeping UI code in vi
 
 ---
 
-## 🛠 Tech stack
+## 🔵 Tech stack
 
 - Flutter & Dart
 - Supabase (`supabase_flutter`) for backend data and optional realtime
